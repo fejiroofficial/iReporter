@@ -1,5 +1,6 @@
 /* eslint no-console: "off" */
 import express from 'express';
+import router from './routes';
 
 const app = express();
 
@@ -14,6 +15,8 @@ app.get('/', (req, res) => {
     message: 'Welcome to home page',
   });
 });
+
+app.use('/api/v1', router);
 
 app.use('*', (err, req, res, next) => {
   const statusCode = err.statusCode || 500;

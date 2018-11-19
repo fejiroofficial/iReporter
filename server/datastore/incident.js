@@ -1,9 +1,9 @@
 /**
- * a list of all red-flags
+ * a list of all red-flags and incidents
  * @constant
  *
  * @type {Array<Object>}
- * @exports allOrders
+ * @exports incidents
  */
 const incidents = [
   {
@@ -26,7 +26,18 @@ const incidents = [
     status: 'draft',
     Images: ['www.image.com', 'www.image.com'],
     Videos: ['www.video.com', 'www.video.com'],
-    comment: 'There is a broken bridge betweem Ota and Abeokut',
+    comment: 'There is a broken bridge betweem Ota and Abeokuta',
+  },
+  {
+    id: 3,
+    createdOn: new Date().toISOString(),
+    createdBy: 1,
+    type: 'red-flag',
+    location: '6.4828617, 3.1896830',
+    status: 'draft',
+    Images: ['www.image.com', 'www.image.com'],
+    Videos: ['www.video.com', 'www.video.com'],
+    comment: 'There is a broken bridge betweem Ota and Badagry',
   },
 ];
 
