@@ -4,7 +4,7 @@ import incidents from '../datastore/incident';
 class redFlagController {
   /**
  * @function getRedFlags
- * @memberof incidentController
+ * @memberof redFlagController
  * @static
  */
   static getRedFlags(req, res) {
