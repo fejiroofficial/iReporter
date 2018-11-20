@@ -1,3 +1,5 @@
+/* eslint linebreak-style: "off" */
+
 /**
  * a list of all red-flags and incidents
  * @constant
