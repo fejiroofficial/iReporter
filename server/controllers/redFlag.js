@@ -187,5 +187,58 @@ class redFlagController {
       data,
     });
   }
+
+  /**
+* @function updateComment
+* @memberof redFlagController
+* @static
+*/
+  static updateComment(req, res) {
+    const redFlagId = parseInt(req.params.id, 10);
+    const redFlags = [];
+    const data = [];
+    const dataObject = {};
+    let { comment } = req.body;
+    comment = comment && comment
+      .toLowerCase().toString().trim().replace(/\s+/g, ' ');
+    if (isNaN(redFlagId)) {
+      return res.status(400).json({
+        success: 'false',
+        message: 'hooops! params should be a number e.g 1',
+      });
+    }
+    incidents.forEach((incident) => {
+      if (incident.type === 'red-flag') {
+        redFlags.push(incident);
+      }
+    });
+    if (redFlags.length === 0) {
+      return res.status(404).json({
+        status: 404,
+        success: 'false',
+        message: 'No red-flag record found',
+      });
+    }
+    redFlags.forEach((redFlag) => {
+      if (redFlag.id === redFlagId) {
+        redFlag.comment = comment;
+        dataObject.id = redFlag.id;
+        dataObject.message = 'Updated red-flag record’s comment';
+      }
+    });
+    if (Object.keys(dataObject).length === 0) {
+      return res.status(404).json({
+        status: 404,
+        success: 'false',
+        message: 'This red-flag record does not exist',
+      });
+    }
+    data.push(dataObject);
+    return res.status(201).json({
+      status: 201,
+      success: 'true',
+      data,
+    });
+  }
 }
 export default redFlagController;
