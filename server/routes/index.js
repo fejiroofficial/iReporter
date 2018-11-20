@@ -12,5 +12,6 @@ router.route('/red-flags')
 router.route('/red-flags/:id')
   .get(redFlagController.getRedFlag);
 router.patch('/red-flags/:id/location', middlewares.validateUpdateLocation, redFlagController.updateLocation);
+router.patch('/red-flags/:id/comment', middlewares.validateUpdateComment, redFlagController.updateComment);
 
 export default router;
