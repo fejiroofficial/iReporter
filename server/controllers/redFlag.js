@@ -1,10 +1,11 @@
 /* eslint linebreak-style: "off" */
+/* eslint no-plusplus: "off" */
 /* eslint no-restricted-globals: "off" */
 
-
 import incidents from '../datastore/incident';
-/** incident controller class */
+import users from '../datastore/users';
 
+/** incident controller class */
 class redFlagController {
   /**
  * @function getRedFlags
@@ -76,6 +77,61 @@ class redFlagController {
       success: 'true',
       data,
     });
+  }
+
+  /**
+ * @function postRedFlag
+ * @memberof redFlagController
+ * @static
+ */
+  static postRedFlag(req, res) {
+    let {
+      comment, type, location, Images, Videos,
+    } = req.body;
+    comment = comment && comment.toString().replace(/\s+/g, ' ');
+    const createdBy = parseInt(req.body.createdBy, 10);
+    const createdOn = new Date().toISOString();
+    const id = incidents.length + 1;
+    const status = 'draft';
+    if (type !== 'red-flag') {
+      return res.status(400).json({
+        status: 400,
+        success: 'false',
+        message: 'This is a red-flag incident, the type should be a \'redflag\'',
+      });
+    }
+    for (let i = 0; i < users.length; i++) {
+      if (users[i].id === createdBy) {
+        const newRedFlag = {
+          id,
+          createdOn,
+          createdBy,
+          type,
+          location,
+          status,
+          Images,
+          Videos,
+          comment,
+        };
+        incidents.push(newRedFlag);
+        return res.status(201).json({
+          status: 201,
+          success: 'true',
+          data: [{
+            id: newRedFlag.id,
+            message: 'Created red-flag record',
+          }],
+        });
+      }
+      if (users[i].id !== createdBy) {
+        return res.status(401).json({
+          status: 401,
+          success: 'false',
+          message: 'unauthorized user, please sign up',
+        });
+      }
+    }
+    return incidents;
   }
 }
 export default redFlagController;

@@ -1,2 +1,2 @@
 import './app.spec';
-import './getAllRedFlags.spec';
+import './redFlags.spec';
