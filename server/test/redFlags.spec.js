@@ -251,4 +251,71 @@ describe('redflag controller status', () => {
         });
     });
   })
+
+  describe('/PATCH red-flag location', () => {  
+    it('should throw an error if location is not provided', (done) => {
+      chai.request(app)
+        .patch('/api/v1/red-flags/:id/location')
+        .end((err, res) => {
+          expect(res.status).to.equal(400);
+          expect(res.type).to.equal('application/json');
+          expect(res.body).to.be.an('object');
+          expect(res.body.success).to.equal('false');
+          expect(res.body.message).to.equal('Please provide the location for this red-flag incident');
+          done();
+        });
+    });
+
+    it('throw error if param is not an integer', (done) => {
+      const requestBody = {
+        location: '6.4828617, 3.1896830',
+      };
+      chai.request(app)
+        .patch('/api/v1/red-flags/b/location')
+        .send(requestBody)
+        .end((err, res) => {
+          expect(res.status).to.equal(400);
+          expect(res.type).to.equal('application/json');
+          expect(res.body).to.be.an('object');
+          expect(res.body.success).to.equal('false');
+          expect(res.body.message).to.equal('hooops! params should be a number e.g 1');
+          done();
+        });
+    });
+
+    it('throw error if red-flag does not exist', (done) => {
+      const requestBody = {
+        location: '6.4828617, 3.1896830',
+      };
+      chai.request(app)
+        .patch('/api/v1/red-flags/100/location')
+        .send(requestBody)
+        .end((err, res) => {
+          expect(res.status).to.equal(404);
+          expect(res.type).to.equal('application/json');
+          expect(res.body).to.be.an('object');
+          expect(res.body.success).to.equal('false');
+          expect(res.body.message).to.equal('This red-flag record does not exist');
+          done();
+        });
+    });
+
+    it('return success if red-flag record is found', (done) => {
+      const requestBody = {
+        location: '6.4828617, 3.1896830',
+      };
+      chai.request(app)
+        .patch('/api/v1/red-flags/1/location')
+        .send(requestBody)
+        .end((err, res) => {
+          expect(res.status).to.equal(201);
+          expect(res.type).to.equal('application/json');
+          expect(res.body).to.be.an('object');
+          expect(res.body.status).to.equal(201);
+          expect(res.body.success).to.equal('true');
+          expect(res.body.data[0].message).to.equal('Updated red-flag record’s location');
+          done();
+        });
+    });
+  })
 })

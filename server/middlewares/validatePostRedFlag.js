@@ -1,3 +1,5 @@
+/* eslint linebreak-style: "off" */
+
 /**
  * This is a validation for post red-flag
  * @constant
@@ -59,7 +61,7 @@ const validatePostRedFlag = (req, res, next) => {
     return next(err);
   }
 
-  if (type !== 'red-flag' && type !== 'intervention') {
+  if (type.toLowerCase() !== 'red-flag' && type.toLowerCase() !== 'intervention') {
     const err = new Error('Incidents can only be \'red-flag\' or \'intervention\'');
     err.statusCode = 400;
     return next(err);

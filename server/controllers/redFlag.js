@@ -1,6 +1,7 @@
 /* eslint linebreak-style: "off" */
 /* eslint no-plusplus: "off" */
 /* eslint no-restricted-globals: "off" */
+/* eslint no-param-reassign: "off" */
 
 import incidents from '../datastore/incident';
 import users from '../datastore/users';
@@ -132,6 +133,59 @@ class redFlagController {
       }
     }
     return incidents;
+  }
+
+  /**
+ * @function updateLocation
+ * @memberof redFlagController
+ * @static
+ */
+  static updateLocation(req, res) {
+    const redFlagId = parseInt(req.params.id, 10);
+    const redFlags = [];
+    const data = [];
+    const dataObject = {};
+    let { location } = req.body;
+    location = location && location
+      .toLowerCase().toString().trim().replace(/\s+/g, ' ');
+    if (isNaN(redFlagId)) {
+      return res.status(400).json({
+        success: 'false',
+        message: 'hooops! params should be a number e.g 1',
+      });
+    }
+    incidents.forEach((incident) => {
+      if (incident.type === 'red-flag') {
+        redFlags.push(incident);
+      }
+    });
+    if (redFlags.length === 0) {
+      return res.status(404).json({
+        status: 404,
+        success: 'false',
+        message: 'No red-flag record found',
+      });
+    }
+    redFlags.forEach((redFlag) => {
+      if (redFlag.id === redFlagId) {
+        redFlag.location = location;
+        dataObject.id = redFlag.id;
+        dataObject.message = 'Updated red-flag record’s location';
+      }
+    });
+    if (Object.keys(dataObject).length === 0) {
+      return res.status(404).json({
+        status: 404,
+        success: 'false',
+        message: 'This red-flag record does not exist',
+      });
+    }
+    data.push(dataObject);
+    return res.status(201).json({
+      status: 201,
+      success: 'true',
+      data,
+    });
   }
 }
 export default redFlagController;
