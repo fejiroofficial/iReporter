@@ -1,4 +1,5 @@
 /* eslint no-console: "off" */
+/* eslint linebreak-style: "off" */
 import express from 'express';
 import router from './routes';
 
