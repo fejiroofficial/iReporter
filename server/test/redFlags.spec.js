@@ -291,17 +291,18 @@ describe('redflag controller status', () => {
         .patch('/api/v1/red-flags/100/location')
         .send(requestBody)
         .end((err, res) => {
-          expect(res.status).to.equal(404);
+          expect(res.status).to.equal(400);
           expect(res.type).to.equal('application/json');
           expect(res.body).to.be.an('object');
           expect(res.body.success).to.equal('false');
-          expect(res.body.message).to.equal('This red-flag record does not exist');
+          expect(res.body.message).to.equal('This red-flag record either does not exist or does not belong to you');
           done();
         });
     });
 
     it('return success if red-flag record is found', (done) => {
       const requestBody = {
+        userId: 1,
         location: '6.4828617, 3.1896830',
       };
       chai.request(app)
@@ -358,17 +359,18 @@ describe('redflag controller status', () => {
         .patch('/api/v1/red-flags/100/comment')
         .send(requestBody)
         .end((err, res) => {
-          expect(res.status).to.equal(404);
+          expect(res.status).to.equal(400);
           expect(res.type).to.equal('application/json');
           expect(res.body).to.be.an('object');
           expect(res.body.success).to.equal('false');
-          expect(res.body.message).to.equal('This red-flag record does not exist');
+          expect(res.body.message).to.equal('This red-flag record either does not exist or does not belong to you');
           done();
         });
     });
 
     it('return success if red-flag record is found', (done) => {
       const requestBody = {
+        userId: 1,
         comment: 'this is a brief comment',
       };
       chai.request(app)
@@ -381,6 +383,209 @@ describe('redflag controller status', () => {
           expect(res.body.status).to.equal(201);
           expect(res.body.success).to.equal('true');
           expect(res.body.data[0].message).to.equal('Updated red-flag record’s comment');
+          done();
+        });
+    });
+  })
+
+   describe('/PATCH red-flag location', () => {  
+    it('should throw an error if location is not provided', (done) => {
+      chai.request(app)
+        .patch('/api/v1/red-flags/1/location')
+        .end((err, res) => {
+          expect(res.status).to.equal(400);
+          expect(res.type).to.equal('application/json');
+          expect(res.body).to.be.an('object');
+          expect(res.body.success).to.equal('false');
+          expect(res.body.message).to.equal('Please provide the location for this red-flag incident');
+          done();
+        });
+    });
+
+    it('throw error if param is not an integer', (done) => {
+      const requestBody = {
+        location: '6.4828617, 3.1896830',
+      };
+      chai.request(app)
+        .patch('/api/v1/red-flags/b/location')
+        .send(requestBody)
+        .end((err, res) => {
+          expect(res.status).to.equal(400);
+          expect(res.type).to.equal('application/json');
+          expect(res.body).to.be.an('object');
+          expect(res.body.success).to.equal('false');
+          expect(res.body.message).to.equal('hooops! params should be a number e.g 1');
+          done();
+        });
+    });
+
+    it('throw error if red-flag does not exist', (done) => {
+      const requestBody = {
+        location: '6.4828617, 3.1896830',
+      };
+      chai.request(app)
+        .patch('/api/v1/red-flags/100/location')
+        .send(requestBody)
+        .end((err, res) => {
+          expect(res.status).to.equal(400);
+          expect(res.type).to.equal('application/json');
+          expect(res.body).to.be.an('object');
+          expect(res.body.success).to.equal('false');
+          expect(res.body.message).to.equal('This red-flag record either does not exist or does not belong to you');
+          done();
+        });
+    });
+
+    it('return success if red-flag record is found', (done) => {
+      const requestBody = {
+        userId: 1,
+        location: '6.4828617, 3.1896830',
+      };
+      chai.request(app)
+        .patch('/api/v1/red-flags/1/location')
+        .send(requestBody)
+        .end((err, res) => {
+          expect(res.status).to.equal(201);
+          expect(res.type).to.equal('application/json');
+          expect(res.body).to.be.an('object');
+          expect(res.body.status).to.equal(201);
+          expect(res.body.success).to.equal('true');
+          expect(res.body.data[0].message).to.equal('Updated red-flag record’s location');
+          done();
+        });
+    });
+  })
+
+  describe('/PATCH red-flag comment', () => {  
+    it('should throw an error if comment is not provided', (done) => {
+      chai.request(app)
+        .patch('/api/v1/red-flags/1/comment')
+        .end((err, res) => {
+          expect(res.status).to.equal(400);
+          expect(res.type).to.equal('application/json');
+          expect(res.body).to.be.an('object');
+          expect(res.body.success).to.equal('false');
+          expect(res.body.message).to.equal('Please provide a brief comment for this red-flag incident');
+          done();
+        });
+    });
+
+    it('throw error if param is not an integer', (done) => {
+      const requestBody = {
+        comment: 'this is a brief comment',
+      };
+      chai.request(app)
+        .patch('/api/v1/red-flags/b/comment')
+        .send(requestBody)
+        .end((err, res) => {
+          expect(res.status).to.equal(400);
+          expect(res.type).to.equal('application/json');
+          expect(res.body).to.be.an('object');
+          expect(res.body.success).to.equal('false');
+          expect(res.body.message).to.equal('hooops! params should be a number e.g 1');
+          done();
+        });
+    });
+
+    it('throw error if red-flag does not exist', (done) => {
+      const requestBody = {
+        comment: 'this is a brief comment',
+      };
+      chai.request(app)
+        .patch('/api/v1/red-flags/100/comment')
+        .send(requestBody)
+        .end((err, res) => {
+          expect(res.status).to.equal(400);
+          expect(res.type).to.equal('application/json');
+          expect(res.body).to.be.an('object');
+          expect(res.body.success).to.equal('false');
+          expect(res.body.message).to.equal('This red-flag record either does not exist or does not belong to you');
+          done();
+        });
+    });
+
+    it('return success if red-flag record is found', (done) => {
+      const requestBody = {
+        userId: 1,
+        comment: 'this is a brief comment',
+      };
+      chai.request(app)
+        .patch('/api/v1/red-flags/1/comment')
+        .send(requestBody)
+        .end((err, res) => {
+          expect(res.status).to.equal(201);
+          expect(res.type).to.equal('application/json');
+          expect(res.body).to.be.an('object');
+          expect(res.body.status).to.equal(201);
+          expect(res.body.success).to.equal('true');
+          expect(res.body.data[0].message).to.equal('Updated red-flag record’s comment');
+          done();
+        });
+    });
+  })
+
+  describe('/DELETE red-flag comment', () => {  
+    it('should throw an error if comment is not provided', (done) => {
+      chai.request(app)
+        .delete('/api/v1/red-flags/1/')
+        .end((err, res) => {
+          expect(res.status).to.equal(401);
+          expect(res.type).to.equal('application/json');
+          expect(res.body).to.be.an('object');
+          expect(res.body.success).to.equal('false');
+          expect(res.body.message).to.equal('unauthorized user, please provide a valid user id');
+          done();
+        });
+    });
+
+    it('throw error if param is not an integer', (done) => {
+      const requestBody = {
+        userId: 1,
+      };
+      chai.request(app)
+        .delete('/api/v1/red-flags/b')
+        .send(requestBody)
+        .end((err, res) => {
+          expect(res.status).to.equal(400);
+          expect(res.type).to.equal('application/json');
+          expect(res.body).to.be.an('object');
+          expect(res.body.success).to.equal('false');
+          expect(res.body.message).to.equal('hooops! params should be a number e.g 1');
+          done();
+        });
+    });
+
+    it('throw error if red-flag does not exist', (done) => {
+      const requestBody = {
+        userId: 1,
+      };
+      chai.request(app)
+        .delete('/api/v1/red-flags/100')
+        .send(requestBody)
+        .end((err, res) => {
+          expect(res.status).to.equal(400);
+          expect(res.type).to.equal('application/json');
+          expect(res.body).to.be.an('object');
+          expect(res.body.success).to.equal('false');
+          expect(res.body.message).to.equal('This red-flag record either does not exist or does not belong to you');
+          done();
+        });
+    });
+
+    it('return success if red-flag record is deleted', (done) => {
+      const requestBody = {
+        userId: 1,
+      };
+      chai.request(app)
+        .delete('/api/v1/red-flags/1')
+        .send(requestBody)
+        .end((err, res) => {
+          expect(res.status).to.equal(200);
+          expect(res.type).to.equal('application/json');
+          expect(res.body).to.be.an('object');
+          expect(res.body.status).to.equal(200);
+          expect(res.body.success).to.equal('true');
+          expect(res.body.data[0].message).to.equal('red-flag record has been deleted');
           done();
         });
     });
