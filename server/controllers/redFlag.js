@@ -142,6 +142,7 @@ class redFlagController {
  */
   static updateLocation(req, res) {
     const redFlagId = parseInt(req.params.id, 10);
+    const userId = parseInt(req.body.userId, 10);
     const redFlags = [];
     const data = [];
     const dataObject = {};
@@ -167,17 +168,18 @@ class redFlagController {
       });
     }
     redFlags.forEach((redFlag) => {
-      if (redFlag.id === redFlagId) {
+      if (redFlag.id === redFlagId && redFlag.createdBy === userId) {
         redFlag.location = location;
         dataObject.id = redFlag.id;
+        dataObject.updatedBy = redFlag.createdBy;
         dataObject.message = 'Updated red-flag record’s location';
       }
     });
     if (Object.keys(dataObject).length === 0) {
-      return res.status(404).json({
-        status: 404,
+      return res.status(400).json({
+        status: 400,
         success: 'false',
-        message: 'This red-flag record does not exist',
+        message: 'This red-flag record either does not exist or does not belong to you',
       });
     }
     data.push(dataObject);
@@ -195,6 +197,7 @@ class redFlagController {
 */
   static updateComment(req, res) {
     const redFlagId = parseInt(req.params.id, 10);
+    const userId = parseInt(req.body.userId, 10);
     const redFlags = [];
     const data = [];
     const dataObject = {};
@@ -220,17 +223,18 @@ class redFlagController {
       });
     }
     redFlags.forEach((redFlag) => {
-      if (redFlag.id === redFlagId) {
+      if (redFlag.id === redFlagId && redFlag.createdBy === userId) {
         redFlag.comment = comment;
         dataObject.id = redFlag.id;
+        dataObject.updatedBy = redFlag.createdBy;
         dataObject.message = 'Updated red-flag record’s comment';
       }
     });
     if (Object.keys(dataObject).length === 0) {
-      return res.status(404).json({
-        status: 404,
+      return res.status(400).json({
+        status: 400,
         success: 'false',
-        message: 'This red-flag record does not exist',
+        message: 'This red-flag record either does not exist or does not belong to you',
       });
     }
     data.push(dataObject);
@@ -240,5 +244,70 @@ class redFlagController {
       data,
     });
   }
+
+  /**
+ * @function deleteRedFlag
+ * @memberof redFlagController
+ * @static
+ */
+  static deleteRedFlag(req, res) {
+    const redFlagId = parseInt(req.params.id, 10);
+    const userId = parseInt(req.body.userId, 10);
+    const redFlags = [];
+    const data = [];
+    const dataObject = {};
+    if (!userId || isNaN(userId)) {
+      return res.status(401).json({
+        success: 'false',
+        message: 'unauthorized user, please provide a valid user id',
+      });
+    }
+
+    if (isNaN(redFlagId)) {
+      return res.status(400).json({
+        success: 'false',
+        message: 'hooops! params should be a number e.g 1',
+      });
+    }
+
+    incidents.forEach((incident) => {
+      if (incident.type === 'red-flag') {
+        redFlags.push(incident);
+      }
+    });
+
+    if (redFlags.length === 0) {
+      return res.status(404).json({
+        status: 404,
+        success: 'false',
+        message: 'No red-flag record found',
+      });
+    }
+
+    redFlags.forEach((redFlag) => {
+      if (redFlag.id === redFlagId && redFlag.createdBy === userId) {
+        const redFlagindex = redFlags.indexOf(redFlag);
+        redFlags.splice(redFlagindex, 1);
+        dataObject.id = redFlag.id;
+        dataObject.deletedBy = redFlag.createdBy;
+        dataObject.message = 'red-flag record has been deleted';
+      }
+    });
+
+    if (Object.keys(dataObject).length === 0) {
+      return res.status(400).json({
+        status: 400,
+        success: 'false',
+        message: 'This red-flag record either does not exist or does not belong to you',
+      });
+    }
+    data.push(dataObject);
+    return res.status(200).json({
+      status: 200,
+      success: 'true',
+      data,
+    });
+  }
 }
+
 export default redFlagController;

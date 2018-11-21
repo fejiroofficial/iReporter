@@ -24,8 +24,8 @@ const validatePostRedFlag = (req, res, next) => {
   createdBy = createdBy && createdBy.toString().trim();
 
 
-  if (isNaN(createdBy)) {
-    const err = new Error('createdBy should be a number');
+  if (!createdBy || isNaN(createdBy)) {
+    const err = new Error('unauthorized user, please provide a valid id');
     err.statusCode = 400;
     return next(err);
   }
@@ -33,12 +33,6 @@ const validatePostRedFlag = (req, res, next) => {
   if (!comment) {
     const err = new Error('You have to make a comment on this red-flag');
     err.statusCode = 400;
-    return next(err);
-  }
-
-  if (!createdBy) {
-    const err = new Error('unauthorized user, please provide your id');
-    err.statusCode = 401;
     return next(err);
   }
 
