@@ -339,15 +339,20 @@ footer {
     font-size: 45px;
 }
 
-.sign-in-content {
+.sign-in-content, .sign-up-content {
     height: 346px;
     width: 265px;
     margin-left: 26px;
     border-color: lightgrey;
+    border-radius: 4px;
     border-style: solid;
     border-width: thin;
     margin-top: 42px;
     margin-bottom: 53px;
+}
+
+.sign-up-content {
+    height: 583px;
 }
 
 .sign-in-header {
@@ -362,9 +367,9 @@ footer {
 #sign-btn {
     width: 129px;
     padding-top: 2px;
-    margin-left: 67px;
+    margin-left: 54px;
     font-weight: bold;
-    margin-top: -8px;
+    margin-top: 5px;
     outline: none;
     border: none;
 }
@@ -378,10 +383,15 @@ footer {
     text-decoration: none;
 }
 
-#sign-in-form {
+#sign-in-form, #sign-up-form {
     margin: 0 auto;
-    height: 180px;
+    height: 211px;
     width: 229px;
+    margin-bottom: 10px;
+}
+
+#sign-up-form {
+    height: 448px;
 }
 
 input[class="input-field"] {
@@ -392,6 +402,7 @@ input[class="input-field"] {
     display: inline-block;
     border: 1px solid #ccc;
     box-sizing: border-box;
+    outline: none;
 }
 
 @media (min-width: 360px) {
@@ -413,10 +424,13 @@ input[class="input-field"] {
     footer {
         padding-left: 59px;
     }
-    .sign-in-content {
+    .sign-in-content, .sign-up-content {
         margin-left: 49px;
         margin-top: 84px;
         margin-bottom: 83px;
+    }
+    .sign-up-content {
+        margin-top: 40px;
     }
 }
 
@@ -439,18 +453,21 @@ input[class="input-field"] {
     footer {
         padding-left: 67px;
     }
-    .sign-in-content {
+    .sign-in-content, .sign-up-content {
         margin-left: 57px;
-        margin-top: 87px;
+        margin-top: 62px;
         margin-bottom: 107px;
+    }
+    .sign-up-content {
+        margin-top: 40px;
     }
 }
 
 @media screen and (min-width: 375px) , screen and (min-height: 812px) {
     .sign-in-content {
         margin-left: 57px;
-        margin-top: 161px;
-        margin-bottom: 178px;
+        margin-top: 62px;
+        margin-bottom: 277px;
     }
   }
 
@@ -476,17 +493,20 @@ input[class="input-field"] {
     .hero-banner {
         height: 226px;
     }
-    .sign-in-content {
-        margin-left: 44px;
+    .sign-in-content, .sign-up-content {
+        margin-left: 49px;
         width: 324px;
-        margin-top: 161px;
+        margin-top: 90px;
         margin-bottom: 178px;
+    }
+    .sign-up-content {
+        margin-top: 69px;
     }
     #sign-in-form {
         width: 278px;
     }
     #sign-btn {
-        margin-left: 95px;
+        margin-left: 52px;
     }
 }
 
@@ -531,18 +551,22 @@ input[class="input-field"] {
     .sign-in-header {
         margin-bottom: 25px;
     }
-    .sign-in-content {
+    .sign-in-content, .sign-up-content {
         margin-left: 121px;
         height: 366px;
         width: 535px;
         margin-top: 224px;
         margin-bottom: 307px;
     }
-    #sign-in-form {
+    .sign-up-content {
+        margin-top: 127px;
+        height: 600px;
+    }
+    #sign-in-form, #sign-up-form {
         width: 394px;
     }
     #sign-btn {
-        margin-left: 205px;
+        margin-left: 136px;
     }
     .sign-note {
         padding-left: 70px;
@@ -658,9 +682,13 @@ input[class="input-field"] {
     .seperator {
         display: none;
     }
-    .sign-in-content {
+    .sign-in-content, .sign-up-content {
         margin-left: 247px;
         margin-top: 344px;
+        margin-bottom: 482px;
+    }
+    .sign-up-content {
+        margin-top: 127px;
         margin-bottom: 482px;
     }
 }
@@ -886,10 +914,13 @@ input[class="input-field"] {
     .seperator {
         display: none;
     }
-    .sign-in-content {
+    .sign-in-content, .sign-up-content {
         margin-left: 467px;
-        margin-top: 180px;
+        margin-top: 150px;
         margin-bottom: 228px;
+    }
+    .sign-up-content {
+        margin-top: 127px;
     }
 }
 
@@ -1003,9 +1034,12 @@ input[class="input-field"] {
     .seperator {
         display: none;
     }
-    .sign-in-content {
+    .sign-in-content, .sign-up-content {
         margin-left: 507px;
-        margin-top: 233px;
+        margin-top: 150px;
         margin-bottom: 228px;
+    }
+    .sign-up-content {
+        margin-top: 127px;
     }
 }

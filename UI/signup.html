@@ -52,21 +52,31 @@
       </div>
     </div>
 
-    <div class="sign-in-content">
-        <div class="sign-in-header">Log into iReporter</div>
-        <form id="sign-in-form">
-          <label for='Username'>Email</label>
-          <input type='email' class="input-field" id='log-email' placeholder="Enter Email" required>
+    <div class="sign-up-content">
+        <div class="sign-in-header">Create an Account</div>
+        <form id="sign-up-form" name="signupForm" method="POST" action="#">
+            
+              <label for="fname"><b>First name</b></label>
+              <input type="text" class="input-field" id="sign-first" placeholder="Enter First name" name="fname" required>
     
-          <label for='Username'>Password</label>
-          <input type='password' class="input-field" id='log-password' placeholder="Enter Password" required>
+              <label for="lname"><b>Last name</b></label>
+              <input type="text" class="input-field" id="sign-last" placeholder="Enter Last name" name="lname" required>
+    
+              <label for="eml"><b>Email</b></label>
+              <input type="email" class="input-field" id="log-email" placeholder="Enter Email" name="eml" required>
+    
+              <label for="tel"><b>Telephone</b></label>
+              <input type="tel" class="input-field" id="sign-tel" placeholder="Enter Telephone number" name="tel" required>
+          
+              <label for="psw"><b>Password</b></label>
+              <input type="password" class="input-field" id="log-password" placeholder="Enter Password" name="psw" required>
+          
+              <button class="home-top-btn" id="sign-btn" onclick="goSignup()">Sign up</button>
 
-            <button class="home-top-btn" id="sign-btn" onclick="goLogin()">Sign in</button>
-        </form>
-
+          </form>
         <div class="sign-note">
-          <p>Do not have an account? Create an account
-            <a href="./signup.html">here...</a>
+          <p>Already have an account? sign in
+            <a href="./login.html">here...</a>
           </p>
         </div>
       </div>

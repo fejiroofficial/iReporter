@@ -29,3 +29,8 @@ function closeNav() {
 function goLogin() {
   window.location.assign('login.html');
 }
+
+/* navigate to sign up page */
+function goSignup() {
+  window.location.assign('signup.html');
+}
