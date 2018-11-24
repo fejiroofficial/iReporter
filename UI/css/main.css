@@ -405,6 +405,209 @@ input[class="input-field"] {
     outline: none;
 }
 
+.comment-div {
+    min-height: 193px;
+    border-bottom-style: inset;
+    border-bottom-width: 10px;
+    border-top-width: 10px;
+    border-top-style: outset;
+    width: inherit;
+    padding-top: 11px;
+}
+
+.comment-items {
+    border-bottom-style: none;
+}
+
+.comment-div-inline {
+    height: 80px;
+    width: inherit;
+    display: flex;
+    margin-top: 7px;
+}
+
+.comment-dp, .account-circle-dp {
+    height: inherit;
+    width: 80px;
+    border-radius: 50%;
+    margin-left: 5px;
+    background-image: url('../img/profileSample.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.comment-div textarea {
+    margin-left: 4px;
+    border-radius: 3px;
+    outline-color: lightseagreen;
+    width: 210px; 
+}
+
+.comment-div-flag {
+    height: 65px;
+    width: 161px;
+    padding-left: 82px;
+}
+
+.div-flag-section {
+    width: 141px;
+    padding-top: 8px;
+}
+
+.div-redflag {
+    display: flex;
+}
+
+.iconAndBar {
+    height: inherit;
+    width: 21px;
+}
+
+.status-bar {
+    height: 40px;
+    width: inherit;
+    background-color: seagreen;
+}
+
+.red-flag-icon {
+    height: 23px;
+    width: 21px;
+    background-image: url('../img/red-flag.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.intervention-icon {
+    height: 23px;
+    width: 21px;
+    background-image: url('../img/help-wanted.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#myForm {
+    margin-left: 101px;
+    margin-top: 3px;
+}
+
+.longLat {
+    padding-left: 102px;
+    margin-bottom: 5px;
+    display: flex;
+    height: 24px;
+}
+
+#lat-geo {
+    margin-left: 17px;
+}
+
+#files {
+    width: 200px;
+}
+
+#selectedFiles {
+    margin-top: 18px;
+}
+
+#selectedFiles img {
+    max-width: 174px;
+    max-height: 169px;
+    margin-bottom:10px;
+}
+
+#report-btn {
+    width: 268px;
+    margin-left: 26px;
+    outline: none;
+    border: none;
+    margin-top: 2px;
+    margin-bottom: 15px;
+    padding-top: 2px;
+    font-weight: bold;
+}
+
+.geoLocation {
+    border-color: lightgrey;
+    height: 24px;
+    width: 65px;
+    outline: none;
+    border-style: solid;
+    border-width: thin;
+    padding-left: 5px;
+    margin-left: 3px;
+}
+
+.comment-in {
+    border-top-style: none;
+    border-top-width: thin;
+    border-bottom-style: none;
+}
+
+.comment-upload {
+    min-height: 300px;
+    width: inherit;
+}
+
+.upload-detail {
+    height: inherit;
+    width: 198px;
+}
+
+.uploader {
+    height: 22px;
+    width: inherit;
+    font-weight: bold;
+    padding-left: 5px;
+}
+
+.uploader-date {
+    font-size: x-small;
+    font-weight: bold;
+    padding-left: 6px;
+}
+
+.uploader-location {
+    display: flex;
+    padding-left: 2px;
+}
+
+.locator-icon {
+    height: inherit;
+    width: 20px;
+    background-image: url('../img/locator-icon.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.display-location {
+    height: inherit;
+    width: 68px;
+    font-size: small;
+}
+
+.display-comment {
+    min-height: 20px;
+    width: inherit;
+    padding: 10px;
+}
+
+.display-images {
+    height: 300px;
+    width: inherit;
+    background-image: url('../img/police.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.account-circle {
+    display: none;
+}
+
 @media (min-width: 360px) {
     a.logo {
         margin-left: 29px;
@@ -431,6 +634,12 @@ input[class="input-field"] {
     }
     .sign-up-content {
         margin-top: 40px;
+    }
+    .comment-in {
+        padding-left: 21px;
+    }
+    .upload-detail {
+        width: 240px;
     }
 }
 
@@ -460,6 +669,12 @@ input[class="input-field"] {
     }
     .sign-up-content {
         margin-top: 40px;
+    }
+    .comment-in {
+        padding-left: 32px;
+    }
+    .upload-detail {
+        width: 254px;
     }
 }
 
@@ -508,9 +723,37 @@ input[class="input-field"] {
     #sign-btn {
         margin-left: 52px;
     }
+    .comment-div textarea {
+        width: 256px;
+    }
+    .comment-div-flag {
+        height: 38px;
+        width: 335px;
+        display: flex;
+        padding-left: 82px;
+    }
+    .longLat {
+        margin-bottom: -5px;
+        margin-left: 21px;
+    }
+    #report-btn {
+        margin-left: 80px;
+    }
+    .upload-detail {
+        width: 299px;
+    }
 }
 
 @media (min-width: 768px) {
+    .comment-items {
+        border-bottom-style: none;
+        width: 421px;
+        margin-left: 175px;
+        margin-bottom: 30px;
+    }
+    .comment-in {
+        padding-left: 177px;
+    }
     a.logo {
         margin-left: 220px;
     }
@@ -574,6 +817,48 @@ input[class="input-field"] {
 }
 
 @media (min-width: 1024px) {
+    .account-circle {
+        height: inherit;
+        width: 775px;
+        padding-left: 556px;
+        display: flex;
+    }
+    .account-circle-dp {
+        width: 40px;
+        height: 40px;
+        margin-top: 15px;
+        margin-left: 0px;
+    }
+    .account-circle-name {
+        width: 179px;
+        height: inherit;
+        display: inherit;
+        padding-left: 3px;
+        font-size: 19px;
+        padding-top: 21px;
+    }
+    .longLat {
+        margin-bottom: -5px;
+        margin-left: 21px;
+        width: 230px;
+    }
+    #report-btn {
+        margin-left: 80px;
+        width: 428px;
+    }
+    .comment-div textarea {
+        width: 415px;
+    }
+    .top-geo {
+        display: flex;
+    }
+    .upload-detail {
+        width: 524px;
+        padding-left: 10px;
+    }
+    .comment-items {
+        width: 632px;
+    }
     .menu-icon {
         display: none;
     }
@@ -694,6 +979,12 @@ input[class="input-field"] {
 }
 
 @media (min-width: 1359px) {
+    .account-circle {
+        height: inherit;
+        width: 1072px;
+        padding-left: 846px;
+        display: flex;
+    }
     .menu-icon {
         display: none;
     }
@@ -805,6 +1096,19 @@ input[class="input-field"] {
 }
 
 @media (min-width: 1440px) {
+    .account-circle {
+        height: inherit;
+        width: 1072px;
+        padding-left: 846px;
+        display: flex;
+    }
+    .comment-in {
+        padding-left: 420px;
+    }
+    .comment-items {
+        width: 632px;
+        margin-left: 425px;
+    }
     .menu-icon {
         display: none;
     }
@@ -922,9 +1226,25 @@ input[class="input-field"] {
     .sign-up-content {
         margin-top: 127px;
     }
+    .display-images {
+        height: 519px;
+    }
 }
 
 @media (min-width: 1583px) {
+    .account-circle {
+        height: inherit;
+        width: 1215px;
+        padding-left: 995px;
+        display: flex;
+    }
+    .comment-in {
+        padding-left: 486px;
+    }
+    .comment-items {
+        width: 632px;
+        margin-left: 489px;
+    }
     .menu-icon {
         display: none;
     }
