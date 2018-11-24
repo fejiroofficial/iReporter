@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>iReporter</title>
+  <link rel="stylesheet" type="text/css" href="../UI/css/main.css">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Orbitron:900|Ultra" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+  <div class="container">
+
+    <div class="nav-bar">
+      <div class="menu-icon" onclick="openNav()">
+        <div class="menu-icon-bar"></div>
+        <div class="menu-icon-bar"></div>
+        <div class="menu-icon-bar"></div>
+      </div>
+      <a class="logo" href="./index.html">
+        <div class="logo-box">iReporter</div>
+      </a>
+
+      <p>Already have an account?</p>
+      <div class="home-top-btn" id="login-btn" onclick="goLogin()">LOGIN</div>
+    </div>
+
+    <div class="large-screen-nav" id="large-screen">
+        <div class="ver-seperator"></div>
+        <a class="nav-link" href="./menu.html">ABOUT US</a>
+        <div class="ver-seperator"></div>
+        <a class="nav-link" href="./login.html">LEARN ABOUT CORRUPTION</a>
+        <div class="ver-seperator"></div>
+      </div>
+
+    <div id="myNav" class="overlay">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+      <div class="overlay-content" id="small-screen">
+        <div class="seperator seperator-slide"></div>
+        <a href="./menu.html">ABOUT US</a>
+        <div class="seperator seperator-slide"></div>
+        <a href="./">LEARN ABOUT CORRUPTION</a>
+        <div class="seperator seperator-slide"></div>
+        <a href="./login.html">LOGIN</a>
+        <div class="seperator seperator-slide"></div>
+        <a href="./signup.html">SIGN UP</a>
+        <div class="seperator seperator-slide"></div>
+      </div>
+    </div>
+
+    <div class="sign-in-content">
+        <div class="sign-in-header">Log into iReporter</div>
+        <form id="sign-in-form">
+          <label for='Username'>Email</label>
+          <input type='email' class="input-field" id='log-email' placeholder="Enter Email" required>
+    
+          <label for='Username'>Password</label>
+          <input type='password' class="input-field" id='log-password' placeholder="Enter Password" required>
+        </form>
+        <div id='btn-container'>
+            <button class="home-top-btn" id="sign-btn" onclick="goLogin()">Sign in</button>
+        </div>
+        <div class="sign-note">
+          <p>Do not have an account? Create an account
+            <a href="./signup.html">here...</a>
+          </p>
+        </div>
+      </div>
+
+    <footer>
+      <p>
+        <i class="fa fa-copyright"></i>House of jiro media concepts</p>
+    </footer>
+  </div>
+
+  <script src="./js/scripts.js"></script>
+</body>
+
+</html>

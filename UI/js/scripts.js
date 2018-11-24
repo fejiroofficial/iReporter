@@ -24,3 +24,8 @@ function openNav() {
 function closeNav() {
   document.getElementById("myNav").style.width = "0%";
 }
+
+/* navigate to login page */
+function goLogin() {
+  window.location.assign('login.html');
+}

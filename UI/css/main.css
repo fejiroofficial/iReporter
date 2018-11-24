@@ -339,6 +339,61 @@ footer {
     font-size: 45px;
 }
 
+.sign-in-content {
+    height: 346px;
+    width: 265px;
+    margin-left: 26px;
+    border-color: lightgrey;
+    border-style: solid;
+    border-width: thin;
+    margin-top: 42px;
+    margin-bottom: 53px;
+}
+
+.sign-in-header {
+    height: 64px;
+    width: inherit;
+    text-align: center;
+    font-size: x-large;
+    padding-top: 12px;
+    font-weight: bold;
+}
+
+#sign-btn {
+    width: 129px;
+    padding-top: 2px;
+    margin-left: 67px;
+    font-weight: bold;
+    margin-top: -8px;
+    outline: none;
+    border: none;
+}
+
+.sign-note {
+    font-size: 14px;
+    padding-left: 17px;
+}
+
+.sign-note a {
+    text-decoration: none;
+}
+
+#sign-in-form {
+    margin: 0 auto;
+    height: 180px;
+    width: 229px;
+}
+
+input[class="input-field"] {
+    width: inherit;
+    padding: 12px 20px;
+    font-size: 15px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
 @media (min-width: 360px) {
     a.logo {
         margin-left: 29px;
@@ -357,6 +412,11 @@ footer {
     }
     footer {
         padding-left: 59px;
+    }
+    .sign-in-content {
+        margin-left: 49px;
+        margin-top: 84px;
+        margin-bottom: 83px;
     }
 }
 
@@ -379,7 +439,20 @@ footer {
     footer {
         padding-left: 67px;
     }
+    .sign-in-content {
+        margin-left: 57px;
+        margin-top: 87px;
+        margin-bottom: 107px;
+    }
 }
+
+@media screen and (min-width: 375px) , screen and (min-height: 812px) {
+    .sign-in-content {
+        margin-left: 57px;
+        margin-top: 161px;
+        margin-bottom: 178px;
+    }
+  }
 
 @media (min-width: 414px) {
     a.logo {
@@ -402,6 +475,18 @@ footer {
     }
     .hero-banner {
         height: 226px;
+    }
+    .sign-in-content {
+        margin-left: 44px;
+        width: 324px;
+        margin-top: 161px;
+        margin-bottom: 178px;
+    }
+    #sign-in-form {
+        width: 278px;
+    }
+    #sign-btn {
+        margin-left: 95px;
     }
 }
 
@@ -442,6 +527,25 @@ footer {
     }
     .work-banner-single-three {
         margin-left: 243px;
+    }
+    .sign-in-header {
+        margin-bottom: 25px;
+    }
+    .sign-in-content {
+        margin-left: 121px;
+        height: 366px;
+        width: 535px;
+        margin-top: 224px;
+        margin-bottom: 307px;
+    }
+    #sign-in-form {
+        width: 394px;
+    }
+    #sign-btn {
+        margin-left: 205px;
+    }
+    .sign-note {
+        padding-left: 70px;
     }
 }
 
@@ -553,6 +657,11 @@ footer {
     }
     .seperator {
         display: none;
+    }
+    .sign-in-content {
+        margin-left: 247px;
+        margin-top: 344px;
+        margin-bottom: 482px;
     }
 }
 
@@ -777,6 +886,11 @@ footer {
     .seperator {
         display: none;
     }
+    .sign-in-content {
+        margin-left: 467px;
+        margin-top: 180px;
+        margin-bottom: 228px;
+    }
 }
 
 @media (min-width: 1583px) {
@@ -888,5 +1002,10 @@ footer {
     }
     .seperator {
         display: none;
+    }
+    .sign-in-content {
+        margin-left: 507px;
+        margin-top: 233px;
+        margin-bottom: 228px;
     }
 }
