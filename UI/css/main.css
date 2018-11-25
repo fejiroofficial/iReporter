@@ -93,6 +93,19 @@ h1 {
     cursor: pointer;
 }
 
+.modal-top-btn {
+    height: 40px;
+    width: 201px;
+    border-width: thin;
+    border-radius: 8px;
+    margin-left: 62px;
+    text-align: center;
+    color: white;
+    padding-top: 8px;
+    background-color: lightseagreen;
+    cursor: pointer;
+}
+
 .hero-banner .home-top-btn {
     display: none;
 }
@@ -419,14 +432,19 @@ input[class="input-field"] {
     border-bottom-style: none;
 }
 
-.comment-div-inline {
+.comment-div-inline, .profile-div-inline {
     height: 80px;
     width: inherit;
     display: flex;
     margin-top: 7px;
 }
 
-.comment-dp, .account-circle-dp {
+.profile-div-inline {
+    height: 571px;
+    display: block;
+}
+
+.comment-dp, .account-circle-dp, .profile-page-dp {
     height: inherit;
     width: 80px;
     border-radius: 50%;
@@ -435,6 +453,93 @@ input[class="input-field"] {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+}
+
+.profile-page-dp {
+    height: 200px;
+    width: 200px;
+    margin-left: 61px;
+}
+
+.profile-page-info {
+    height: 125px;
+    width: inherit;
+}
+
+.profile-page-records {
+    height: 200px;
+    width: inherit;
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 57px;
+}
+
+.records-number {
+    height: 48px;
+    width: inherit;
+    text-align: center;
+    font-size: 35px;
+    color: white;
+    font-weight: bold;
+}
+
+#total-cases {
+    background-color: lightseagreen;
+}
+
+#total-draft {
+    background-color: #eaea16;
+}
+
+#total-resolved {
+    background-color: seagreen;
+}
+
+#total-rejected {
+    background-color: red;
+}
+
+.record-name {
+    height: 44px;
+    width: inherit;
+    font-weight: bold;
+    text-align: center;
+    padding-top: 8px;
+}
+
+#profile-page-fullname {
+    height: 40px;
+    width: inherit;
+    text-align: center;
+    padding-top: 9px;
+    font-weight: bold;
+    font-size: 17px;
+}
+
+#profile-page-email {
+    height: 40px;
+    width: inherit;
+    text-align: center;
+    padding-top: 9px;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.records {
+    height: 92px;
+    width: 97px;
+    margin-right: 10px;
+    color: white;
+    border-radius: 5px;
+}
+
+#profile-page-telephone {
+    height: 40px;
+    width: inherit;
+    text-align: center;
+    padding-top: 9px;
+    font-weight: bold;
+    font-size: 12px;
 }
 
 .comment-div textarea {
@@ -608,7 +713,122 @@ input[class="input-field"] {
     display: none;
 }
 
+.admin-title-header {
+    height: 43px;
+    width: inherit;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: #766b6b;
+}
+
+.admin-container {
+    min-height: 200px;
+    width: inherit;
+}
+
+.case-file {
+    height: 55px;
+    width: 301px;
+    margin-left: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 9px;
+    box-shadow: 0px 0px 10px 1px lightgrey;
+    padding-top: 7px;
+    margin-bottom: 16px;
+}
+
+.modal-case-file {
+    height: 55px;
+    width: 301px;
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 7px;
+    padding-left: 10px;
+}
+
+.imanager-user-dp {
+    height: 37px;
+    width: 37px;
+    border-radius: 50%;
+    background-image: url('../img/profileSample.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.admin-status-ch {
+    height: 36px;
+    width: 225px;
+    padding-left: 2px;
+    display: flex;
+}
+
+.locator-handler {
+    height: 65px;
+    width: 100px;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 57px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    border: 1px solid #888;
+    width: 308px;
+    height: 462px;
+    border-radius: 7px;
+}
+
+.modal-p {
+    font-size: 12px;
+}
+
+.modal-btn {
+    width: 167px;
+    margin-top: 12px;
+    outline: none;
+    border: none;
+    padding-top: 0px;
+    cursor: pointer;
+}
+
+.display-modal-images {
+    height: 194px;
+}
+
+.close {
+    color: #aaaaaa;
+    float: right;
+    margin-right: 10px;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
 @media (min-width: 360px) {
+    .case-file {
+        margin-left: 30px;
+    }
     a.logo {
         margin-left: 29px;
     }
@@ -644,6 +864,11 @@ input[class="input-field"] {
 }
 
 @media (min-width: 375px) {
+    .case-file {
+        padding-left: 24px;
+        width: 340px;
+        margin-left: 16px;
+    }
     a.logo {
         margin-left: 35px;
     }
@@ -687,6 +912,27 @@ input[class="input-field"] {
   }
 
 @media (min-width: 414px) {
+    .modal-content {
+        background-color: #fefefe;
+        margin: auto;
+        border: 1px solid #888;
+        width: 308px;
+        height: 480px;
+    }
+    .case-file {
+        padding-left: 24px;
+        width: 340px;
+        margin-left: 38px;
+    }
+    .profile-page-dp {
+        margin-left: 79px;
+    }
+    .profile-page-info {
+        margin-left: -14px;
+    }
+    .profile-page-records {
+        padding-left: 23px;
+    }
     a.logo {
         margin-left: 55px;
     }
@@ -745,6 +991,47 @@ input[class="input-field"] {
 }
 
 @media (min-width: 768px) {
+    .modal-btn {
+        margin-left: 176px;
+    }
+    .modal-case-file {
+        height: 55px;
+        width: 510px;
+        display: flex;
+        flex-wrap: wrap;
+        padding-top: 7px;
+        padding-left: 10px;
+    }
+    .display-modal-images {
+        height: 370px;
+    }
+    .modal-content {
+        background-color: #fefefe;
+        margin: auto;
+        border: 1px solid #888;
+        width: 520px;
+        height: 657px;
+    }
+    .case-file {
+        padding-left: 68px;
+        width: 604px;
+        margin-left: 91px;
+    }
+    .admin-status-ch {
+        height: 36px;
+        width: 417px;
+        padding-left: 50px;
+        display: flex;
+    }
+    .profile-page-dp {
+        margin-left: 108px;
+    }
+    .profile-page-info {
+        margin-left: -88px;
+    }
+    .profile-page-records {
+        margin-left: -25px;
+    }
     .comment-items {
         border-bottom-style: none;
         width: 421px;
@@ -817,6 +1104,20 @@ input[class="input-field"] {
 }
 
 @media (min-width: 1024px) {
+    .case-file {
+        padding-left: 68px;
+        width: 604px;
+        margin-left: 209px;
+    }
+    .profile-page-dp {
+        margin-left: 203px;
+    }
+    .profile-page-info {
+        margin-left: -116px;
+    }
+    .profile-page-records {
+        padding-left: 124px;
+    }
     .account-circle {
         height: inherit;
         width: 775px;
@@ -979,6 +1280,18 @@ input[class="input-field"] {
 }
 
 @media (min-width: 1359px) {
+    .modal-content {
+        background-color: #fefefe;
+        margin: auto;
+        border: 1px solid #888;
+        width: 520px;
+        height: 819px;
+    }
+    .case-file {
+        padding-left: 68px;
+        width: 604px;
+        margin-left: 423px;
+    }
     .account-circle {
         height: inherit;
         width: 1072px;
@@ -1096,6 +1409,9 @@ input[class="input-field"] {
 }
 
 @media (min-width: 1440px) {
+    .profile-page-info {
+        margin-left: -203px;
+    }
     .account-circle {
         height: inherit;
         width: 1072px;
@@ -1232,6 +1548,14 @@ input[class="input-field"] {
 }
 
 @media (min-width: 1583px) {
+    .case-file {
+        padding-left: 68px;
+        width: 604px;
+        margin-left: 504px;
+    }
+    .profile-page-info {
+        margin-left: -242px;
+    }
     .account-circle {
         height: inherit;
         width: 1215px;

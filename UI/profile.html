@@ -42,41 +42,33 @@
 
     <div class="comment-div comment-in">
 
-      <div class="comment-div-inline">
-        <div class="comment-dp"></div>
-        <textarea placeholder="What's happening in your area?" cols="30" rows="5"></textarea>
+      <div class="profile-div-inline">
+        <div class="profile-page-dp"></div>
+        <div class="profile-page-info">
+            <div id="profile-page-fullname">Adenuga Oluwatobi</div>
+            <div id="profile-page-email">tobi16@yahoomail.com</div>
+            <div id="profile-page-telephone">08036886199</div>
+        </div>
+        <div class="profile-page-records">
+            <div class="records" id="total-cases">
+                <div class="records-number">4</div>
+                <div class="record-name">Cases</div>
+            </div>
+            <div class="records" id="total-draft">
+                <div class="records-number">2</div>
+                <div class="record-name">Draft</div>
+            </div>
+            <div class="records" id="total-resolved">
+                <div class="records-number">2</div>
+                <div class="record-name">Resolved</div>
+            </div>
+            <div class="records" id="total-rejected">
+                <div class="records-number">0</div>
+                <div class="record-name">Rejected</div>
+            </div>
+        </div>
       </div>
-
-      <div class="comment-div-flag">
-        <div class="div-flag-section div-redflag">
-          <input type="radio" name="incident" value="red-flag">red-flag
-          <br>
-          <div class="red-flag-icon"></div>
-        </div>
-        <div class="div-flag-section div-redflag">
-          <input type="radio" name="incident" value="intervention">intervention
-          <br>
-          <div class="intervention-icon"></div>
-        </div>
       </div>
-      <div class="top-geo">
-        <div class="comment-div-flag longLat">Latitude:
-          <input type="text" class="geoLocation" id="lat-geo">
-        </div>
-  
-        <div class="comment-div-flag longLat">Longitude:
-          <input type="text" class="geoLocation" id="long-geo">
-        </div>
-      </div>
-
-
-      <form id="myForm" method="post" enctype="multipart/form-data">
-        <input type="file" id="files" name="files" multiple accept="image/*">
-        <br/>
-        <div id="selectedFiles"></div>
-      </form>
-      <button class="home-top-btn" id="report-btn">iReport</button>
-    </div>
 
     <div class="comment-upload">
       <div class="comment-div comment-items">
