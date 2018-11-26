@@ -34,3 +34,13 @@ function goLogin() {
 function goSignup() {
   window.location.assign('signup.html');
 }
+
+/* navigate to home page */
+function goHome() {
+  window.location.assign('home.html');
+}
+
+/* navigate to profile page */
+function goProfile() {
+  window.location.assign('profile.html');
+}

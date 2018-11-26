@@ -21,20 +21,22 @@
         <div class="menu-icon-bar"></div>
         <div class="menu-icon-bar"></div>
       </div>
-      <a class="logo" href="./index.html">
+      <a class="logo" href="./home.html">
         <div class="logo-box">iReporter</div>
       </a>
       <div class="account-circle">
         <div class="account-circle-dp"></div>
-        <div class="account-circle-name">Adenuga</div>
+        <div class="account-circle-name" onclick="goProfile()">Adenuga</div>
       </div>
     </div>
 
     <div class="large-screen-nav" id="large-screen">
       <div class="ver-seperator"></div>
-      <a class="nav-link" href="./">ABOUT US</a>
+      <a class="nav-link" href="./about.html">ABOUT US</a>
       <div class="ver-seperator"></div>
-      <a class="nav-link" href="./">LEARN ABOUT CORRUPTION</a>
+      <a class="nav-link" href="./learn.html">LEARN ABOUT CORRUPTION</a>
+      <div class="ver-seperator"></div>
+      <a class="nav-link" href="./geolocator.html">GEOLOCATION COORDINATE</a>
       <div class="ver-seperator"></div>
       <a class="nav-link" href="./index.html">LOG OUT</a>
       <div class="ver-seperator"></div>
@@ -45,30 +47,30 @@
       <div class="profile-div-inline">
         <div class="profile-page-dp"></div>
         <div class="profile-page-info">
-            <div id="profile-page-fullname">Adenuga Oluwatobi</div>
-            <div id="profile-page-email">tobi16@yahoomail.com</div>
-            <div id="profile-page-telephone">08036886199</div>
+          <div id="profile-page-fullname">Adenuga Oluwatobi</div>
+          <div id="profile-page-email">tobi16@yahoomail.com</div>
+          <div id="profile-page-telephone">08036886199</div>
         </div>
         <div class="profile-page-records">
-            <div class="records" id="total-cases">
-                <div class="records-number">4</div>
-                <div class="record-name">Cases</div>
-            </div>
-            <div class="records" id="total-draft">
-                <div class="records-number">2</div>
-                <div class="record-name">Draft</div>
-            </div>
-            <div class="records" id="total-resolved">
-                <div class="records-number">2</div>
-                <div class="record-name">Resolved</div>
-            </div>
-            <div class="records" id="total-rejected">
-                <div class="records-number">0</div>
-                <div class="record-name">Rejected</div>
-            </div>
+          <div class="records" id="total-cases">
+            <div class="records-number">4</div>
+            <div class="record-name">Cases</div>
+          </div>
+          <div class="records" id="total-draft">
+            <div class="records-number">2</div>
+            <div class="record-name">Draft</div>
+          </div>
+          <div class="records" id="total-resolved">
+            <div class="records-number">2</div>
+            <div class="record-name">Resolved</div>
+          </div>
+          <div class="records" id="total-rejected">
+            <div class="records-number">0</div>
+            <div class="record-name">Rejected</div>
+          </div>
         </div>
       </div>
-      </div>
+    </div>
 
     <div class="comment-upload">
       <div class="comment-div comment-items">
@@ -79,8 +81,8 @@
             <div class="uploader uploader-date">21 Nov 2018</div>
             <div class="uploader uploader-location">
               <div class="locator-icon"></div>
-              <div class="display-location" id="display-location-lat">6.4776627</div>
-              <div class="display-location" id="display-location-long">3.1930305</div>
+              <div class="display-location" id="display-location-lat" contenteditable="true">6.4776627</div>
+              <div class="display-location" id="display-location-long" contenteditable="true">3.1930305</div>
             </div>
           </div>
           <div class="iconAndBar">
@@ -88,11 +90,18 @@
             <div class="status-bar"></div>
           </div>
         </div>
-        <div class="display-comment">
-          <p>Bribery and corruption in Isokolo-west is eating the society up. The policemen at Isokolo junction caught giving
+        <div class="display-comment" id="edit-comment">
+          <p contenteditable="true">Bribery and corruption in Isokolo-west is eating the society up. The policemen at Isokolo junction caught giving
             guns to thieves </p>
         </div>
+        <div id="commentModal" class="modal">
+          <div class="modal-content">
+          </div>
+        </div>
         <div class="display-images"></div>
+        <div class="delete-box">
+          <i class="fa fa-trash-o"></i>
+        </div>
       </div>
 
       <div class="comment-div comment-items">
@@ -103,8 +112,8 @@
             <div class="uploader uploader-date">21 Nov 2018</div>
             <div class="uploader uploader-location">
               <div class="locator-icon"></div>
-              <div class="display-location" id="display-location-lat">6.4776627</div>
-              <div class="display-location" id="display-location-long">3.1930305</div>
+              <div class="display-location" id="display-location-lat" contenteditable="true">6.4776627</div>
+              <div class="display-location" id="display-location-long" contenteditable="true">3.1930305</div>
             </div>
           </div>
           <div class="iconAndBar">
@@ -113,10 +122,13 @@
           </div>
         </div>
         <div class="display-comment">
-          <p>Bribery and corruption in Isokolo-west is eating the society up. The policemen at Isokolo junction caught giving
+          <p contenteditable="true">Bribery and corruption in Isokolo-west is eating the society up. The policemen at Isokolo junction caught giving
             guns to thieves </p>
         </div>
         <div class="display-images"></div>
+        <div class="delete-box">
+          <i class="fa fa-trash-o"></i>
+        </div>
       </div>
 
       <div class="comment-div comment-items">
@@ -127,8 +139,8 @@
             <div class="uploader uploader-date">21 Nov 2018</div>
             <div class="uploader uploader-location">
               <div class="locator-icon"></div>
-              <div class="display-location" id="display-location-lat">6.4776627</div>
-              <div class="display-location" id="display-location-long">3.1930305</div>
+              <div class="display-location" id="display-location-lat" contenteditable="true">6.4776627</div>
+              <div class="display-location" id="display-location-long" contenteditable="true">3.1930305</div>
             </div>
           </div>
           <div class="iconAndBar">
@@ -137,10 +149,13 @@
           </div>
         </div>
         <div class="display-comment">
-          <p>Bribery and corruption in Isokolo-west is eating the society up. The policemen at Isokolo junction caught giving
+          <p contenteditable="true">Bribery and corruption in Isokolo-west is eating the society up. The policemen at Isokolo junction caught giving
             guns to thieves </p>
         </div>
         <div class="display-images"></div>
+        <div class="delete-box">
+          <i class="fa fa-trash-o"></i>
+        </div>
       </div>
     </div>
 
@@ -148,13 +163,16 @@
       <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
       <div class="overlay-content" id="small-screen">
         <div class="seperator seperator-slide"></div>
-        <a href="./menu.html">ABOUT US</a>
+        <a href="./about.html">ABOUT US</a>
         <div class="seperator seperator-slide"></div>
-        <a href="./">LEARN ABOUT CORRUPTION</a>
+        <a href="./learn.html">LEARN ABOUT CORRUPTION</a>
+        <div class="seperator seperator-slide"></div>
+        <a href="./geolocator.html">GEOLOCATION COORDINATE</a>
         <div class="seperator seperator-slide"></div>
         <a href="./index.html">LOG OUT</a>
         <div class="seperator seperator-slide"></div>
-        <a href="./profile.html"><i class="fa fa-user-circle-o" id="user-circle"></i>Adenuga</a>
+        <a href="./profile.html">
+          <i class="fa fa-user-circle-o" id="user-circle"></i>Adenuga</a>
         <div class="seperator seperator-slide"></div>
       </div>
     </div>
@@ -166,7 +184,7 @@
   </div>
 
   <script src="./js/scripts.js"></script>
-  <script src="./js/imageUpload.js"></script>
+  <script src="./js/updateComment.js"></script>
 </body>
 
 </html>

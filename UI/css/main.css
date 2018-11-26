@@ -668,6 +668,13 @@ input[class="input-field"] {
     padding-left: 5px;
 }
 
+.uploader-name-x {
+    height: 22px;
+    width: fit-content;
+    font-weight: bold;
+    padding-left: 5px;
+}
+
 .uploader-date {
     font-size: x-small;
     font-weight: bold;
@@ -728,7 +735,7 @@ input[class="input-field"] {
 }
 
 .case-file {
-    height: 55px;
+    height: 240px;
     width: 301px;
     margin-left: 10px;
     display: flex;
@@ -760,14 +767,117 @@ input[class="input-field"] {
 
 .admin-status-ch {
     height: 36px;
-    width: 225px;
-    padding-left: 2px;
+    width: 279px;
+    padding-left: 11px;
     display: flex;
+}
+
+.status-color-collect {
+    height: 10px;
+    background-color: yellow;
+    width: 10px;
+    border-radius: 50%;
+    margin-left: 4px;
+    margin-top: 6px;
 }
 
 .locator-handler {
     height: 65px;
     width: 100px;
+}
+
+.learn-content {
+    min-height: 685px;
+    width: inherit;
+    padding-left: 10px;
+}
+
+.learn-content-header {
+    height: 29px;
+    width: 235px;
+    font-size: 22px;
+    font-weight: bold;
+    color: #4a4343;
+}
+
+.learn-content-title {
+    height: 55px;
+    width: 300px;
+    font-size: 18px;
+    font-weight: bold;
+    padding-top: 15px;
+    background-color: lightseagreen;
+    padding-left: 5px;
+    color: white;
+}
+
+.delete-box {
+    height: 40px;
+    width: inherit;
+    font-size: 29px;
+    text-align: -webkit-center;
+    text-align: -moz-center;
+}
+
+.geo-hero {
+    height: 442px;
+    width: inherit;
+    background-image: url('../img/atlas.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.geo-content {
+    height: 441px;
+    padding-top: 28px;
+}
+
+#getCords {
+    background-color: lightseagreen;
+    outline: none;
+    border: none;
+    color: white;
+    font-weight: bold;
+    height: 50px;
+    border-radius: 6px;
+    margin-top: 13px;
+    margin-left: 101px;
+}
+
+.geo-display {
+    height: 100px;
+    width: 249px;
+    line-height: 36px;
+    margin-top: 41px;
+    margin-left: 24px;
+}
+
+#my-address {
+    height: 40px;
+    margin-left: 25px;
+    width: 245px;
+    padding-left: 6px;
+    margin-top: 75px;
+    outline: none;
+    border-style: solid;
+    border-color: lightgrey;
+    border-width: thin;
+}
+
+.status-collect {
+    margin-left: 5px;
+}
+
+.geo-form {
+    height: 400px;
+    width: 300px;
+    border-style: solid;
+    border-width: thin;
+    border-color: lightgrey;
+    margin-left: 10px;
+    border-radius: 13px;
+    background-color: rgba(255, 255, 255, 0.88);
 }
 
 .modal {
@@ -789,7 +899,7 @@ input[class="input-field"] {
     margin: auto;
     border: 1px solid #888;
     width: 308px;
-    height: 462px;
+    height: 496px;
     border-radius: 7px;
 }
 
@@ -861,9 +971,29 @@ input[class="input-field"] {
     .upload-detail {
         width: 240px;
     }
+    .geo-form {
+        margin-left: 30px;
+    }
+    .geo-content {
+        height: 505px;
+        padding-top: 68px;
+    }
+    .geo-hero {
+        height: 516px;
+    }
 }
 
 @media (min-width: 375px) {
+    .geo-hero {
+        height: 684px;
+    }
+    .geo-form {
+        margin-left: 35px;
+    }
+    .geo-content {
+        height: 586px;
+        padding-top: 18px;
+    }
     .case-file {
         padding-left: 24px;
         width: 340px;
@@ -912,6 +1042,9 @@ input[class="input-field"] {
   }
 
 @media (min-width: 414px) {
+    .geo-form {
+        margin-left: 58px;
+    }
     .modal-content {
         background-color: #fefefe;
         margin: auto;
@@ -991,6 +1124,40 @@ input[class="input-field"] {
 }
 
 @media (min-width: 768px) {
+    .geo-content {
+        height: 586px;
+        padding-top: 187px;
+    }
+    .geo-hero {
+        height: 896px;
+    }
+    .geo-display {
+        height: 100px;
+        width: 249px;
+        line-height: 36px;
+        margin-top: 41px;
+        margin-left: 63px;
+    }
+    #my-address {
+        height: 40px;
+        margin-left: 60px;
+        width: 438px;
+    }
+    #getCords {
+        margin-top: 39px;
+        margin-left: 227px;
+    }
+    .geo-form {
+        margin-left: 99px;
+        width: 566px;
+    }
+    .learn-content {
+        min-height: 685px;
+        width: inherit;
+        padding-top: 39px;
+        padding-left: 51px;
+        padding-right: 62px;
+    }
     .modal-btn {
         margin-left: 176px;
     }
@@ -1013,14 +1180,16 @@ input[class="input-field"] {
         height: 657px;
     }
     .case-file {
-        padding-left: 68px;
+        padding-left: 15px;
+        padding-top: 19px;
         width: 604px;
         margin-left: 91px;
+        cursor: pointer;
     }
     .admin-status-ch {
         height: 36px;
         width: 417px;
-        padding-left: 50px;
+        padding-left: 11px;
         display: flex;
     }
     .profile-page-dp {
@@ -1104,8 +1273,22 @@ input[class="input-field"] {
 }
 
 @media (min-width: 1024px) {
+    .geo-hero {
+        height: 1187px;
+    }
+    .geo-form {
+        margin-left: 220px;
+        width: 566px;
+    }
+    .learn-content {
+        min-height: 685px;
+        width: inherit;
+        padding-left: 66px;
+        padding-top: 39px;
+        padding-right: 62px;
+    }
     .case-file {
-        padding-left: 68px;
+        padding-left: 15px;
         width: 604px;
         margin-left: 209px;
     }
@@ -1280,6 +1463,16 @@ input[class="input-field"] {
 }
 
 @media (min-width: 1359px) {
+    .geo-form {
+        margin-left: 456px;
+        width: 566px;
+    }
+    .geo-content {
+        height: 586px;
+    }
+    .geo-hero {
+        background-size: 178%;
+    }
     .modal-content {
         background-color: #fefefe;
         margin: auto;
@@ -1288,7 +1481,6 @@ input[class="input-field"] {
         height: 819px;
     }
     .case-file {
-        padding-left: 68px;
         width: 604px;
         margin-left: 423px;
     }
@@ -1409,6 +1601,13 @@ input[class="input-field"] {
 }
 
 @media (min-width: 1440px) {
+    .learn-content {
+        min-height: 685px;
+        width: inherit;
+        padding-left: 184px;
+        padding-top: 39px;
+        padding-right: 114px;
+    }
     .profile-page-info {
         margin-left: -203px;
     }
@@ -1548,8 +1747,15 @@ input[class="input-field"] {
 }
 
 @media (min-width: 1583px) {
+    .geo-content {
+        height: 586px;
+        padding-top: 197px;
+    }
+    .geo-form {
+        margin-left: 513px;
+        width: 566px;
+    }
     .case-file {
-        padding-left: 68px;
         width: 604px;
         margin-left: 504px;
     }
