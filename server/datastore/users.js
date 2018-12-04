@@ -1,3 +1,4 @@
+/* eslint linebreak-style: "off" */
 /**
  * An array list of all users
  * @constant

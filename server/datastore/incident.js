@@ -15,8 +15,8 @@ const incidents = [
     type: 'red-flag',
     location: '6.4828617, 3.1896830',
     status: 'draft',
-    Images: ['www.image.com', 'www.image.com'],
-    Videos: ['www.video.com', 'www.video.com'],
+    images: ['www.image.com', 'www.image.com'],
+    videos: ['www.video.com', 'www.video.com'],
     comment: 'Thugs are vandalizing crude oil pipes',
   },
   {
@@ -26,8 +26,8 @@ const incidents = [
     type: 'intervention',
     location: '6.4828617, 3.1896830',
     status: 'draft',
-    Images: ['www.image.com', 'www.image.com'],
-    Videos: ['www.video.com', 'www.video.com'],
+    images: ['www.image.com', 'www.image.com'],
+    videos: ['www.video.com', 'www.video.com'],
     comment: 'There is a broken bridge betweem Ota and Abeokuta',
   },
   {
@@ -37,8 +37,8 @@ const incidents = [
     type: 'red-flag',
     location: '6.4828617, 3.1896830',
     status: 'draft',
-    Images: ['www.image.com', 'www.image.com'],
-    Videos: ['www.video.com', 'www.video.com'],
+    images: ['www.image.com', 'www.image.com'],
+    videos: ['www.video.com', 'www.video.com'],
     comment: 'There is a broken bridge betweem Ota and Badagry',
   },
 ];

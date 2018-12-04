@@ -2,7 +2,7 @@
 import ErrorController from '../helperfn/error';
 
 /**
- * This is a validation for updating red-flag location
+ * This is a validation for param
  * @constant
  *
  * @param {String} req request object
@@ -11,14 +11,12 @@ import ErrorController from '../helperfn/error';
  *
  * @returns {Object}
  *
- * @exports validateUpdateLocation
+ * @exports validateParam
  */
 
-const validateUpdateLocation = (req, res, next) => {
-  const { location } = req.body;
+const validateParam = (req, res, next) => {
   const redFlagId = parseInt(req.params.id, 10);
   if (isNaN(redFlagId)) return next(ErrorController.validationError('hooops! params should be a number e.g 1'));
-  if (!location) return next(ErrorController.validationError('Please provide the location for this red-flag incident'));
   return next();
 };
-export default validateUpdateLocation;
+export default validateParam;
