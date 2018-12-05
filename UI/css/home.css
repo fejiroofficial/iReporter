@@ -1,310 +1,92 @@
-* {
-    box-sizing: border-box;
-}
-html, body, .container {
-    margin: 0px;
-    padding: 0px;
-    height: 100%;
-    width: 100%;
-    font-family: 'Open Sans', Arial, Helvetica, sans-serif;
+@import "main.css";
+@import "about.css";
+
+#myForm {
+    margin-left: 5px;
+    margin-top: 3px;
 }
 
-.logo-box {
-    height: inherit;
-    width: fit-content;
-    font-family: 'Ultra', serif;
-    text-align: center;
-    font-size: 30px;
-    padding-top: 15px;
-    color: #2c2727;
+.for-home {
+    background-color: white;
+    color: lightseagreen;
 }
 
-.nav-bar {
-    height: 70px;
-    width: inherit;
-    display: block;
-    background-color: #fefcfc;
-    text-align: center;
+.comment-div-flag {
+    height: 43px;
+    width: 294px;
+    padding-left: 8px;
     display: flex;
 }
 
-.large-screen-nav {
-    display: none;
+.comment-div-inline {
+    height: 185px;
+    width: inherit;
+    display: flex;
+    margin-top: 7px;
+    padding-left: 14px;
 }
 
-.nav-bar p {
-    display: none;
+.comment-div textarea {
+    margin-left: 4px;
+    border-radius: 3px;
+    outline-color: lightseagreen;
+    width: 282px;
+    height: 180px;
+    padding-left: 8px;
+    padding-top: 8px;
 }
 
-#login-btn {
-    display: none;
-    font-weight: bold;
+.geoLocation {
+    border-color: lightgrey;
+    height: 24px;
+    width: 195px;
+    outline: none;
+    border-style: solid;
+    border-width: thin;
+    padding-left: 5px;
+    margin-left: 3px;
 }
 
-.menu-icon {
-    height: inherit;
-    width: 60px;
-    text-align: center;
-    padding-top: 20px;
-    padding-left: 18px;
+.top-geo {
+    padding-left: 8px;
 }
 
-.menu-icon-bar {
-    width: 24px;
-    height: 2px;
-    background-color: #2c2727;
-    margin: 6px 0;
+#location-geo {
+    margin-left: 10px;
 }
 
-a.logo {
-    text-decoration: none;
+#files {
+    width: 200px;
+    margin-left: 15px;
+}
+
+#selectedFiles {
+    margin-top: 18px;
+}
+
+#selectedFiles img {
+    max-width: 280px;
+    max-height: 169px;
+    margin-bottom: 10px;
     margin-left: 13px;
 }
 
-.hero-banner {
-    height: 181px;
-    width: inherit;
-    background-image: url(../img/hero.jpg);
-    background-size: cover;
-    background-position: -27%;
-    background-repeat: no-repeat;
-    padding-top: 100px;
+.longLat {
+    margin-bottom: 8px;
+    display: flex;
+    height: 24px;
 }
 
-h1 {
-    font-size: 16px;
-    line-height: 37px;
-    text-align: center;
-    color: #503f3f;
-}
-.hero-banner h1 {
-    display: none;
-}
-
-.home-top-btn {
-    height: 40px;
-    width: 201px;
-    border-width: thin;
-    border-radius: 8px;
-    margin-left: 62px;
-    text-align: center;
-    color: white;
-    padding-top: 8px;
-    background-color: lightseagreen;
-    cursor: pointer;
-}
-
-#hero-btn:hover {
-    background-color: #1f8983;
-}
-
-.home-top-btn:hover {
-    background-color: #1f8983;
-}
-
-.modal-top-btn {
-    height: 40px;
-    width: 201px;
-    border-width: thin;
-    border-radius: 8px;
-    margin-left: 62px;
-    text-align: center;
-    color: white;
-    padding-top: 8px;
-    background-color: lightseagreen;
-    cursor: pointer;
-}
-
-.hero-banner .home-top-btn {
-    display: none;
-}
-
-.seperator {
-    height: 1px;
-    width: inherit;
-    background-color: lightgrey;
-    margin-top: 29px;
-}
-
-.work-banner {
-    min-height: 400px;
-    width: inherit;
-}
-
-.work-banner-header {
-    height: 48px;
-    width: inherit;
-    text-align: center;
-    color: #503f3f;
-    font-weight: bolder;
-    font-size: larger;
-    padding-top: 10px;
-}
-
-.work-banner-single {
-    min-height: 250px;
-    width: 270px;
-    margin-left: 26px;
-    margin-bottom: 60px;
-    border-style: solid;
-    border-width: thin;
-    border-radius: 7px;
-    border-color: lightgrey;
-}
-
-.work-banner-single-img {
-    height: 154px;
-    width: inherit;
-    background-image: url('../img/megaphone.jpg');
-    background-size: 64%;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-.work-banner-single-img-two {
-    height: 154px;
-    width: inherit;
-    background-image: url('../img/investigate.jpg');
-    background-size: 50%;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-.work-banner-single-img-three {
-    height: 154px;
-    width: inherit;
-    background-image: url('../img/newspaper.jpg');
-    background-size: 69%;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-.work-banner-single-title {
-    height: 27px;
-    width: inherit;
-    text-align: center;
-    font-weight: bolder;
-}
-
-.work-banner-single-text {
-    min-height: 48px;
-    width: inherit;
-    text-align: center;
-    margin-top: -12px;
-    font-size: smaller;
-}
-
-.africa-map-div {
-    height: 400px;
-    width: inherit;
-    background-image: url('../img/africaMap3.jpg');
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-.partners {
-    height: 150px;
-    margin-left: 84px;
-    width: 150px;
-}
-
-.flags {
-    min-height: 250px;
-    width: 270px;
-    margin-left: 26px;
-    margin-bottom: 60px;
-}
-
-.flag-one {
-    background-image: url('../img/Corruption.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-.flag-two {
-    background-image: url('../img/Corruption2.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-.flag-three {
-    background-image: url('../img/yahoo.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-.flag-four {
-    background-image: url('../img/Corruption3.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-.flag-five {
-    background-image: url('../img/bridge.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-.flag-six {
-    background-image: url('../img/FCT-Road.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-.flag-seven {
-    background-image: url('../img/marine-litter.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-.flag-eight {
-    background-image: url('../img/Oil-spill.png');
-    background-size: cover;
-    background-position: right;
-    background-repeat: no-repeat;
-}
-
-.flag-five {
-    background-image: url('../img/bridge.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-.partners-single-one {
-    background-image: url('../img/andela.jpg');
-    background-size: 69%;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-.partners-single-two {
-    background-image: url('../img/thinkAfrica.jpg');
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-.partners-single-three {
-    background-image: url('../img/now.jpg');
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-.partners-single-four {
-    background-image: url('../img/unicef.jpg');
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
+#report-btn {
+    width: 288px;
+    margin-left: 16px;
+    outline: none;
+    border: none;
+    margin-top: 2px;
+    margin-bottom: 15px;
+    padding-top: 2px;
+    font-size: 20px;
+    font-weight: bold;
 }
 
 footer {
@@ -314,430 +96,7 @@ footer {
     padding-top: 1px;
     background-color: #2c2727;
     color: white;
-}
-
-.seperator-slide {
-    margin-top: 0px;
-}
-
-.overlay {    
-    height: 100%;
-    width: 0;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    background-color: rgb(32, 178, 170);
-    background-color: rgba(32, 178, 170, 0.93);
-    overflow-x: hidden; 
-    transition: 0.5s; 
-}
-
-.overlay-content {
-    position: relative;
-    top: 25%;
-    width: 100%;
-    text-align: center;
-    margin-top: 10px;
-}
-
-.overlay a {
-    padding: 8px;
-    text-decoration: none;
-    font-size: 20px;
-    color: ghostwhite;
-    display: block;
-    transition: 0.3s;
-}
-
-.overlay a:hover, .overlay a:focus {
-    color: #f1f1f1;
-}
-
-.overlay .closebtn {
-    position: absolute;
-    top: 20px;
-    right: 1px;
-    font-size: 45px;
-}
-
-input[class="input-field"] {
-    width: inherit;
-    padding: 12px 20px;
-    font-size: 15px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-    outline: none;
-}
-
-.comment-div {
-    min-height: 193px;
-    border-bottom-style: inset;
-    border-bottom-width: 10px;
-    border-top-width: 10px;
-    border-top-style: outset;
-    width: inherit;
-    padding-top: 11px;
-}
-
-.comment-items {
-    border-bottom-style: none;
-}
-
-.profile-div-inline {
-    height: 80px;
-    width: inherit;
-    display: flex;
-    margin-top: 7px;
-}
-
-.profile-div-inline {
-    height: 571px;
-    display: block;
-}
-
-.comment-dp, .account-circle-dp, .profile-page-dp {
-    height: inherit;
-    width: 80px;
-    border-radius: 50%;
-    margin-left: 5px;
-    background-image: url('../img/profileSample.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-.profile-page-dp {
-    height: 200px;
-    width: 200px;
-    margin-left: 61px;
-}
-
-.profile-page-info {
-    height: 125px;
-    width: inherit;
-}
-
-.profile-page-records {
-    height: 200px;
-    width: inherit;
-    display: flex;
-    flex-wrap: wrap;
-    padding-left: 57px;
-}
-
-.records-number {
-    height: 48px;
-    width: inherit;
-    text-align: center;
-    font-size: 35px;
-    color: white;
-    font-weight: bold;
-}
-
-#total-cases {
-    background-color: lightseagreen;
-}
-
-#total-draft {
-    background-color: #eaea16;
-}
-
-#total-resolved {
-    background-color: seagreen;
-}
-
-#total-rejected {
-    background-color: red;
-}
-
-.record-name {
-    height: 44px;
-    width: inherit;
-    font-weight: bold;
-    text-align: center;
-    padding-top: 8px;
-}
-
-#profile-page-fullname {
-    height: 40px;
-    width: inherit;
-    text-align: center;
-    padding-top: 9px;
-    font-weight: bold;
-    font-size: 17px;
-}
-
-#profile-page-email {
-    height: 40px;
-    width: inherit;
-    text-align: center;
-    padding-top: 9px;
-    font-weight: bold;
-    font-size: 12px;
-}
-
-.records {
-    height: 92px;
-    width: 97px;
-    margin-right: 10px;
-    color: white;
-    border-radius: 5px;
-}
-
-#profile-page-telephone {
-    height: 40px;
-    width: inherit;
-    text-align: center;
-    padding-top: 9px;
-    font-weight: bold;
-    font-size: 12px;
-}
-
-.div-flag-section {
-    width: 141px;
-    padding-top: 8px;
-}
-
-.div-redflag {
-    display: flex;
-}
-
-.iconAndBar {
-    height: inherit;
-    width: 21px;
-}
-
-.status-bar {
-    height: 40px;
-    width: inherit;
-    background-color: seagreen;
-}
-
-.red-flag-icon {
-    height: 23px;
-    width: 21px;
-    background-image: url('../img/red-flag.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-.intervention-icon {
-    height: 23px;
-    width: 21px;
-    background-image: url('../img/help-wanted.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-.comment-in {
-    border-top-style: none;
-    border-top-width: thin;
-    border-bottom-style: none;
-}
-
-.comment-upload {
-    min-height: 300px;
-    width: inherit;
-}
-
-.upload-detail {
-    height: inherit;
-    width: 198px;
-}
-
-.uploader {
-    height: 22px;
-    width: inherit;
-    font-weight: bold;
-    padding-left: 5px;
-}
-
-.uploader-name-x {
-    height: 22px;
-    width: fit-content;
-    font-weight: bold;
-    padding-left: 5px;
-}
-
-.uploader-date {
-    font-size: x-small;
-    font-weight: bold;
-    padding-left: 6px;
-}
-
-.uploader-location {
-    display: flex;
-    padding-left: 2px;
-}
-
-.locator-icon {
-    height: inherit;
-    width: 20px;
-    background-image: url('../img/locator-icon.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-.display-location {
-    height: inherit;
-    width: 68px;
-    font-size: small;
-}
-
-.display-comment {
-    min-height: 20px;
-    width: inherit;
-    padding: 10px;
-}
-
-.display-images {
-    height: 300px;
-    width: inherit;
-    background-image: url('../img/police.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-.account-circle {
-    display: none;
-}
-
-.admin-title-header {
-    height: 43px;
-    width: inherit;
-    text-align: center;
-    font-size: 24px;
-    font-weight: bold;
-    color: #766b6b;
-    margin-top: 25px;
-    margin-bottom: 25px;
-}
-
-.admin-container {
-    min-height: 200px;
-    width: inherit;
-}
-
-.case-file {
-    height: 240px;
-    width: 301px;
-    margin-left: 10px;
-    display: flex;
-    flex-wrap: wrap;
-    padding-left: 9px;
-    box-shadow: 0px 0px 10px 1px lightgrey;
-    padding-top: 7px;
-    margin-bottom: 16px;
-}
-
-.modal-case-file {
-    height: 55px;
-    width: 301px;
-    display: flex;
-    flex-wrap: wrap;
-    padding-top: 7px;
-    padding-left: 10px;
-}
-
-.imanager-user-dp {
-    height: 37px;
-    width: 37px;
-    border-radius: 50%;
-    background-image: url('../img/profileSample.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-.admin-status-ch {
-    height: 36px;
-    width: 279px;
-    padding-left: 11px;
-    display: flex;
-}
-
-.status-color-collect {
-    height: 10px;
-    background-color: yellow;
-    width: 10px;
-    border-radius: 50%;
-    margin-left: 4px;
-    margin-top: 6px;
-}
-
-.locator-handler {
-    height: 65px;
-    width: 100px;
-}
-
-.delete-box {
-    height: 40px;
-    width: inherit;
-    font-size: 29px;
-    text-align: -webkit-center;
-    text-align: -moz-center;
-}
-
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    padding-top: 57px;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgb(0,0,0);
-    background-color: rgba(0,0,0,0.4);
-}
-
-.modal-content {
-    background-color: #fefefe;
-    margin: auto;
-    border: 1px solid #888;
-    width: 308px;
-    height: 496px;
-    border-radius: 7px;
-}
-
-.modal-p {
-    font-size: 12px;
-}
-
-.modal-btn {
-    width: 167px;
-    margin-top: 12px;
-    outline: none;
-    border: none;
-    padding-top: 0px;
-    cursor: pointer;
-}
-
-.display-modal-images {
-    height: 194px;
-}
-
-.close {
-    color: #aaaaaa;
-    float: right;
-    margin-right: 10px;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
+    margin-top: 100px;
 }
 
 @media (min-width: 360px) {
@@ -827,85 +186,10 @@ input[class="input-field"] {
   }
 
 @media (min-width: 414px) {
-    .modal-content {
-        background-color: #fefefe;
-        margin: auto;
-        border: 1px solid #888;
-        width: 308px;
-        height: 480px;
-    }
-    .case-file {
-        padding-left: 24px;
-        width: 340px;
-        margin-left: 38px;
-    }
-    .profile-page-dp {
-        margin-left: 79px;
-    }
-    .profile-page-info {
-        margin-left: -14px;
-    }
-    .profile-page-records {
-        padding-left: 23px;
-    }
-    a.logo {
-        margin-left: 55px;
-    }
-    .home-top-btn {
-        margin-left: 109px;
-    }
-    .work-banner-single {
-        margin-left: 72px;
-    }
-    .flags {
-        margin-left: 73px;
-    }
-    .partners {
-        margin-left: 134px;
-    }
     footer {
         padding-left: 89px;
     }
-    .hero-banner {
-        height: 226px;
-    }
-    .sign-in-content, .sign-up-content {
-        margin-left: 49px;
-        width: 324px;
-        margin-top: 90px;
-        margin-bottom: 178px;
-    }
-    .sign-up-content {
-        margin-top: 69px;
-    }
-    #sign-in-form {
-        width: 278px;
-    }
-    #sign-btn {
-        margin-left: 52px;
-    }
-    .comment-in {
-        padding-left: 50px;
-    }
-    .comment-div textarea {
-        width: 256px;
-    }
-    .comment-div-flag {
-        height: 38px;
-        width: 335px;
-        display: flex;
-        padding-left: 82px;
-    }
-    .longLat {
-        margin-bottom: -5px;
-        margin-left: 21px;
-    }
-    #report-btn {
-        margin-left: 80px;
-    }
-    .upload-detail {
-        width: 299px;
-    }
+
 }
 
 @media (min-width: 768px) {
@@ -960,6 +244,25 @@ input[class="input-field"] {
     }
     .comment-in {
         padding-left: 177px;
+        margin-top: 46px;
+    }
+    .comment-div textarea {
+        width: 383px;
+    }
+    .comment-div-flag {
+        height: 38px;
+        width: 335px;
+        display: flex;
+        padding-left: 10px;
+    }
+    .longLat {
+        margin-bottom: -5px;
+        margin-left: 0px;
+    }
+    #report-btn {
+        margin-left: 17px;
+        width: 390px;
+        height: 55px;
     }
     a.logo {
         margin-left: 220px;
@@ -971,11 +274,18 @@ input[class="input-field"] {
         margin-left: 75px;
     }
     .flags {
-        margin-left: 76px;
+        margin-left: 27px;
     }
-    .partners {
-        margin-left: 34px;
+
+    .learn-content {
+        min-height: 685px;
+        width: inherit;
+        padding-top: 39px;
+        padding-left: 51px;
+        padding-right: 62px;
+        margin-bottom: 49px;
     }
+
     footer {
         padding-left: 265px;
     }
@@ -1034,19 +344,18 @@ input[class="input-field"] {
         padding-left: 3px;
         font-size: 19px;
         padding-top: 21px;
-        cursor: pointer;
     }
     .longLat {
         margin-bottom: -5px;
-        margin-left: 21px;
+        margin-left: 0px;
         width: 230px;
     }
     #report-btn {
-        margin-left: 80px;
-        width: 428px;
+        margin-left: 12px;
+        width: 639px;
     }
     .comment-div textarea {
-        width: 415px;
+        width: 628px;
     }
     .top-geo {
         display: flex;
@@ -1077,7 +386,7 @@ input[class="input-field"] {
         margin-left: 89px;
     }
     .flag-one, .flag-three, .flag-five, .flag-seven {
-        margin-left: 197px;
+        margin-left: 125px;
     }
     .partners {
         margin-left: 86px;
@@ -1251,12 +560,6 @@ input[class="input-field"] {
         height: inherit;
         width: 1px;
         background-color: ghostwhite;
-    }
-    #login-btn {
-        margin-left: 10px;
-        margin-top: 15px;
-        width: 100px;
-        display: block;
     }  
     .nav-bar p {
         font-size: 20px;
@@ -1329,7 +632,7 @@ input[class="input-field"] {
         margin-left: 52px;
     }
     .flags {
-        margin-left: 26px;
+        margin-left: 6px;
     }
     .partners {
         margin-left: 86px;
@@ -1351,7 +654,7 @@ input[class="input-field"] {
         padding-left: 204px;
     }
     .flag-container {
-        padding-left: 118px;
+        padding-left: 0px;
     }
     .work-banner-header {
         margin-bottom: 26px;
@@ -1433,6 +736,14 @@ input[class="input-field"] {
     .display-images {
         height: 519px;
     }
+    .learn-content {
+        min-height: 685px;
+        width: inherit;
+        padding-top: 39px;
+        padding-left: 189px;
+        padding-right: 105px;
+        margin-bottom: 49px;
+    }
 }
 
 @media (min-width: 1583px) {
@@ -1471,9 +782,6 @@ input[class="input-field"] {
     .work-banner-single {
         margin-left: 52px;
     }
-    .flags {
-        margin-left: 26px;
-    }
     .partners {
         margin-left: 86px;
     }
@@ -1488,13 +796,10 @@ input[class="input-field"] {
         background-position-y: top;
         background-size: 103%;
     }
-    .partners-container, .flag-container, .work-banner-container {
+    .partners-container, .work-banner-container {
         display: flex;
         flex-wrap: wrap;
         padding-left: 280px;
-    }
-    .flag-container {
-        padding-left: 185px;
     }
     .work-banner-header {
         margin-bottom: 26px;

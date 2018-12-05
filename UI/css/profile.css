@@ -1,0 +1,21 @@
+@import "main.css";
+@import "home.css";
+
+.comment-div-inline {
+    height: 63px;
+    width: inherit;
+    display: flex;
+    margin-top: 7px;
+    padding-left: 14px;
+}
+
+.comment-dp {
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;
+    margin-left: 5px;
+    background-image: url(../img/profileSample.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
