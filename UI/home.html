@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
   <title>iReporter</title>
-  <link rel="stylesheet" type="text/css" href="../UI/css/main.css">
+  <link rel="stylesheet" type="text/css" href="../UI/css/home.css">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Orbitron:900|Ultra" rel="stylesheet">
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -14,7 +14,6 @@
 
 <body>
   <div class="container">
-
     <div class="nav-bar">
       <div class="menu-icon" onclick="openNav()">
         <div class="menu-icon-bar"></div>
@@ -45,136 +44,56 @@
     <div class="comment-div comment-in">
 
       <div class="comment-div-inline">
-        <div class="comment-dp"></div>
         <textarea placeholder="What's happening in your area?" cols="30" rows="5"></textarea>
       </div>
-
-      <div class="comment-div-flag">
-        <div class="div-flag-section div-redflag">
-          <input type="radio" name="incident" value="red-flag">red-flag
-          <br>
-          <div class="red-flag-icon"></div>
-        </div>
-        <div class="div-flag-section div-redflag">
-          <input type="radio" name="incident" value="intervention">intervention
-          <br>
-          <div class="intervention-icon"></div>
-        </div>
-      </div>
-      <div class="top-geo">
-        <div class="comment-div-flag longLat">Latitude:
-          <input type="text" class="geoLocation" id="lat-geo">
-        </div>
-  
-        <div class="comment-div-flag longLat">Longitude:
-          <input type="text" class="geoLocation" id="long-geo">
-        </div>
-      </div>
-
-
       <form id="myForm" method="post" enctype="multipart/form-data">
-        <input type="file" id="files" name="files" multiple accept="image/*">
+        <div class="comment-div-flag">
+          <div class="div-flag-section div-redflag">
+            <input type="radio" name="incident" value="red-flag">red-flag
+            <br>
+            <div class="red-flag-icon"></div>
+          </div>
+          <div class="div-flag-section div-redflag">
+            <input type="radio" name="incident" value="intervention">intervention
+            <br>
+            <div class="intervention-icon"></div>
+          </div>
+        </div>
+        <div class="top-geo">
+          <div class="comment-div-flag longLat">Location:
+            <input type="text" class="geoLocation" id="location-geo" placeholder="Enter Address">
+          </div>
+        </div>
+        <input type="file" id="files" name="files"/>
         <br/>
         <div id="selectedFiles"></div>
       </form>
       <button class="home-top-btn" id="report-btn">iReport</button>
     </div>
+  </div>
 
-    <div class="comment-upload">
-      <div class="comment-div comment-items">
-        <div class="comment-div-inline">
-          <div class="comment-dp"></div>
-          <div class="upload-detail">
-            <div class="uploader uploader-name">Adenuga Oluwatobi</div>
-            <div class="uploader uploader-date">21 Nov 2018</div>
-            <div class="uploader uploader-location">
-              <div class="locator-icon"></div>
-              <div class="display-location" id="display-location-lat">6.4776627</div>
-              <div class="display-location" id="display-location-long">3.1930305</div>
-            </div>
-          </div>
-          <div class="iconAndBar">
-            <div class="red-flag-icon"></div>
-            <div class="status-bar"></div>
-          </div>
-        </div>
-        <div class="display-comment">
-          <p>Bribery and corruption in Isokolo-west is eating the society up. The policemen at Isokolo junction caught giving
-            guns to thieves </p>
-        </div>
-        <div class="display-images"></div>
-      </div>
-
-      <div class="comment-div comment-items">
-        <div class="comment-div-inline">
-          <div class="comment-dp"></div>
-          <div class="upload-detail">
-            <div class="uploader uploader-name">Adenuga Oluwatobi</div>
-            <div class="uploader uploader-date">21 Nov 2018</div>
-            <div class="uploader uploader-location">
-              <div class="locator-icon"></div>
-              <div class="display-location" id="display-location-lat">6.4776627</div>
-              <div class="display-location" id="display-location-long">3.1930305</div>
-            </div>
-          </div>
-          <div class="iconAndBar">
-            <div class="red-flag-icon"></div>
-            <div class="status-bar"></div>
-          </div>
-        </div>
-        <div class="display-comment">
-          <p>Bribery and corruption in Isokolo-west is eating the society up. The policemen at Isokolo junction caught giving
-            guns to thieves </p>
-        </div>
-        <div class="display-images"></div>
-      </div>
-
-      <div class="comment-div comment-items">
-        <div class="comment-div-inline">
-          <div class="comment-dp"></div>
-          <div class="upload-detail">
-            <div class="uploader uploader-name">Adenuga Oluwatobi</div>
-            <div class="uploader uploader-date">21 Nov 2018</div>
-            <div class="uploader uploader-location">
-              <div class="locator-icon"></div>
-              <div class="display-location" id="display-location-lat">6.4776627</div>
-              <div class="display-location" id="display-location-long">3.1930305</div>
-            </div>
-          </div>
-          <div class="iconAndBar">
-            <div class="red-flag-icon"></div>
-            <div class="status-bar"></div>
-          </div>
-        </div>
-        <div class="display-comment">
-          <p>Bribery and corruption in Isokolo-west is eating the society up. The policemen at Isokolo junction caught giving
-            guns to thieves </p>
-        </div>
-        <div class="display-images"></div>
-      </div>
+  <div id="myNav" class="overlay">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <div class="overlay-content" id="small-screen">
+      <div class="seperator seperator-slide"></div>
+      <a href="./about.html">ABOUT US</a>
+      <div class="seperator seperator-slide"></div>
+      <a href="./learn.html">LEARN ABOUT CORRUPTION</a>
+      <div class="seperator seperator-slide"></div>
+      <a href="./geolocator.html">GEOLOCATION COORDINATE</a>
+      <div class="seperator seperator-slide"></div>
+      <a href="./index.html">LOG OUT</a>
+      <div class="seperator seperator-slide"></div>
+      <a href="./profile.html">
+        <i class="fa fa-user-circle-o" id="user-circle"></i>Adenuga</a>
+      <div class="seperator seperator-slide"></div>
     </div>
+  </div>
 
-    <div id="myNav" class="overlay">
-      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-      <div class="overlay-content" id="small-screen">
-        <div class="seperator seperator-slide"></div>
-        <a href="./about.html">ABOUT US</a>
-        <div class="seperator seperator-slide"></div>
-        <a href="./learn.html">LEARN ABOUT CORRUPTION</a>
-        <div class="seperator seperator-slide"></div>
-        <a href="./geolocator.html">GEOLOCATION COORDINATE</a>
-        <div class="seperator seperator-slide"></div>
-        <a href="./index.html">LOG OUT</a>
-        <div class="seperator seperator-slide"></div>
-        <a href="./profile.html"><i class="fa fa-user-circle-o" id="user-circle"></i>Adenuga</a>
-        <div class="seperator seperator-slide"></div>
-      </div>
-    </div>
-
-    <footer>
-      <p>
-        <i class="fa fa-copyright"></i>House of jiro media concepts</p>
-    </footer>
+  <footer>
+    <p>
+      <i class="fa fa-copyright"></i>House of jiro media concepts</p>
+  </footer>
   </div>
 
   <script src="./js/scripts.js"></script>
