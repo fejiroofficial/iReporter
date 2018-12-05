@@ -21,21 +21,33 @@
         <div class="menu-icon-bar"></div>
         <div class="menu-icon-bar"></div>
       </div>
-      <a class="logo" href="./index.html">
+      <a class="logo" href="./home.html">
         <div class="logo-box">iReporter</div>
       </a>
-
-      <p>Already have an account?</p>
-      <div class="home-top-btn" id="login-btn" onclick="goLogin()">LOGIN</div>
+      <div class="account-circle">
+        <div class="account-circle-dp" id="user-dp"></div>
+        <div class="account-circle-name">
+          <div class="username"></div>
+          <div class="dropdown-content">
+            <div class="drop-item" onclick="goProfile()">Profile</div>
+            <div class="drop-item" onclick="logOut()">Sign out</div>
+          </div>
+        </div>
+      </div>
     </div>
 
     <div class="large-screen-nav" id="large-screen">
       <div class="ver-seperator"></div>
-      <a class="nav-link" href="./about.html">ABOUT US</a>
+      <a class="nav-link" href="./about_us.html">ABOUT US</a>
       <div class="ver-seperator"></div>
-      <a class="nav-link" href="./learn.html">LEARN ABOUT CORRUPTION</a>
+      <a class="nav-link" href="./learn_us.html">LEARN ABOUT CORRUPTION</a>
+      <div class="ver-seperator"></div>
+      <a class="nav-link" href="./report.html">IREPORT</a>
+      <div class="ver-seperator"></div>
+      <a class="nav-link" href="">INTERVENTIONS</a>
       <div class="ver-seperator"></div>
     </div>
+
     <div id="myNav" class="overlay">
       <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
       <div class="overlay-content" id="small-screen">
@@ -44,9 +56,10 @@
         <div class="seperator seperator-slide"></div>
         <a href="./learn.html">LEARN ABOUT CORRUPTION</a>
         <div class="seperator seperator-slide"></div>
-        <a href="./login.html">LOGIN</a>
+        <a href="./index.html">LOG OUT</a>
         <div class="seperator seperator-slide"></div>
-        <a href="./signup.html">SIGN UP</a>
+        <a href="./profile.html">
+          <i class="fa fa-user-circle-o" id="user-circle"></i>Adenuga</a>
         <div class="seperator seperator-slide"></div>
       </div>
     </div>
@@ -66,44 +79,60 @@
       </ul>
       <h3>Common forms of corruption:</h3>
       <ul>
-        <li>A business individual pays a bribe to a government official in order to be given a government contract or license
+        <li>A business individual pays a bribe to a government official in order to be given a government contract or
+          license
         </li>
         <li>The use of government-owned resources, such as motor vehicles, for private purposes</li>
-        <li>A government official takes advantage of his or her position to favour a family member or business associate for
+        <li>A government official takes advantage of his or her position to favour a family member or business
+          associate for
           a job or tender contract. This is commonly called nepotism</li>
         <li>A police officer solicits a bribe or a member of the public offers one in order to escape lawful punishment</li>
       </ul>
       <div class="learn-content-title">WE ARE ALL AFFECTED</div>
       <h3>Corruption affects us all</h3>
       <p>
-        Corruption affects us all. It threatens sustainable economic development, ethical values and justice; it destabilises our
-        society and endangers the rule of law. It undermines the institutions and values of our democracy. But because public
-        policies and public resources are largely beneficial to poor people, it is they who suffer the harmful effects of
+        Corruption affects us all. It threatens sustainable economic development, ethical values and justice; it
+        destabilises our
+        society and endangers the rule of law. It undermines the institutions and values of our democracy. But because
+        public
+        policies and public resources are largely beneficial to poor people, it is they who suffer the harmful effects
+        of
         corruption most grievously.
       </p>
       <p>
-        To be dependent on the government for housing, healthcare, education, security and welfare, makes the poor most vulnerable
-        to corruption since it stalls service delivery. Delays in infrastructure development, poor building quality and layers
+        To be dependent on the government for housing, healthcare, education, security and welfare, makes the poor most
+        vulnerable
+        to corruption since it stalls service delivery. Delays in infrastructure development, poor building quality and
+        layers
         of additional costs are all consequences of corruption.
       </p>
       <p>Many acts of corruption deprive our citizens of their constitutional and their human rights.</p>
       <h3>Economic implications</h3>
-      <p>Corruption and international perceptions of corruption in Africa has been damaging to the continent's reputation
-        and has created obstacles to local and foreign direct investment, flows to the stock market, global competitiveness,
+      <p>Corruption and international perceptions of corruption in Africa has been damaging to the continent's
+        reputation
+        and has created obstacles to local and foreign direct investment, flows to the stock market, global
+        competitiveness,
         economic growth and has ultimately distorted the development and upliftment of our people.</p>
-      <p>Public money is for government services and projects. Taxes collected, bonds issued, income from government investments
-        and other means of financing government expenditure are meant for social grants, education, hospitals, roads, the
+      <p>Public money is for government services and projects. Taxes collected, bonds issued, income from government
+        investments
+        and other means of financing government expenditure are meant for social grants, education, hospitals, roads,
+        the
         supply of power and water and to ensure the personal security of our citizens.</p>
 
-      <p>Corruption and bad management practices eat into the nation’s wealth, channelling money away from such projects and
+      <p>Corruption and bad management practices eat into the nation’s wealth, channelling money away from such
+        projects and
         the very people most dependent on government for support.</p>
-      <p>Countless studies around the world show how corruption can interrupt investment, restrict trade, reduce economic growth
-        and distort the facts and figures associated with government expenditure. But the most alarming studies are the ones
+      <p>Countless studies around the world show how corruption can interrupt investment, restrict trade, reduce
+        economic growth
+        and distort the facts and figures associated with government expenditure. But the most alarming studies are the
+        ones
         directly linking corruption in certain countries to increasing levels of poverty and income inequality.</p>
-      <p>Because corruption creates fiscal distortions and redirects money allocated to income grants, eligibility for housing
-        or pensions and weakens service delivery, it is usually the poor who suffer most. Income inequality has increased
+      <p>Because corruption creates fiscal distortions and redirects money allocated to income grants, eligibility for
+        housing
+        or pensions and weakens service delivery, it is usually the poor who suffer most. Income inequality has
+        increased
         in most countries experiencing high levels of corruption.</p>
-      <p>To tackle corruption in Africa, we must all play our part. </p>  
+      <p>To tackle corruption in Africa, we must all play our part. </p>
       <P>SAY NO TO CORRUPTION!!!</P>
     </div>
 
@@ -114,6 +143,7 @@
   </div>
 
   <script src="./js/scripts.js"></script>
+  <script src="./js/onload.js"></script>
 </body>
 
 </html>

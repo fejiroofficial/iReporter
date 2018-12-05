@@ -13,7 +13,6 @@ function showDivs(n) {
   for (i = 0; i < x.length; i++) {
     x[i].style.display = "none";
   }
-  x[slideIndex - 1].style.display = "block";
 }
 /* Open when someone clicks on the span element */
 function openNav() {
@@ -43,4 +42,14 @@ function goHome() {
 /* navigate to profile page */
 function goProfile() {
   window.location.assign('profile.html');
+}
+
+/* navigate to profile page */
+function goReport() {
+  window.location.assign('report.html');
+}
+
+function logOut() {
+  localStorage.removeItem('jwtoken');
+  location.assign('../UI/index.html');
 }

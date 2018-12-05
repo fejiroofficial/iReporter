@@ -1,0 +1,58 @@
+@import "main.css";
+
+.learn-content {
+    min-height: 685px;
+    width: inherit;
+    padding-left: 10px;
+}
+
+.learn-content-header {
+    height: 29px;
+    width: 235px;
+    font-size: 22px;
+    font-weight: bold;
+    color: #4a4343;
+}
+
+.learn-content-title {
+    height: 55px;
+    width: 300px;
+    font-size: 18px;
+    font-weight: bold;
+    padding-top: 15px;
+    background-color: lightseagreen;
+    padding-left: 5px;
+    color: white;
+}
+
+@media (min-width: 768px) {
+    .learn-content {
+        min-height: 685px;
+        width: inherit;
+        padding-top: 39px;
+        padding-left: 51px;
+        padding-right: 62px;
+        margin-bottom: 211px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .learn-content {
+        min-height: 685px;
+        width: inherit;
+        padding-left: 66px;
+        padding-top: 39px;
+        padding-right: 62px;
+        margin-bottom: 561px;
+    }
+}
+
+@media (min-width: 1440px) {
+    .learn-content {
+        min-height: 685px;
+        width: inherit;
+        padding-left: 184px;
+        padding-top: 39px;
+        padding-right: 114px;
+    }
+}

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>iReporter</title>
+  <link rel="stylesheet" type="text/css" href="../UI/css/home.css">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Orbitron:900|Ultra" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+  <div class="container">
+      <div class="nav-bar">
+          <div class="menu-icon" onclick="openNav()">
+            <div class="menu-icon-bar"></div>
+            <div class="menu-icon-bar"></div>
+            <div class="menu-icon-bar"></div>
+          </div>
+          <a class="logo" href="./home.html">
+            <div class="logo-box">iReporter</div>
+          </a>
+          <div class="account-circle">
+              <div class="account-circle-dp" id="user-dp"></div>
+              <div class="account-circle-name">
+                <div class="username"></div>
+                <div class="dropdown-content">
+                  <div class="drop-item" onclick="goProfile()">Profile</div>
+                  <div class="drop-item" onclick="logOut()">Sign out</div>
+                </div>
+              </div>
+            </div>
+        </div>
+
+    <div class="large-screen-nav" id="large-screen">
+      <div class="ver-seperator"></div>
+      <a class="nav-link" href="./about_us.html">ABOUT US</a>
+      <div class="ver-seperator"></div>
+      <a class="nav-link" href="./learn_us.html">LEARN ABOUT CORRUPTION</a>
+      <div class="ver-seperator"></div>
+      <a class="nav-link" href="./report.html">IREPORT</a>
+      <div class="ver-seperator"></div>
+      <a class="nav-link" href="">INTERVENTIONS</a>
+      <div class="ver-seperator"></div>
+    </div>
+
+    <div id="myNav" class="overlay">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <div class="overlay-content" id="small-screen">
+          <div class="seperator seperator-slide"></div>
+          <a href="./about_us.html">ABOUT US</a>
+          <div class="seperator seperator-slide"></div>
+          <a href="./learn_us.html">LEARN ABOUT CORRUPTION</a>
+          <div class="seperator seperator-slide"></div>
+          <a href="./index.html">LOG OUT</a>
+          <div class="seperator seperator-slide"></div>
+          <a href="./profile.html">
+            <i class="fa fa-user-circle-o" id="user-circle"></i>Adenuga</a>
+          <div class="seperator seperator-slide"></div>
+        </div>
+      </div>
+
+    <div class="comment-div comment-in">
+
+      <div class="comment-div-inline">
+        <textarea placeholder="What's happening in your area?" cols="30" rows="5"></textarea>
+      </div>
+      <form id="myForm" method="post" enctype="multipart/form-data">
+        <div class="comment-div-flag">
+          <div class="div-flag-section div-redflag">
+            <input type="radio" name="incident" value="red-flag">red-flag
+            <br>
+            <div class="red-flag-icon"></div>
+          </div>
+          <div class="div-flag-section div-redflag">
+            <input type="radio" name="incident" value="intervention">intervention
+            <br>
+            <div class="intervention-icon"></div>
+          </div>
+        </div>
+        <div class="top-geo">
+          <div class="comment-div-flag longLat">Location:
+            <input type="text" class="geoLocation" id="location-geo" placeholder="Enter Address">
+          </div>
+        </div>
+        <input type="file" id="files" name="files"/>
+        <br/>
+        <div id="selectedFiles"></div>
+      </form>
+      <button class="home-top-btn" id="report-btn">iReport</button>
+    </div>
+
+    <div class="learn-content">
+        <div class="learn-content-title for-home">WHAT IS A RED-FLAG?</div>
+        <p>Corruption is a huge bane to Africa’s development. African countries must develop novel and localised solutions that
+          will curb this menace, hence the birth of iReporter. iReporter enables any/every citizen to bring any form of corruption
+          to the notice of appropriate authorities and the general public. Users can also report on things that needs government
+          intervention.
+        </p>
+        <h3>Communication</h3>
+        <p>iReporter provides a platform for reporting corruption and intervention cases. Anyone can safely share what they experience
+          and observe and can speak out against corruption. Our communication channels include our website, an SMS line, social
+          media, email or post.</p>
+        <h3>Investigation</h3>
+        <p>We investigate selected reports of alleged acts of corruption, in particular those cases that have the most serious
+          impact on our society. We hand our findings over to the relevant authorities to take further action, and we monitor
+          the progress of each case. We work with mainstream and community media to make sure that corruption is fully exposed
+          through our investigative work.</p>
+
+          <div class="work-banner">
+              <div class="flag-container">
+                <div class="flags flag-one"></div>
+                <div class="flags flag-two"></div>
+                <div class="flags flag-three"></div>
+                <div class="flags flag-four"></div>
+              </div>
+            </div>
+
+          <div class="learn-content-title for-home">WHAT IS AN INTERVENTION?</div>
+          <p>Corruption is a huge bane to Africa’s development. African countries must develop novel and localised solutions that
+              will curb this menace, hence the birth of iReporter. iReporter enables any/every citizen to bring any form of corruption
+              to the notice of appropriate authorities and the general public. Users can also report on things that needs government
+              intervention.
+            </p>
+            <h3>Communication</h3>
+            <p>iReporter provides a platform for reporting corruption and intervention cases. Anyone can safely share what they experience
+              and observe and can speak out against corruption. Our communication channels include our website, an SMS line, social
+              media, email or post.</p>
+            <h3>Investigation</h3>
+            <p>We investigate selected reports of alleged acts of corruption, in particular those cases that have the most serious
+              impact on our society. We hand our findings over to the relevant authorities to take further action, and we monitor
+              the progress of each case. We work with mainstream and community media to make sure that corruption is fully exposed
+              through our investigative work.</p>
+
+              <div class="work-banner">
+                  <div class="flag-container">
+                    <div class="flags flag-five"></div>
+                    <div class="flags flag-six"></div>
+                    <div class="flags flag-seven"></div>
+                    <div class="flags flag-eight"></div>
+                  </div>
+                </div>
+      </div>
+
+  <footer>
+    <p>
+      <i class="fa fa-copyright"></i>House of jiro media concepts</p>
+  </footer>
+  </div>
+
+  <script src="./js/scripts.js"></script>
+  <script src="./js/onload.js"></script>
+  <script src="./js/imageUpload.js"></script>
+</body>
+
+</html>

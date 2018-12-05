@@ -38,6 +38,7 @@ html, body, .container {
 
 #login-btn {
     display: none;
+    font-weight: bold;
 }
 
 .menu-icon {
@@ -91,6 +92,14 @@ h1 {
     padding-top: 8px;
     background-color: lightseagreen;
     cursor: pointer;
+}
+
+#hero-btn:hover {
+    background-color: #1f8983;
+}
+
+.home-top-btn:hover {
+    background-color: #1f8983;
 }
 
 .modal-top-btn {
@@ -352,61 +361,6 @@ footer {
     font-size: 45px;
 }
 
-.sign-in-content, .sign-up-content {
-    height: 346px;
-    width: 265px;
-    margin-left: 26px;
-    border-color: lightgrey;
-    border-radius: 4px;
-    border-style: solid;
-    border-width: thin;
-    margin-top: 42px;
-    margin-bottom: 53px;
-}
-
-.sign-up-content {
-    height: 583px;
-}
-
-.sign-in-header {
-    height: 64px;
-    width: inherit;
-    text-align: center;
-    font-size: x-large;
-    padding-top: 12px;
-    font-weight: bold;
-}
-
-#sign-btn {
-    width: 129px;
-    padding-top: 2px;
-    margin-left: 54px;
-    font-weight: bold;
-    margin-top: 5px;
-    outline: none;
-    border: none;
-}
-
-.sign-note {
-    font-size: 14px;
-    padding-left: 17px;
-}
-
-.sign-note a {
-    text-decoration: none;
-}
-
-#sign-in-form, #sign-up-form {
-    margin: 0 auto;
-    height: 211px;
-    width: 229px;
-    margin-bottom: 10px;
-}
-
-#sign-up-form {
-    height: 448px;
-}
-
 input[class="input-field"] {
     width: inherit;
     padding: 12px 20px;
@@ -432,7 +386,7 @@ input[class="input-field"] {
     border-bottom-style: none;
 }
 
-.comment-div-inline, .profile-div-inline {
+.profile-div-inline {
     height: 80px;
     width: inherit;
     display: flex;
@@ -449,7 +403,6 @@ input[class="input-field"] {
     width: 80px;
     border-radius: 50%;
     margin-left: 5px;
-    background-image: url('../img/profileSample.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -542,19 +495,6 @@ input[class="input-field"] {
     font-size: 12px;
 }
 
-.comment-div textarea {
-    margin-left: 4px;
-    border-radius: 3px;
-    outline-color: lightseagreen;
-    width: 210px; 
-}
-
-.comment-div-flag {
-    height: 65px;
-    width: 161px;
-    padding-left: 82px;
-}
-
 .div-flag-section {
     width: 141px;
     padding-top: 8px;
@@ -591,58 +531,6 @@ input[class="input-field"] {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-}
-
-#myForm {
-    margin-left: 101px;
-    margin-top: 3px;
-}
-
-.longLat {
-    padding-left: 102px;
-    margin-bottom: 5px;
-    display: flex;
-    height: 24px;
-}
-
-#lat-geo {
-    margin-left: 17px;
-}
-
-#files {
-    width: 200px;
-}
-
-#selectedFiles {
-    margin-top: 18px;
-}
-
-#selectedFiles img {
-    max-width: 174px;
-    max-height: 169px;
-    margin-bottom:10px;
-}
-
-#report-btn {
-    width: 268px;
-    margin-left: 26px;
-    outline: none;
-    border: none;
-    margin-top: 2px;
-    margin-bottom: 15px;
-    padding-top: 2px;
-    font-weight: bold;
-}
-
-.geoLocation {
-    border-color: lightgrey;
-    height: 24px;
-    width: 65px;
-    outline: none;
-    border-style: solid;
-    border-width: thin;
-    padding-left: 5px;
-    margin-left: 3px;
 }
 
 .comment-in {
@@ -727,6 +615,8 @@ input[class="input-field"] {
     font-size: 24px;
     font-weight: bold;
     color: #766b6b;
+    margin-top: 25px;
+    margin-bottom: 25px;
 }
 
 .admin-container {
@@ -786,98 +676,12 @@ input[class="input-field"] {
     width: 100px;
 }
 
-.learn-content {
-    min-height: 685px;
-    width: inherit;
-    padding-left: 10px;
-}
-
-.learn-content-header {
-    height: 29px;
-    width: 235px;
-    font-size: 22px;
-    font-weight: bold;
-    color: #4a4343;
-}
-
-.learn-content-title {
-    height: 55px;
-    width: 300px;
-    font-size: 18px;
-    font-weight: bold;
-    padding-top: 15px;
-    background-color: lightseagreen;
-    padding-left: 5px;
-    color: white;
-}
-
 .delete-box {
     height: 40px;
     width: inherit;
     font-size: 29px;
     text-align: -webkit-center;
     text-align: -moz-center;
-}
-
-.geo-hero {
-    height: 442px;
-    width: inherit;
-    background-image: url('../img/atlas.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-.geo-content {
-    height: 441px;
-    padding-top: 28px;
-}
-
-#getCords {
-    background-color: lightseagreen;
-    outline: none;
-    border: none;
-    color: white;
-    font-weight: bold;
-    height: 50px;
-    border-radius: 6px;
-    margin-top: 13px;
-    margin-left: 101px;
-}
-
-.geo-display {
-    height: 100px;
-    width: 249px;
-    line-height: 36px;
-    margin-top: 41px;
-    margin-left: 24px;
-}
-
-#my-address {
-    height: 40px;
-    margin-left: 25px;
-    width: 245px;
-    padding-left: 6px;
-    margin-top: 75px;
-    outline: none;
-    border-style: solid;
-    border-color: lightgrey;
-    border-width: thin;
-}
-
-.status-collect {
-    margin-left: 5px;
-}
-
-.geo-form {
-    height: 400px;
-    width: 300px;
-    border-style: solid;
-    border-width: thin;
-    border-color: lightgrey;
-    margin-left: 10px;
-    border-radius: 13px;
-    background-color: rgba(255, 255, 255, 0.88);
 }
 
 .modal {
@@ -935,6 +739,36 @@ input[class="input-field"] {
     cursor: pointer;
 }
 
+.dropdown-content {
+    display: none;
+    margin-top: 28px;
+    margin-left: 0px;
+    position: absolute;
+    background-color: #f9f9f9;
+    width: 129px;
+    text-align: -webkit-center;
+    color: #4c4646;
+    cursor: pointer;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.account-circle-name:hover .dropdown-content {
+    display: block;
+}
+
+.drop-item {
+    width: inherit;
+    height: 32px;
+    padding-top: 4px;
+    font-weight: bold;
+}
+
+.drop-item:hover {
+    color: white;
+    background-color: lightseagreen;
+}
+
 @media (min-width: 360px) {
     .case-file {
         margin-left: 30px;
@@ -971,29 +805,9 @@ input[class="input-field"] {
     .upload-detail {
         width: 240px;
     }
-    .geo-form {
-        margin-left: 30px;
-    }
-    .geo-content {
-        height: 505px;
-        padding-top: 68px;
-    }
-    .geo-hero {
-        height: 516px;
-    }
 }
 
 @media (min-width: 375px) {
-    .geo-hero {
-        height: 684px;
-    }
-    .geo-form {
-        margin-left: 35px;
-    }
-    .geo-content {
-        height: 586px;
-        padding-top: 18px;
-    }
     .case-file {
         padding-left: 24px;
         width: 340px;
@@ -1042,9 +856,6 @@ input[class="input-field"] {
   }
 
 @media (min-width: 414px) {
-    .geo-form {
-        margin-left: 58px;
-    }
     .modal-content {
         background-color: #fefefe;
         margin: auto;
@@ -1102,6 +913,9 @@ input[class="input-field"] {
     #sign-btn {
         margin-left: 52px;
     }
+    .comment-in {
+        padding-left: 50px;
+    }
     .comment-div textarea {
         width: 256px;
     }
@@ -1124,40 +938,6 @@ input[class="input-field"] {
 }
 
 @media (min-width: 768px) {
-    .geo-content {
-        height: 586px;
-        padding-top: 187px;
-    }
-    .geo-hero {
-        height: 896px;
-    }
-    .geo-display {
-        height: 100px;
-        width: 249px;
-        line-height: 36px;
-        margin-top: 41px;
-        margin-left: 63px;
-    }
-    #my-address {
-        height: 40px;
-        margin-left: 60px;
-        width: 438px;
-    }
-    #getCords {
-        margin-top: 39px;
-        margin-left: 227px;
-    }
-    .geo-form {
-        margin-left: 99px;
-        width: 566px;
-    }
-    .learn-content {
-        min-height: 685px;
-        width: inherit;
-        padding-top: 39px;
-        padding-left: 51px;
-        padding-right: 62px;
-    }
     .modal-btn {
         margin-left: 176px;
     }
@@ -1247,46 +1027,9 @@ input[class="input-field"] {
     .work-banner-single-three {
         margin-left: 243px;
     }
-    .sign-in-header {
-        margin-bottom: 25px;
-    }
-    .sign-in-content, .sign-up-content {
-        margin-left: 121px;
-        height: 366px;
-        width: 535px;
-        margin-top: 224px;
-        margin-bottom: 307px;
-    }
-    .sign-up-content {
-        margin-top: 127px;
-        height: 600px;
-    }
-    #sign-in-form, #sign-up-form {
-        width: 394px;
-    }
-    #sign-btn {
-        margin-left: 136px;
-    }
-    .sign-note {
-        padding-left: 70px;
-    }
 }
 
 @media (min-width: 1024px) {
-    .geo-hero {
-        height: 1187px;
-    }
-    .geo-form {
-        margin-left: 220px;
-        width: 566px;
-    }
-    .learn-content {
-        min-height: 685px;
-        width: inherit;
-        padding-left: 66px;
-        padding-top: 39px;
-        padding-right: 62px;
-    }
     .case-file {
         padding-left: 15px;
         width: 604px;
@@ -1320,6 +1063,7 @@ input[class="input-field"] {
         padding-left: 3px;
         font-size: 19px;
         padding-top: 21px;
+        cursor: pointer;
     }
     .longLat {
         margin-bottom: -5px;
@@ -1451,28 +1195,9 @@ input[class="input-field"] {
     .seperator {
         display: none;
     }
-    .sign-in-content, .sign-up-content {
-        margin-left: 247px;
-        margin-top: 344px;
-        margin-bottom: 482px;
-    }
-    .sign-up-content {
-        margin-top: 127px;
-        margin-bottom: 482px;
-    }
 }
 
 @media (min-width: 1359px) {
-    .geo-form {
-        margin-left: 456px;
-        width: 566px;
-    }
-    .geo-content {
-        height: 586px;
-    }
-    .geo-hero {
-        background-size: 178%;
-    }
     .modal-content {
         background-color: #fefefe;
         margin: auto;
@@ -1601,13 +1326,6 @@ input[class="input-field"] {
 }
 
 @media (min-width: 1440px) {
-    .learn-content {
-        min-height: 685px;
-        width: inherit;
-        padding-left: 184px;
-        padding-top: 39px;
-        padding-right: 114px;
-    }
     .profile-page-info {
         margin-left: -203px;
     }
@@ -1747,14 +1465,6 @@ input[class="input-field"] {
 }
 
 @media (min-width: 1583px) {
-    .geo-content {
-        height: 586px;
-        padding-top: 197px;
-    }
-    .geo-form {
-        margin-left: 513px;
-        width: 566px;
-    }
     .case-file {
         width: 604px;
         margin-left: 504px;
@@ -1883,13 +1593,5 @@ input[class="input-field"] {
     }
     .seperator {
         display: none;
-    }
-    .sign-in-content, .sign-up-content {
-        margin-left: 507px;
-        margin-top: 150px;
-        margin-bottom: 228px;
-    }
-    .sign-up-content {
-        margin-top: 127px;
     }
 }
