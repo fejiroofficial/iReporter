@@ -68,6 +68,7 @@ class redFlagController {
       comment, type, location, images, videos,
     } = req.body;
     comment = comment && comment.toString().replace(/\s+/g, ' ');
+    type = type && type.toString().toLowerCase().replace(/\s+/g, '');
     const createdOn = new Date().toISOString();
     const id = incidents.length + 1;
     const status = 'draft';
@@ -75,7 +76,7 @@ class redFlagController {
       return res.status(400).json({
         status: 400,
         success: 'false',
-        message: 'This is a red-flag incident, the type should be a \'redflag\'',
+        message: 'This is a red-flag incident, the type should be a \'red-flag\'',
       });
     }
     const newRedFlag = {
