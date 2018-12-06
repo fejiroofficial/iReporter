@@ -7,8 +7,13 @@
     "start": "babel-node server/app.js",
     "dev": "nodemon server/app.js --exec babel-node",
     "lint": "eslint ./ --fix",
+    "seed": "babel-node server/seeders/up",
+    "drop": "babel-node server/seeders/drop",
+    "seed:undo": "babel-node server/seeders/down",
+    "db:setup": "npm run migrate && npm run seed",
     "test": "cross-env NODE_ENV=test nyc mocha --timeout 10000 --require babel-register server/test --exit",
-    "coverage": "nyc report --reporter=text-lcov --reporter=lcov | coveralls"
+    "coverage": "nyc report --reporter=text-lcov --reporter=lcov | coveralls",
+    "migrate": "babel-node server/db"
   },
   "repository": {
     "type": "git",
