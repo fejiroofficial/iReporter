@@ -11,7 +11,6 @@ import middlewares from '../middlewares';
 const router = express.Router();
 
 router.post('/auth/signup', middlewares.validateSignup, UserController.signup);
-
 router.route('/red-flags')
   .get(redFlagController.getRedFlags)
   .post(middlewares.validatePostRedFlag, redFlagController.postRedFlag);
