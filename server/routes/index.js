@@ -1,13 +1,16 @@
 /* eslint linebreak-style: "off" */
 
 import express from 'express';
-import middlewares from '../middlewares';
+import UserController from '../controllers/users';
 import ErrorController from '../helperfn/error';
 import redFlagController from '../controllers/redFlag';
 import UpdateRedFlagController from '../controllers/updateRedflag';
+import middlewares from '../middlewares';
 
 
 const router = express.Router();
+
+router.post('/auth/signup', middlewares.validateSignup, UserController.signup);
 
 router.route('/red-flags')
   .get(redFlagController.getRedFlags)

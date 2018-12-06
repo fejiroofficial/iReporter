@@ -1,4 +1,6 @@
 /* eslint linebreak-style: "off" */
+/* eslint guard-for-in: "off" */
+/* eslint no-restricted-syntax: "off" */
 import ErrorController from '../helperfn/error';
 
 /**
@@ -19,18 +21,24 @@ const validatePostRedFlag = (req, res, next) => {
     comment, type, location, images, videos,
   } = req.body;
   comment = comment && comment.toString().trim();
-  type = type && type.toString().replace(/\s+/g, '');
+  type = type && type.toString().toLowerCase().replace(/\s+/g, '');
   location = location && location
     .toLowerCase().toString().trim().replace(/\s+/g, ' ');
 
-  if (!comment) return next(ErrorController.validationError('You have to make a comment on this red-flag'));
-  if (!location) return next(ErrorController.validationError('Please provide the location for this red-flag incident'));
-  if (!images || !videos) return next(ErrorController.validationError('Please provide an image or video evidence for this report'));
-  if (!type) return next(ErrorController.validationError('What is the type of this incident? please provide one'));
-  if (type.toLowerCase() !== 'red-flag' && type.toLowerCase() !== 'intervention') {
-    return next(ErrorController.validationError('Incidents can only be \'red-flag\' or \'intervention\''));
-  }
+  const requestBody = {
+    comment,
+    type,
+    location,
+    images,
+    videos,
+  };
 
+  const inputData = Object.entries(requestBody);
+  const invalidInputData = inputData.find((data) => {
+    return data[1] === undefined || data[1] === '';
+  });
+
+  if (invalidInputData) return next(ErrorController.validationError(`${invalidInputData[0]} field must not be empty`));
   return next();
 };
 

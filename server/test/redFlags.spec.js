@@ -88,7 +88,7 @@ describe('redflag controller status', () => {
           expect(res.body.success).to.equal('false');
           expect(res.type).to.equal('application/json');
           expect(res.body).to.be.an('object');
-          expect(res.body.message).to.equal('What is the type of this incident? please provide one');
+          expect(res.body.message).to.equal('type field must not be empty');
           done();
         });
     });
@@ -111,7 +111,7 @@ describe('redflag controller status', () => {
           expect(res.body.success).to.equal('false');
           expect(res.type).to.equal('application/json');
           expect(res.body).to.be.an('object');
-          expect(res.body.message).to.equal('Please provide an image or video evidence for this report');
+          expect(res.body.message).to.equal('images field must not be empty');
           done();
         });
     });
@@ -133,7 +133,7 @@ describe('redflag controller status', () => {
           expect(res.body.success).to.equal('false');
           expect(res.type).to.equal('application/json');
           expect(res.body).to.be.an('object');
-          expect(res.body.message).to.equal('Please provide the location for this red-flag incident');
+          expect(res.body.message).to.equal('location field must not be empty');
           done();
         });
     });
@@ -155,7 +155,7 @@ describe('redflag controller status', () => {
           expect(res.body.success).to.equal('false');
           expect(res.type).to.equal('application/json');
           expect(res.body).to.be.an('object');
-          expect(res.body.message).to.equal('You have to make a comment on this red-flag');
+          expect(res.body.message).to.equal('comment field must not be empty');
           done();
         });
     });
@@ -178,12 +178,13 @@ describe('redflag controller status', () => {
           expect(res.body.success).to.equal('false');
           expect(res.type).to.equal('application/json');
           expect(res.body).to.be.an('object');
-          expect(res.body.message).to.equal('This is a red-flag incident, the type should be a \'redflag\'');
+          expect(res.body.message).to.equal('This is a red-flag incident, the type should be a \'red-flag\'');
           done();
         });
     });
 
     it('create resource successfully', (done) => {
+      const id = incidents.length + 1;
       const requestBody = {
         createdOn: new Date().toISOString(),
         createdBy: 1,
@@ -201,6 +202,7 @@ describe('redflag controller status', () => {
           expect(res.body.success).to.equal('true');
           expect(res.type).to.equal('application/json');
           expect(res.body).to.be.an('object');
+          expect(res.body.data[0].id).to.equal(id);
           expect(res.body.data[0].message).to.equal('Created red-flag record');
           done();
         });
@@ -269,6 +271,7 @@ describe('redflag controller status', () => {
           expect(res.body).to.be.an('object');
           expect(res.body.status).to.equal(200);
           expect(res.body.success).to.equal('true');
+          expect(res.body.data[0].id).to.equal(1);
           expect(res.body.data[0].message).to.equal('Updated red-flag record’s location');
           done();
         });
@@ -337,6 +340,7 @@ describe('redflag controller status', () => {
           expect(res.body).to.be.an('object');
           expect(res.body.status).to.equal(200);
           expect(res.body.success).to.equal('true');
+          expect(res.body.data[0].id).to.equal(1);
           expect(res.body.data[0].message).to.equal('Updated red-flag record’s comment');
           done();
         });
@@ -405,6 +409,7 @@ describe('redflag controller status', () => {
           expect(res.body).to.be.an('object');
           expect(res.body.status).to.equal(200);
           expect(res.body.success).to.equal('true');
+          expect(res.body.data[0].id).to.equal(1);
           expect(res.body.data[0].message).to.equal('Updated red-flag record’s location');
           done();
         });
@@ -528,6 +533,7 @@ describe('redflag controller status', () => {
           expect(res.body).to.be.an('object');
           expect(res.body.status).to.equal(200);
           expect(res.body.success).to.equal('true');
+          expect(res.body.data[0].id).to.equal(1);
           expect(res.body.data[0].message).to.equal('red-flag record has been deleted');
           done();
         });

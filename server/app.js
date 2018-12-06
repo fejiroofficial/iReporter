@@ -1,12 +1,16 @@
+/* eslint linebreak-style: 0 */
 /* eslint no-console: "off" */
-/* eslint linebreak-style: "off" */
+import dotenv from 'dotenv';
 import express from 'express';
+import cors from 'cors';
 import router from './routes';
 
 const app = express();
+dotenv.config();
 
 const port = process.env.PORT || 3571;
 
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
@@ -25,6 +29,7 @@ app.use('*', (err, req, res, next) => {
     success: 'false',
     message: err.message,
   });
+  next();
 });
 
 app.listen(port, () => console.log(`Running on port ${port}...`));
