@@ -146,11 +146,76 @@ describe('Sign Up', () => {
             done();
           });
       });
+      it('it should not register a user if first name contains number', (done) => {
+        const user = {
+          firstname: 'Fejiro22',
+          lastname: 'Gospel',
+          othernames: 'Precious',
+          username: 'fejiroofficial2',
+          telephone: '08138776122',
+          email: 'houseofjiro1@gmail.com',
+          isAdmin: false,
+          password: '123456',
+        };
+        request(app)
+          .post('/api/v1/auth/signup')
+          .send(user)
+          .end((err, res) => {
+            expect(res.status).to.equal(400);
+            expect(res.body.success).to.equal('false')
+            expect(res.body.message).to.equal('Name should not contain numbers');
+            done();
+          });
+      });
+      it('it should not register a user if last name contains number', (done) => {
+        const user = {
+          firstname: 'Fejiro',
+          lastname: 'Gospel32',
+          othernames: 'Precious',
+          username: 'fejiroofficial2',
+          telephone: '08138776122',
+          email: 'houseofjiro1@gmail.com',
+          isAdmin: false,
+          password: '123456',
+        };
+        request(app)
+          .post('/api/v1/auth/signup')
+          .send(user)
+          .end((err, res) => {
+            expect(res.status).to.equal(400);
+            expect(res.body.success).to.equal('false')
+            expect(res.body.message).to.equal('Name should not contain numbers');
+            done();
+          });
+      });
+      it('it should not register a user if other names contains number', (done) => {
+        const user = {
+          firstname: 'Fejiro',
+          lastname: 'Gospel',
+          othernames: 'Precious55',
+          username: 'fejiroofficial2',
+          telephone: '08138776122',
+          email: 'houseofjiro1@gmail.com',
+          isAdmin: false,
+          password: '123456',
+        };
+        request(app)
+          .post('/api/v1/auth/signup')
+          .send(user)
+          .end((err, res) => {
+            expect(res.status).to.equal(400);
+            expect(res.body.success).to.equal('false')
+            expect(res.body.message).to.equal('Name should not contain numbers');
+            done();
+          });
+      });
       it('it should successfully register a user', (done) => {
         const user = {
           firstname: 'Fejiro',
           lastname: 'Gospel',
+          othernames: 'Precious',
           username: 'fejiroofficial2',
+          telephone: '08138776122',
           email: 'houseofjiro1@gmail.com',
           isAdmin: false,
           password: '123456',
@@ -166,8 +231,8 @@ describe('Sign Up', () => {
             expect(res.body.data[0].user.firstname).to.equal(user.firstname);
             expect(res.body.data[0].user.lastname).to.equal(user.lastname);
             expect(res.body.data[0].user.username).to.equal(user.username);
+            expect(res.body.data[0].user.othernames).to.equal(user.othernames);
             expect(res.body.data[0].user.email).to.equal(user.email);
-            expect(res.body.data[0].user.isadmin).to.equal(user.isAdmin);
             done();
           });
       });
