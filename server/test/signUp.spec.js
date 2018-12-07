@@ -1,6 +1,7 @@
 import chai, { expect, request } from 'chai';
 import chaiHTTP from 'chai-http';
 import app from '../app';
+import jwt from 'jsonwebtoken';
 
 chai.use(chaiHTTP);
 
@@ -26,7 +27,7 @@ describe('Sign Up', () => {
         .send(user)
         .end((err, res) => {
           expect(res.status).to.equal(400);
-          expect(res.body.message).to.equal('Email is required')
+          expect(res.body.message).to.equal('email field must not be empty')
           done();
         });
     });
@@ -49,30 +50,7 @@ describe('Sign Up', () => {
         .send(user)
         .end((err, res) => {
           expect(res.status).to.equal(400);
-          expect(res.body.message).to.equal('Password is required')
-          done();
-        })
-    })
-    it('if email and password are not provided', (done) => {
-        const user = {
-            id: 1,
-            firstname: 'Fejiro',
-            lastname: 'Gospel',
-            othernames: 'Precious',
-            username: 'fejiroofficial',
-            profileImage: 'www.image.com',
-            email: '',
-            telephone: '08138776199',
-            isAdmin: 'false',
-            password: '',
-          };
-      chai
-        .request(app)
-        .post('/api/v1/auth/signup')
-        .send(user)
-        .end((err, res) => {
-          expect(res.status).to.equal(400);
-          expect(res.body.message).to.equal('Email and Password are required')
+          expect(res.body.message).to.equal('password field must not be empty')
           done();
         })
     })
@@ -99,29 +77,6 @@ describe('Sign Up', () => {
           done();
         });
     });
-    it('should not register user if telephone is not provided', (done) => {
-        const user = {
-            id: 1,
-            firstname: 'Fejiro',
-            lastname: 'Gospel',
-            othernames: 'Precious',
-            username: 'fejiroofficial',
-            profileImage: 'www.image.com',
-            email: 'houseofjiro@gmail.com',
-            telephone: '',
-            isAdmin: 'false',
-            password: '123456',
-          };
-      request(app)
-        .post('/api/v1/auth/signup')
-        .send(user)
-        .end((err, res) => {
-          expect(res.status).to.equal(400);
-          expect(res.body.success).to.equal('false')
-          expect(res.body.message).to.equal('Your telephone number is required');
-          done();
-        });
-    });
     it('should not register user if username is not provided', (done) => {
         const user = {
             id: 1,
@@ -141,30 +96,7 @@ describe('Sign Up', () => {
         .end((err, res) => {
           expect(res.status).to.equal(400);
           expect(res.body.success).to.equal('false')
-          expect(res.body.message).to.equal('username is required');
-          done();
-        });
-    });
-    it('telephone number should not contain an alphabet', (done) => {
-      const user = {
-        id: 1,
-        firstname: 'Fejiro',
-        lastname: 'Gospel',
-        othernames: 'Precious',
-        username: 'fejiroofficial',
-        profileImage: 'www.image.com',
-        email: 'houseofjiro@gmail.com',
-        telephone: 'yy8138776199',
-        isAdmin: 'false',
-        password: '123456',
-      };
-      request(app)
-        .post('/api/v1/auth/signup')
-        .send(user)
-        .end((err, res) => {
-          expect(res.status).to.equal(400);
-          expect(res.body.success).to.equal('false')
-          expect(res.body.message).to.equal('telephone number should not contain an alphabet');
+          expect(res.body.message).to.equal('username field must not be empty');
           done();
         });
     });
@@ -176,7 +108,7 @@ describe('Sign Up', () => {
           othernames: 'Precious',
           username: 'fejiroofficial',
           profileImage: 'www.image.com',
-          email: 'houseofjiro1@gmail.com',
+          email: 'houseofjiro45@gmail.com',
           telephone: '08138776199',
           isAdmin: 'false',
           password: '123456',
@@ -214,40 +146,13 @@ describe('Sign Up', () => {
             done();
           });
       });
-      it('it should not register a user if telephone already exist', (done) => {
-        const user = {
-          id: 1,
-          firstname: 'Fejiro',
-          lastname: 'Gospel',
-          othernames: 'Precious',
-          username: 'fejiroofficial1',
-          profileImage: 'www.image.com',
-          email: 'houseofjiro1@gmail.com',
-          telephone: '08138776199',
-          isAdmin: 'false',
-          password: '123456',
-        };
-        request(app)
-          .post('/api/v1/auth/signup')
-          .send(user)
-          .end((err, res) => {
-            expect(res.status).to.equal(409);
-            expect(res.body.success).to.equal('false')
-            expect(res.body.message).to.equal('user with this telephone already exists');
-            done();
-          });
-      });
       it('it should successfully register a user', (done) => {
         const user = {
-          id: 1,
           firstname: 'Fejiro',
           lastname: 'Gospel',
-          othernames: 'Precious',
-          username: 'fejiroofficial1',
-          profileImage: 'www.image.com',
+          username: 'fejiroofficial2',
           email: 'houseofjiro1@gmail.com',
-          telephone: '08138776120',
-          isAdmin: 'false',
+          isAdmin: false,
           password: '123456',
         };
         request(app)
@@ -257,6 +162,12 @@ describe('Sign Up', () => {
             expect(res.status).to.equal(201);
             expect(res.body.success).to.equal('true')
             expect(res.body.message).to.equal('Account created successfully');
+            expect(res.body.data[0].token).to.exist;
+            expect(res.body.data[0].user.firstname).to.equal(user.firstname);
+            expect(res.body.data[0].user.lastname).to.equal(user.lastname);
+            expect(res.body.data[0].user.username).to.equal(user.username);
+            expect(res.body.data[0].user.email).to.equal(user.email);
+            expect(res.body.data[0].user.isadmin).to.equal(user.isAdmin);
             done();
           });
       });
