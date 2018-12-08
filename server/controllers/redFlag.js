@@ -1,12 +1,17 @@
+/* eslint no-shadow: "off" */
+/* eslint max-len: "off" */
+/* eslint arrow-body-style: "off" */
 /* eslint linebreak-style: "off" */
-/* eslint no-plusplus: "off" */
-/* eslint no-restricted-globals: "off" */
+/* eslint object-curly-newline: "off" */
 /* eslint no-param-reassign: "off" */
+/* eslint no-template-curly-in-string: "off" */
+
+import db from '../db';
 
 import incidents from '../datastore/incident';
 
 /** incident controller class */
-class redFlagController {
+class RedFlagController {
   /**
  * @function getRedFlags
  * @memberof redFlagController
@@ -14,7 +19,7 @@ class redFlagController {
  */
   static getRedFlags(req, res) {
     const redFlags = incidents.filter((incident) => {
-      if (incident.type === 'red-flag') return incident; 
+      if (incident.type === 'red-flag') return incident;
     });
 
     if (redFlags.length === 0) {
@@ -59,45 +64,44 @@ class redFlagController {
   }
 
   /**
- * @function postRedFlag
- * @memberof redFlagController
+ * @function postRedflag
+ * @memberof RedFlagController
  * @static
  */
   static postRedFlag(req, res) {
-    let {
-      comment, type, location, images, videos,
-    } = req.body;
-    comment = comment && comment.toString().replace(/\s+/g, ' ');
-    type = type && type.toString().toLowerCase().replace(/\s+/g, '');
-    const createdOn = new Date().toISOString();
-    const id = incidents.length + 1;
-    const status = 'draft';
+    const { userId } = req;
+    let { comment, type, latitude, longitude, imageUrl } = req.body;
+    comment = comment ? comment.toString().trim().replace(/\s+/g, ' ') : comment;
+    type = type ? type.toLowerCase().toString().replace(/\s+/g, '') : type;
+    imageUrl = imageUrl ? imageUrl.toLowerCase().toString().replace(/\s+/g, '') : imageUrl;
+    latitude = latitude ? latitude.toString().replace(/\s+/g, '') : latitude;
+    longitude = longitude ? longitude.toString().replace(/\s+/g, '') : longitude;
+    const location = `${latitude},${longitude}`;
+    const defaultStatus = 'draft';
     if (type !== 'red-flag') {
       return res.status(400).json({
         status: 400,
         success: 'false',
-        message: 'This is a red-flag incident, the type should be a \'red-flag\'',
+        message: 'This is a red-flag incident, the type should be a \'redflag\'',
       });
     }
-    const newRedFlag = {
-      id,
-      createdOn,
-      type,
-      location,
-      status,
-      images,
-      videos,
-      comment,
-    };
-    incidents.push(newRedFlag);
-    return res.status(201).json({
-      status: 201,
-      success: 'true',
-      data: [{
-        id: newRedFlag.id,
-        message: 'Created red-flag record',
-      }],
-    });
+    return db.incidents.create({ userId, comment, type, location, imageUrl, defaultStatus })
+      .then((record) => {
+        return res.status(201).json({
+          success: 'true',
+          data: [{
+            id: record.id,
+            message: 'You have successfully created a new red-flag record',
+          }],
+        });
+      })
+      .catch((err) => {
+        return res.status(500).json({
+          success: 'false',
+          message: 'so sorry, something went wrong, try again',
+          err: err.message,
+        });
+      });
   }
 
   /**
@@ -132,4 +136,4 @@ class redFlagController {
   }
 }
 
-export default redFlagController;
+export default RedFlagController;

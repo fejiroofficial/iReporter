@@ -6,6 +6,7 @@ import validateUpdateLocation from './validateUpdateLocation';
 import validateUpdateComment from './validateUpdateComment';
 import validateLogin from './validateLogin';
 import validateParam from './validateParam';
+import verifyToken from './verifyToken';
 
 const middlewares = {
   validateSignup,
@@ -14,6 +15,7 @@ const middlewares = {
   validateUpdateComment,
   validateLogin,
   validateParam,
+  verifyToken,
 };
 
 export default middlewares;
