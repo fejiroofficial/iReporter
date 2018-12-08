@@ -33,13 +33,13 @@ const validatePostRedFlag = (req, res, next) => {
   }
 
   if (!comment) {
-    const err = new Error('You have to make a comment on this red-flag');
+    const err = new Error('You have to make a comment on this incident record');
     err.statusCode = 400;
     return next(err);
   }
 
   if (!latitude) {
-    const err = new Error('Please provide the location for this red-flag incident');
+    const err = new Error('Please provide the location for this incident');
     err.statusCode = 400;
     return next(err);
   }
@@ -51,7 +51,7 @@ const validatePostRedFlag = (req, res, next) => {
   }
 
   if (!longitude) {
-    const err = new Error('Please provide the location for this red-flag incident');
+    const err = new Error('Please provide the location for this incident');
     err.statusCode = 400;
     return next(err);
   }

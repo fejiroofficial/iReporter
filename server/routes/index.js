@@ -4,6 +4,7 @@ import express from 'express';
 import UserController from '../controllers/users';
 import ErrorController from '../helperfn/error';
 import RedFlagController from '../controllers/redFlag';
+import InterventionController from '../controllers/intervention';
 import UpdateRedFlagController from '../controllers/updateRedflag';
 import middlewares from '../middlewares';
 
@@ -25,6 +26,7 @@ router.patch('/red-flags/:id([0-9]+)/comment', middlewares.validateUpdateComment
 
 router.use('*', middlewares.verifyToken);
 router.post('/red-flags', middlewares.validatePostRedFlag, RedFlagController.postRedFlag);
+router.post('/interventions', middlewares.validatePostRedFlag, InterventionController.postIntervention);
 
 router.use(ErrorController.routeError);
 
