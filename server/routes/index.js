@@ -21,12 +21,10 @@ router.route('/red-flags/:id([0-9]+)')
   .get(middlewares.validateParam, RedFlagController.getRedFlag)
   .delete(middlewares.validateParam, RedFlagController.deleteRedFlag);
 
-router.patch('/red-flags/:id([0-9]+)/location', middlewares.validateUpdateLocation, UpdateRedFlagController.updateLocation);
-router.patch('/red-flags/:id([0-9]+)/comment', middlewares.validateUpdateComment, UpdateRedFlagController.updateComment);
-
 router.use('*', middlewares.verifyToken);
 router.post('/red-flags', middlewares.validatePostRedFlag, RedFlagController.postRedFlag);
 router.post('/interventions', middlewares.validatePostRedFlag, InterventionController.postIntervention);
+router.patch('/red-flags/:id([0-9]+)/comment', middlewares.validateUpdateComment, UpdateRedFlagController.updateComment);
 
 router.use(ErrorController.routeError);
 
