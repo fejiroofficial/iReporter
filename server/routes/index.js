@@ -26,6 +26,7 @@ router.post('/red-flags', middlewares.validatePostRedFlag, RedFlagController.pos
 router.post('/interventions', middlewares.validatePostRedFlag, InterventionController.postIntervention);
 
 router.delete('/red-flags/:id([0-9]+)', RedFlagController.deleteRedFlag);
+router.delete('/interventions/:id([0-9]+)', InterventionController.deleteIntervention);
 
 
 router.patch('/red-flags/:id([0-9]+)/comment', middlewares.validateUpdateComment, UpdateRedFlagController.updateComment);

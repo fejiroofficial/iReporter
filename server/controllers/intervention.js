@@ -50,6 +50,59 @@ class InterventionController {
         });
       });
   }
+
+  /**
+  * @function deleteIntervention
+  * @memberof InterventionController
+  * @static
+  */
+  static deleteIntervention(req, res) {
+    const { userId } = req;
+    const interventionId = parseInt(req.params.id, 10);
+    return db.task('delete', db => db.incidents.findById(interventionId)
+      .then((record) => {
+        if (!record) {
+          return res.status(404).json({
+            status: 404,
+            success: 'false',
+            message: 'This record doesn\'t exist in the database',
+          });
+        }
+        if (record.type !== 'intervention') {
+          return res.status(400).json({
+            status: 400,
+            success: 'false',
+            message: 'This incident record is not an intervention',
+          });
+        }
+        const recordOwner = userId === record.createdby;
+        if (!recordOwner) {
+          return res.status(401).json({
+            status: 401,
+            success: 'false',
+            message: 'You are unauthorized to delete an information that was not posted by you',
+          });
+        }
+        return db.incidents.remove(interventionId)
+          .then(() => {
+            return res.status(200).json({
+              status: 200,
+              success: 'true',
+              data: [{
+                id: interventionId,
+                message: 'You have successfully deleted this intervention record',
+              }],
+            });
+          });
+      })
+      .catch((err) => {
+        return res.status(500).json({
+          success: 'false',
+          message: 'so sorry, something went wrong, try again',
+          err: err.message,
+        });
+      }));
+  }
 }
 
 export default InterventionController;

@@ -7,3 +7,4 @@ import './testFiles/postIntervention.spec';
 import './testFiles/updateComment.spec';
 import './testFiles/updateLocation.spec';
 import './testFiles/deleteRedflag.spec';
+import './testFiles/deleteIncident.spec';
