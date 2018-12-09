@@ -15,8 +15,8 @@ import ErrorController from '../helperfn/error';
  */
 
 const validateParam = (req, res, next) => {
-  const redFlagId = parseInt(req.params.id, 10);
-  if (isNaN(redFlagId)) return next(ErrorController.validationError('hooops! params should be a number e.g 1'));
+  const id = parseInt(req.params.id, 10);
+  if (isNaN(id)) return next(ErrorController.validationError('hooops! params should be a number e.g 1'));
   return next();
 };
 export default validateParam;

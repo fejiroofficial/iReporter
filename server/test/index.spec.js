@@ -1,5 +1,9 @@
-import './app.spec';
-import './login.spec';
-import './signUp.spec';
-import './redFlags.spec';
-import './postRedFlag.spec';
+import './testFiles/app.spec';
+import './testFiles/login.spec';
+import './testFiles/signUp.spec';
+import './testFiles/redFlags.spec';
+import './testFiles/postRedFlag.spec';
+import './testFiles/postIntervention.spec';
+import './testFiles/updateComment.spec';
+import './testFiles/updateLocation.spec';
+import './testFiles/deleteRedflag.spec';

@@ -1,6 +1,6 @@
 import chai, { expect, request } from 'chai';
 import chaiHTTP from 'chai-http';
-import app from '../app';
+import app from '../../app';
 import jwt from 'jsonwebtoken';
 
 chai.use(chaiHTTP);

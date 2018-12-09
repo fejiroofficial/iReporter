@@ -84,7 +84,7 @@ export default class Incident {
   */
 
   remove(id) {
-    const sql = 'DELETE FROM incidents WHERE id = $1';
+    const sql = 'DELETE FROM incidents WHERE id = $1 RETURNING *';
     return this.db.one(sql, id);
   }
 }

@@ -110,29 +110,51 @@ class RedFlagController {
  * @static
  */
   static deleteRedFlag(req, res) {
+    const { userId } = req;
     const redFlagId = parseInt(req.params.id, 10);
-    const redFlagFound = incidents.find((incident) => {
-      if (incident.type === 'red-flag' && incident.id === redFlagId) {
-        return incident;
-      }
-    });
-    if (!redFlagFound) {
-      return res.status(404).json({
-        status: 404,
-        success: 'false',
-        message: 'This red-flag record does not exist',
-      });
-    }
-    const redFlagindex = incidents.indexOf(redFlagFound);
-    incidents.splice(redFlagindex, 1);
-    return res.status(200).json({
-      status: 200,
-      success: 'true',
-      data: [{
-        id: redFlagFound.id,
-        message: 'red-flag record has been deleted',
-      }],
-    });
+    return db.task('delete', db => db.incidents.findById(redFlagId)
+      .then((record) => {
+        if (!record) {
+          return res.status(404).json({
+            status: 404,
+            success: 'false',
+            message: 'This record doesn\'t exist in the database',
+          });
+        }
+        if (record.type !== 'red-flag') {
+          return res.status(400).json({
+            status: 400,
+            success: 'false',
+            message: 'This incident record is not a red-flag',
+          });
+        }
+        const recordOwner = userId === record.createdby;
+        if (!recordOwner) {
+          return res.status(401).json({
+            status: 401,
+            success: 'false',
+            message: 'You are unauthorized to delete an information that was not posted by you',
+          });
+        }
+        return db.incidents.remove(redFlagId)
+          .then(() => {
+            return res.status(200).json({
+              status: 200,
+              success: 'true',
+              data: [{
+                id: redFlagId,
+                message: 'You have successfully deleted this red-flag record',
+              }],
+            });
+          });
+      })
+      .catch((err) => {
+        return res.status(500).json({
+          success: 'false',
+          message: 'so sorry, something went wrong, try again',
+          err: err.message,
+        });
+      }));
   }
 }
 
