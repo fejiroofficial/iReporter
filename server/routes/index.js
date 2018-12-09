@@ -30,6 +30,7 @@ router.patch('/red-flags/:id([0-9]+)/comment', middlewares.validateUpdateComment
 router.patch('/interventions/:id([0-9]+)/comment', middlewares.validateUpdateComment, UpdateInterventionController.updateComment);
 
 router.patch('/red-flags/:id([0-9]+)/location', middlewares.validateUpdateLocation, UpdateRedFlagController.updateLocation);
+router.patch('/interventions/:id([0-9]+)/location', middlewares.validateUpdateLocation, UpdateInterventionController.updateLocation);
 
 router.use(ErrorController.routeError);
 
