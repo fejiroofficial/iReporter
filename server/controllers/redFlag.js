@@ -9,10 +9,45 @@
 
 import db from '../db';
 
-import incidents from '../datastore/incident';
-
 /** incident controller class */
 class RedFlagController {
+  /**
+  * @function getRedFlag
+  * @memberof RedFlagController
+  * @static
+  */
+  static getRedFlag(req, res) {
+    const redFlagId = parseInt(req.params.id, 10);
+    return db.task('specific red flag', data => data.incidents.findById(redFlagId)
+    .then((record) => {
+      if (!record) {
+        return res.status(404).json({
+          status: 404,
+          success: 'false',
+          message: 'This record doesn\'t exist in the database',
+        });
+      }
+      if (record.type !== 'red-flag') {
+        return res.status(400).json({
+          status: 400,
+          success: 'false',
+          message: 'This incident record is not a red-flag',
+        });
+      }
+      return res.status(200).json({
+        status: 200,
+        success: 'true',
+        data: record,
+      });
+    })
+    .catch((err) => {
+      res.status(500).json({
+        success: 'false',
+        err: err.message,
+      });
+    }));
+  }
+
   /**
   * @function getRedFlags
   * @memberof RedFlagController
