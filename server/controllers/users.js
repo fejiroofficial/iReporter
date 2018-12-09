@@ -66,6 +66,7 @@ static signup(req, res) {
                     telephone: user.telephone,
                     username: user.username,
                     profileImage: user.profile_image,
+                    isAdmin: user.isadmin,
                   }, process.env.SECRET_KEY, { expiresIn: '24hrs' });
                   return res.status(201).json({
                     success: 'true',
@@ -130,6 +131,7 @@ static signup(req, res) {
               telephone: user.telephone,
               username: user.username,
               profileImage: user.profile_image,
+              isAdmin: user.isadmin,
             }, process.env.SECRET_KEY, { expiresIn: '24hrs' });
             return res.status(200).json({
               success: 'true',
@@ -164,6 +166,7 @@ static signup(req, res) {
               telephone: user.telephone,
               username: user.username,
               profileImage: user.profile_image,
+              isAdmin: user.isadmin,
             }, process.env.SECRET_KEY, { expiresIn: '24hrs' });
             return res.status(200).json({
               success: 'true',

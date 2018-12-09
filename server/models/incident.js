@@ -36,6 +36,12 @@ export default class Incident {
     const sql = 'SELECT firstname, lastname, profile_image, comment, type, location, image_url, status, createdon FROM incidents INNER JOIN users ON incidents.createdby = users.id WHERE incidents.type=$1 ORDER BY incidents.createdon DESC';
     return this.db.many(sql, redflag);
   }
+  /** Method for getting all red-flags in the database. */
+
+  someRedFlags(id) {
+    const sql = 'SELECT firstname, lastname, profile_image, comment, type, location, image_url, status, createdon FROM incidents INNER JOIN users ON incidents.createdby = users.id WHERE incidents.type=\'red-flag\' AND incidents.createdby=$1 ORDER BY incidents.createdon DESC';
+    return this.db.many(sql, id);
+  }
   /** Method for getting all interventions in the database. */
 
   allInterventions(intervention) {

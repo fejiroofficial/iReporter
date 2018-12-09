@@ -1,5 +1,6 @@
 /* eslint no-shadow: "off" */
 /* eslint max-len: "off" */
+/* eslint indent: "off" */
 /* eslint arrow-body-style: "off" */
 /* eslint linebreak-style: "off" */
 /* eslint object-curly-newline: "off" */
@@ -13,11 +14,11 @@ import incidents from '../datastore/incident';
 /** incident controller class */
 class RedFlagController {
   /**
- * @function getRedFlags
+ * @function getRedFlag
  * @memberof redFlagController
  * @static
  */
-  static getRedFlags(req, res) {
+  static getRedFlag(req, res) {
     const redFlags = incidents.filter((incident) => {
       if (incident.type === 'red-flag') return incident;
     });
@@ -37,30 +38,68 @@ class RedFlagController {
   }
 
   /**
- * @function getRedFlag
- * @memberof redFlagController
- * @static
- */
-  static getRedFlag(req, res) {
-    const redFlagId = parseInt(req.params.id, 10);
-    const redFlagFound = incidents.find((incident) => {
-      if (incident.type === 'red-flag' && incident.id === redFlagId) {
-        return incident;
-      }
-    });
+  * @function getRedFlags
+  * @memberof RedFlagController
+  * @static
+  */
+  static getRedFlags(req, res) {
+    const { isAdmin, userId } = req;
+    const adminUser = isAdmin === true;
+    switch (adminUser) {
+      case true:
+        db.task('all red flags', data => data.incidents.allRedFlags('red-flag')
+          .then((redFlags) => {
+            if (redFlags.length === 0) {
+              return res.status(404).json({
+                status: 404,
+                success: 'false',
+                message: 'No red-flag record found',
+              });
+            }
+            return res.status(200).json({
+              status: 200,
+              success: 'true',
+              data: redFlags,
+            });
+          })
+          .catch((err) => {
+            res.status(500).json({
+              success: 'false',
+              err: err.message,
+            });
+          }));
+        break;
 
-    if (!redFlagFound) {
-      return res.status(404).json({
-        status: 404,
-        success: 'false',
-        message: 'This red-flag record does not exist',
-      });
+      case false:
+        db.task('all red flags', data => data.incidents.someRedFlags(userId)
+          .then((redFlags) => {
+            if (redFlags.length === 0) {
+              return res.status(404).json({
+                status: 404,
+                success: 'false',
+                message: 'No red-flag record found',
+              });
+            }
+            return res.status(200).json({
+              status: 200,
+              success: 'true',
+              data: redFlags,
+            });
+          })
+          .catch((err) => {
+            res.status(500).json({
+              success: 'false',
+              err: err.message,
+            });
+          }));
+        break;
+
+      default:
+        return res.status(500).json({
+          success: 'false',
+          message: 'unable to login, try again!',
+        });
     }
-    return res.status(200).json({
-      status: 200,
-      success: 'true',
-      data: redFlagFound,
-    });
   }
 
   /**

@@ -54,6 +54,7 @@ const verifyToken = (req, res, next) => {
         });
       }
       req.userId = decoded.id;
+      req.isAdmin = decoded.isAdmin;
       return next();
     });
 };

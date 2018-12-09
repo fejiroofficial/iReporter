@@ -15,13 +15,11 @@ const router = express.Router();
 router.post('/auth/signup', middlewares.validateSignup, UserController.signup);
 router.post('/auth/login', middlewares.validateLogin, UserController.login);
 
-router.route('/red-flags')
-  .get(RedFlagController.getRedFlags);
-
 router.route('/red-flags/:id([0-9]+)')
   .get(RedFlagController.getRedFlag);
 
 router.use('*', middlewares.verifyToken);
+router.get('/red-flags', RedFlagController.getRedFlags);
 router.post('/red-flags', middlewares.validatePostRedFlag, RedFlagController.postRedFlag);
 router.post('/interventions', middlewares.validatePostRedFlag, InterventionController.postIntervention);
 
