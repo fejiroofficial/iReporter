@@ -1,5 +1,6 @@
 /* eslint no-shadow: "off" */
 /* eslint max-len: "off" */
+/* eslint indent: "off" */
 /* eslint arrow-body-style: "off" */
 /* eslint linebreak-style: "off" */
 /* eslint object-curly-newline: "off" */
@@ -11,10 +12,75 @@ import db from '../db';
 /** incident controller class */
 class InterventionController {
   /**
+* @function getInterventions
+* @memberof InterventionController
+* @static
+*/
+  static getInterventions(req, res) {
+    const { isAdmin, userId } = req;
+    const adminUser = isAdmin === true;
+    switch (adminUser) {
+      case true:
+        db.task('all interventions', data => data.incidents.allInterventions('intervention')
+          .then((interventions) => {
+            if (interventions.length === 0) {
+              return res.status(404).json({
+                status: 404,
+                success: 'false',
+                message: 'No intervention record found',
+              });
+            }
+            return res.status(200).json({
+              status: 200,
+              success: 'true',
+              data: interventions,
+            });
+          })
+          .catch((err) => {
+            res.status(500).json({
+              success: 'false',
+              err: err.message,
+            });
+          }));
+        break;
+
+      case false:
+        db.task('all interventions', data => data.incidents.someInterventions(userId)
+          .then((interventions) => {
+            if (interventions.length === 0) {
+              return res.status(404).json({
+                status: 404,
+                success: 'false',
+                message: 'No intervention record found',
+              });
+            }
+            return res.status(200).json({
+              status: 200,
+              success: 'true',
+              data: interventions,
+            });
+          })
+          .catch((err) => {
+            res.status(500).json({
+              success: 'false',
+              err: err.message,
+            });
+          }));
+        break;
+
+      default:
+        return res.status(500).json({
+          success: 'false',
+          message: 'unable to login, try again!',
+        });
+    }
+  }
+  /**
  * @function postIntervention
  * @memberof InterventionController
  * @static
  */
+
   static postIntervention(req, res) {
     const { userId } = req;
     let { comment, type, latitude, longitude, imageUrl } = req.body;
