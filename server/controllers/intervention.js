@@ -12,10 +12,47 @@ import db from '../db';
 /** incident controller class */
 class InterventionController {
   /**
-* @function getInterventions
-* @memberof InterventionController
-* @static
-*/
+  * @function getIntervention
+  * @memberof InterventionController
+  * @static
+  */
+  static getIntervention(req, res) {
+    const interventionId = parseInt(req.params.id, 10);
+    return db.task('specific intervention', data => data.incidents.findById(interventionId)
+      .then((record) => {
+        if (!record) {
+          return res.status(404).json({
+            status: 404,
+            success: 'false',
+            message: 'This record doesn\'t exist in the database',
+          });
+        }
+        if (record.type !== 'intervention') {
+          return res.status(400).json({
+            status: 400,
+            success: 'false',
+            message: 'This incident record is not an intervention',
+          });
+        }
+        return res.status(200).json({
+          status: 200,
+          success: 'true',
+          data: record,
+        });
+      })
+      .catch((err) => {
+        res.status(500).json({
+          success: 'false',
+          err: err.message,
+        });
+      }));
+  }
+
+  /**
+  * @function getInterventions
+  * @memberof InterventionController
+  * @static
+  */
   static getInterventions(req, res) {
     const { isAdmin, userId } = req;
     const adminUser = isAdmin === true;

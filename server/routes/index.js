@@ -20,6 +20,7 @@ router.get('/red-flags', RedFlagController.getRedFlags);
 router.get('/interventions', InterventionController.getInterventions);
 
 router.get('/red-flags/:id([0-9]+)', RedFlagController.getRedFlag);
+router.get('/interventions/:id([0-9]+)', InterventionController.getIntervention);
 
 router.post('/red-flags', middlewares.validatePostRedFlag, RedFlagController.postRedFlag);
 router.post('/interventions', middlewares.validatePostRedFlag, InterventionController.postIntervention);
