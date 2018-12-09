@@ -19,12 +19,14 @@ router.route('/red-flags')
   .get(RedFlagController.getRedFlags);
 
 router.route('/red-flags/:id([0-9]+)')
-  .get(middlewares.validateParam, RedFlagController.getRedFlag)
-  .delete(middlewares.validateParam, RedFlagController.deleteRedFlag);
+  .get(middlewares.validateParam, RedFlagController.getRedFlag);
 
 router.use('*', middlewares.verifyToken);
 router.post('/red-flags', middlewares.validatePostRedFlag, RedFlagController.postRedFlag);
 router.post('/interventions', middlewares.validatePostRedFlag, InterventionController.postIntervention);
+
+router.delete('/red-flags/:id([0-9]+)', RedFlagController.deleteRedFlag);
+
 
 router.patch('/red-flags/:id([0-9]+)/comment', middlewares.validateUpdateComment, UpdateRedFlagController.updateComment);
 router.patch('/interventions/:id([0-9]+)/comment', middlewares.validateUpdateComment, UpdateInterventionController.updateComment);

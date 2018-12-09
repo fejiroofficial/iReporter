@@ -86,6 +86,7 @@ class UpdateRedFlagController {
   static updateLocation(req, res) {
     const redFlagId = parseInt(req.params.id, 10);
     const { userId } = req;
+    console.log(userId);
     let { latitude, longitude } = req.body;
     latitude = latitude ? latitude.toString().replace(/\s+/g, '') : latitude;
     longitude = longitude ? longitude.toString().replace(/\s+/g, '') : longitude;
