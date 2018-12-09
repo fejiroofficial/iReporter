@@ -19,7 +19,7 @@ router.route('/red-flags')
   .get(RedFlagController.getRedFlags);
 
 router.route('/red-flags/:id([0-9]+)')
-  .get(middlewares.validateParam, RedFlagController.getRedFlag);
+  .get(RedFlagController.getRedFlag);
 
 router.use('*', middlewares.verifyToken);
 router.post('/red-flags', middlewares.validatePostRedFlag, RedFlagController.postRedFlag);
@@ -36,6 +36,7 @@ router.patch('/red-flags/:id([0-9]+)/location', middlewares.validateUpdateLocati
 router.patch('/interventions/:id([0-9]+)/location', middlewares.validateUpdateLocation, UpdateInterventionController.updateLocation);
 
 router.patch('/red-flags/:id([0-9]+)/status', middlewares.validateStatus, UpdateRedFlagController.updateRedFlagStatus);
+router.patch('/interventions/:id([0-9]+)/status', middlewares.validateStatus, UpdateRedFlagController.updateRedFlagStatus);
 
 router.use(ErrorController.routeError);
 
