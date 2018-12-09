@@ -7,6 +7,7 @@
 /* eslint no-template-curly-in-string: "off" */
 
 import db from '../db';
+import sendEmail from '../helperfn/sendEmail';
 
 /** update red-flgas controller class */
 class UpdateRedFlagController {
@@ -146,6 +147,65 @@ class UpdateRedFlagController {
           message: 'so sorry, something went wrong, try again',
           err: err.message,
         });
+      }));
+  }
+
+  /**
+  * @function updateRedFlagStatus
+  * @memberof UpdateRedFlagController
+  * @static
+  */
+
+  static updateRedFlagStatus(req, res) {
+    const redFlagId = parseInt(req.params.id, 10);
+    const { userId } = req;
+    let { status } = req.body;
+    status = status ? status.toString().replace(/\s+/g, '') : status;
+
+    return db.task('fetch user', data => data.users.findById(userId)
+      .then((user) => {
+        const notAdmin = user.isadmin === false;
+        if (notAdmin) {
+          return res.status(401).json({
+            success: 'false',
+            message: 'user unauthorized to update status of a red-flag or intervention record',
+          });
+        }
+        return db.incidents.findById(redFlagId)
+          .then((incident) => {
+            if (!incident) {
+              return res.status(404).json({
+                success: 'false',
+                message: 'This red-flag or intervention does not exist',
+              });
+            }
+            return db.task('fetch user', data => data.users.findById(incident.createdby)
+              .then((user) => {
+                const { firstname, email } = user;
+                return db.incidents.modifyStatus({ status }, redFlagId)
+                  .then(() => {
+                    if (status === 'under-investigation') {
+                      sendEmail(`${email}`, 'IREPORTER UPDATE', `Hello ${firstname}, the red-flag report you made is now ${status}`);
+                    }
+                    sendEmail(`${email}`, 'IREPORTER UPDATE', `Hello ${firstname}, the red-flag report you made has been ${status}`);
+                    return res.status(200).json({
+                      status: 200,
+                      success: 'true',
+                      data: [{
+                        id: redFlagId,
+                        message: 'Status updated successfully',
+                      }],
+                    });
+                  });
+              }));
+          })
+          .catch((err) => {
+            return res.status(500).json({
+              success: 'false',
+              message: 'so sorry, something went wrong, try again',
+              err: err.message,
+            });
+          });
       }));
   }
 }

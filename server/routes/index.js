@@ -35,6 +35,8 @@ router.patch('/interventions/:id([0-9]+)/comment', middlewares.validateUpdateCom
 router.patch('/red-flags/:id([0-9]+)/location', middlewares.validateUpdateLocation, UpdateRedFlagController.updateLocation);
 router.patch('/interventions/:id([0-9]+)/location', middlewares.validateUpdateLocation, UpdateInterventionController.updateLocation);
 
+router.patch('/red-flags/:id([0-9]+)/status', middlewares.validateStatus, UpdateRedFlagController.updateRedFlagStatus);
+
 router.use(ErrorController.routeError);
 
 export default router;

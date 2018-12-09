@@ -6,5 +6,6 @@ import './testFiles/postRedFlag.spec';
 import './testFiles/postIntervention.spec';
 import './testFiles/updateComment.spec';
 import './testFiles/updateLocation.spec';
+import './testFiles/updateStatus.spec';
 import './testFiles/deleteRedflag.spec';
 import './testFiles/deleteIncident.spec';
