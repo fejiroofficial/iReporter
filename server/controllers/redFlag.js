@@ -14,30 +14,6 @@ import incidents from '../datastore/incident';
 /** incident controller class */
 class RedFlagController {
   /**
- * @function getRedFlag
- * @memberof redFlagController
- * @static
- */
-  static getRedFlag(req, res) {
-    const redFlags = incidents.filter((incident) => {
-      if (incident.type === 'red-flag') return incident;
-    });
-
-    if (redFlags.length === 0) {
-      return res.status(404).json({
-        status: 404,
-        success: 'false',
-        message: 'No red-flags record found',
-      });
-    }
-    return res.status(200).json({
-      status: 200,
-      success: 'true',
-      data: redFlags,
-    });
-  }
-
-  /**
   * @function getRedFlags
   * @memberof RedFlagController
   * @static
