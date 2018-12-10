@@ -5,11 +5,11 @@ import ErrorController from '../helperfn/error';
 /**
  * This is a validation for update red-flag or intervention status
  * @constant
- * 
+ *
  * @param {String} req request object
  * @param {Object} res response object
  * @param {Object} err error object
- * 
+ *
  * @returns {Object}
  *
  * @exports validateComment
