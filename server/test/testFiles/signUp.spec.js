@@ -100,6 +100,29 @@ describe('Sign Up', () => {
           done();
         });
     });
+    it('should not register if telephone is not provided', (done) => {
+      const user = {
+          id: 1,
+          firstname: 'Fejiro',
+          lastname: 'Gospel',
+          othernames: 'Precious',
+          username: 'fejiroofficial',
+          profileImage: 'www.image.com',
+          email: 'houseofjiro@gmail.com',
+          telephone: '',
+          isAdmin: 'false',
+          password: '123456',
+        };
+    request(app)
+      .post('/api/v1/auth/signup')
+      .send(user)
+      .end((err, res) => {
+        expect(res.status).to.equal(400);
+        expect(res.body.success).to.equal('false')
+        expect(res.body.message).to.equal('telephone field must not be empty');
+        done();
+      });
+  });
     it('it should not register a user if username already exist', (done) => {
         const user = {
           id: 1,
@@ -163,7 +186,7 @@ describe('Sign Up', () => {
           .end((err, res) => {
             expect(res.status).to.equal(400);
             expect(res.body.success).to.equal('false')
-            expect(res.body.message).to.equal('Name should not contain numbers');
+            expect(res.body.message).to.equal('Names should not contain numbers and special characters');
             done();
           });
       });
@@ -184,7 +207,7 @@ describe('Sign Up', () => {
           .end((err, res) => {
             expect(res.status).to.equal(400);
             expect(res.body.success).to.equal('false')
-            expect(res.body.message).to.equal('Name should not contain numbers');
+            expect(res.body.message).to.equal('Names should not contain numbers and special characters');
             done();
           });
       });
@@ -205,7 +228,28 @@ describe('Sign Up', () => {
           .end((err, res) => {
             expect(res.status).to.equal(400);
             expect(res.body.success).to.equal('false')
-            expect(res.body.message).to.equal('Name should not contain numbers');
+            expect(res.body.message).to.equal('Names should not contain numbers and special characters');
+            done();
+          });
+      });
+      it('it should not register a telephone contains alphabets and special characters', (done) => {
+        const user = {
+          firstname: 'Fejiro',
+          lastname: 'Gospel',
+          othernames: 'Precious',
+          username: 'fejiroofficial2',
+          telephone: '081387r$122',
+          email: 'houseofjiro1@gmail.com',
+          isAdmin: false,
+          password: '123456',
+        };
+        request(app)
+          .post('/api/v1/auth/signup')
+          .send(user)
+          .end((err, res) => {
+            expect(res.status).to.equal(400);
+            expect(res.body.success).to.equal('false')
+            expect(res.body.message).to.equal('telephone number should not contain alphabets and special characters');
             done();
           });
       });
