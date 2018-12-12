@@ -71,10 +71,7 @@ static signup(req, res) {
                   return res.status(201).json({
                     success: 'true',
                     message: 'Account created successfully',
-                    data: [{
-                      token,
-                      user,
-                    }],
+                    token,
                   });
                 });
             });
