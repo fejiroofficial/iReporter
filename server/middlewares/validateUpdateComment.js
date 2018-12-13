@@ -1,5 +1,5 @@
 /* eslint linebreak-style: "off" */
-import ErrorController from '../helperfn/error';
+import ErrorController from '../helpers/error';
 
 /**
  * This is a validation for updating red-flag comment
@@ -17,8 +17,6 @@ import ErrorController from '../helperfn/error';
 const validateUpdateComment = (req, res, next) => {
   let { comment } = req.body;
   comment = comment && comment.toString().trim();
-  const id = parseInt(req.params.id, 10);
-  if (isNaN(id)) return next(ErrorController.validationError('hooops! params should be a number e.g 1'));
   if (!comment) return next(ErrorController.validationError('Please provide a brief comment for this incident record'));
   return next();
 };

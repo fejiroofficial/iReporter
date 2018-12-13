@@ -10,7 +10,7 @@
  */
 
 
-import ErrorController from '../helperfn/error';
+import ErrorController from '../helpers/error';
 /**
  * This is a validation for user login
  * @constant
@@ -26,9 +26,9 @@ import ErrorController from '../helperfn/error';
 
 const validateLogin = (req, res, next) => {
   let { email, password } = req.body;
-  const emailRegex = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,4}$/;
+  const emailRegex = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
   const userNameRegex = /^[a-z][a-z0-9_]{5,15}$/;
-  email = email && email.toString().trim();
+  email = email.includes('@') ? email.toString().trim() : email.toString().toLowerCase().replace(/\s+/g, '');
   password = password && password.toString();
 
   if (!email && !password) return next(ErrorController.validationError('Email and Password are required'));

@@ -18,7 +18,10 @@ export default class Incident {
   */
 
   create(values) {
-    const sql = 'INSERT INTO incidents (createdBy, comment, type, location, image_url, status) VALUES(${userId}, ${comment}, ${type}, ${location}, ${imageUrl}, ${defaultStatus}) RETURNING id';
+    const sql = 'INSERT INTO incidents'
+      + '(createdBy, comment, type, location, image_url, status)'
+      + 'VALUES(${userId}, ${comment}, ${type}, ${location}, ${image}, ${defaultStatus})'
+      + 'RETURNING *';
     return this.db.one(sql, values);
   }
   /**
@@ -27,31 +30,59 @@ export default class Incident {
   */
 
   findById(id) {
-    const sql = 'SELECT * FROM incidents WHERE id = $1';
+    const sql = `SELECT * FROM incidents
+     WHERE id = $1 AND type='red-flag'`;
+    return this.db.oneOrNone(sql, id);
+  }
+  /**
+  * Method for finding a redflag or incident record using the id.
+  * @param {number} id - the id of a record.
+  */
+
+  findInterventionById(id) {
+    const sql = `SELECT * FROM incidents
+   WHERE id = $1 AND type='intervention'`;
     return this.db.oneOrNone(sql, id);
   }
   /** Method for getting all red-flags in the database. */
 
   allRedFlags(redflag) {
-    const sql = 'SELECT firstname, lastname, profile_image, comment, type, location, image_url, status, createdon FROM incidents INNER JOIN users ON incidents.createdby = users.id WHERE incidents.type=$1 ORDER BY incidents.createdon DESC';
+    const sql = `SELECT
+     incidents.id, firstname, lastname, profile_image, comment, type, location, image_url, status, createdon
+     FROM incidents INNER JOIN users 
+     ON incidents.createdby = users.id
+     WHERE incidents.type=$1 ORDER BY incidents.createdon DESC`;
     return this.db.many(sql, redflag);
   }
   /** Method for getting user red-flags in the database. */
 
   someRedFlags(id) {
-    const sql = 'SELECT firstname, lastname, profile_image, comment, type, location, image_url, status, createdon FROM incidents INNER JOIN users ON incidents.createdby = users.id WHERE incidents.type=\'red-flag\' AND incidents.createdby=$1 ORDER BY incidents.createdon DESC';
+    const sql = `SELECT
+     incidents.id, firstname, lastname, profile_image, comment, type, location, image_url, status, createdon
+     FROM incidents INNER JOIN users
+     ON incidents.createdby = users.id
+     WHERE incidents.type='red-flag' AND incidents.createdby=$1
+     ORDER BY incidents.createdon DESC`;
     return this.db.many(sql, id);
   }
   /** Method for getting user interventions in the database. */
 
   someInterventions(id) {
-    const sql = 'SELECT firstname, lastname, profile_image, comment, type, location, image_url, status, createdon FROM incidents INNER JOIN users ON incidents.createdby = users.id WHERE incidents.type=\'intervention\' AND incidents.createdby=$1 ORDER BY incidents.createdon DESC';
+    const sql = `SELECT
+     incidents.id, firstname, lastname, profile_image, comment, type, location, image_url, status, createdon 
+     FROM incidents INNER JOIN users
+     ON incidents.createdby = users.id
+     WHERE incidents.type='intervention' AND incidents.createdby=$1
+     ORDER BY incidents.createdon DESC`;
     return this.db.many(sql, id);
   }
   /** Method for getting all interventions in the database. */
 
   allInterventions(intervention) {
-    const sql = 'SELECT firstname, lastname, profile_image, comment, type, location, image_url, status, createdon FROM incidents INNER JOIN users ON incidents.createdby = users.id WHERE incidents.type=$1 ORDER BY incidents.createdon DESC';
+    const sql = `SELECT
+     incidents.id, firstname, lastname, profile_image, comment, type, location, image_url, status, createdon
+     FROM incidents INNER JOIN users ON incidents.createdby = users.id
+     WHERE incidents.type=$1 ORDER BY incidents.createdon DESC`;
     return this.db.many(sql, intervention);
   }
   /** Method for getting incident records in the database. */
@@ -95,8 +126,19 @@ export default class Incident {
   * @param {number} id - the id of a record.
   */
 
-  remove(id) {
-    const sql = 'DELETE FROM incidents WHERE id = $1 RETURNING *';
+  removeRedFlag(id) {
+    const sql = `DELETE FROM incidents
+     WHERE id = $1 AND type='red-flag' RETURNING *`;
+    return this.db.one(sql, id);
+  }
+  /**
+  * Method for deleting a redflag or incident record using the id.
+  * @param {number} id - the id of a record.
+  */
+
+  removeIntervention(id) {
+    const sql = `DELETE FROM incidents
+   WHERE id = $1 AND type='intervention' RETURNING *`;
     return this.db.one(sql, id);
   }
 }

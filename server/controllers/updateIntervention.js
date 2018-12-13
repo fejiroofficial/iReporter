@@ -7,7 +7,7 @@
 /* eslint no-template-curly-in-string: "off" */
 
 import db from '../db';
-import sendEmail from '../helperfn/sendEmail';
+import sendEmail from '../helpers/sendEmail';
 
 /** update intervention controller class */
 class UpdateInterventionController {
@@ -17,30 +17,24 @@ class UpdateInterventionController {
   * @static
   */
   static updateComment(req, res) {
-    const interventionId = parseInt(req.params.id, 10);
+    const interventionId = req.params.id;
     const { userId } = req;
     let { comment } = req.body;
     comment = comment ? comment.toString().trim().replace(/\s+/g, ' ') : comment;
     if (isNaN(interventionId)) {
-      return res.status(400).json({
+      return res.status(404).json({
+        status: 404,
         success: 'false',
-        message: 'param should be a number not an alphabet',
+        message: 'This record doesn\'t exist in the database',
       });
     }
-    return db.task('find intervention', data => data.incidents.findById(interventionId)
+    return db.task('find intervention', data => data.incidents.findInterventionById(interventionId)
       .then((record) => {
         if (!record) {
           return res.status(404).json({
             status: 404,
             success: 'false',
             message: 'This record doesn\'t exist in the database',
-          });
-        }
-        if (record.type !== 'intervention') {
-          return res.status(400).json({
-            status: 400,
-            success: 'false',
-            message: 'This incident record is not an intervention',
           });
         }
         const recordOwner = userId === record.createdby;
@@ -59,13 +53,13 @@ class UpdateInterventionController {
           });
         }
         return db.task('update location', data => data.incidents.modifyComment({ comment }, interventionId)
-          .then(() => {
+          .then((updated) => {
             return res.status(200).json({
               status: 200,
               success: 'true',
               data: [{
-                id: interventionId,
                 message: 'You have successfully updated the comment of this intervention record',
+                updated,
               }],
             });
           }));
@@ -92,25 +86,19 @@ class UpdateInterventionController {
     longitude = longitude ? longitude.toString().replace(/\s+/g, '') : longitude;
     const location = `${latitude},${longitude}`;
     if (isNaN(interventionId)) {
-      return res.status(400).json({
+      return res.status(404).json({
+        status: 404,
         success: 'false',
-        message: 'param should be a number not an alphabet',
+        message: 'This record doesn\'t exist in the database',
       });
     }
-    return db.task('find intervention', data => data.incidents.findById(interventionId)
+    return db.task('find intervention', data => data.incidents.findInterventionById(interventionId)
       .then((record) => {
         if (!record) {
           return res.status(404).json({
             status: 404,
             success: 'false',
             message: 'This record doesn\'t exist in the database',
-          });
-        }
-        if (record.type !== 'intervention') {
-          return res.status(400).json({
-            status: 400,
-            success: 'false',
-            message: 'This incident record is not an intervention',
           });
         }
         const recordOwner = userId === record.createdby;
@@ -129,13 +117,13 @@ class UpdateInterventionController {
           });
         }
         return db.task('update location', data => data.incidents.modifyLocation({ location }, interventionId)
-          .then(() => {
+          .then((updated) => {
             return res.status(200).json({
               status: 200,
               success: 'true',
               data: [{
-                id: interventionId,
                 message: 'You have successfully updated the location of this intervention record',
+                updated,
               }],
             });
           }));
@@ -160,42 +148,47 @@ class UpdateInterventionController {
     let { status } = req.body;
     status = status ? status.toString().replace(/\s+/g, '') : status;
 
+    if (isNaN(interventionId)) {
+      return res.status(404).json({
+        status: 404,
+        success: 'false',
+        message: 'This record doesn\'t exist in the database',
+      });
+    }
+
     return db.task('fetch user', data => data.users.findById(userId)
       .then((user) => {
-        const notAdmin = user.isadmin === false;
+        const notAdmin = !user.isadmin;
         if (notAdmin) {
           return res.status(401).json({
             success: 'false',
             message: 'user unauthorized to update status of a red-flag or intervention record',
           });
         }
-        return db.incidents.findById(interventionId)
+        return db.incidents.findInterventionById(interventionId)
           .then((incident) => {
             if (!incident) {
               return res.status(404).json({
                 success: 'false',
-                message: 'This red-flag or intervention does not exist',
+                message: 'This intervention record does not exist',
               });
             }
-            return db.task('fetch user', data => data.users.findById(incident.createdby)
-              .then((user) => {
-                const { firstname, email } = user;
-                return db.incidents.modifyStatus({ status }, interventionId)
-                  .then(() => {
-                    if (status === 'under-investigation') {
-                      sendEmail(`${email}`, 'IREPORTER UPDATE', `Hello ${firstname}, the intervention report you made is now ${status}`);
-                    }
-                    sendEmail(`${email}`, 'IREPORTER UPDATE', `Hello ${firstname}, the intervention report you made has been ${status}`);
-                    return res.status(200).json({
-                      status: 200,
-                      success: 'true',
-                      data: [{
-                        id: interventionId,
-                        message: 'Status updated successfully',
-                      }],
-                    });
-                  });
-              }));
+            const { firstname, email } = user;
+            return db.incidents.modifyStatus({ status }, interventionId)
+              .then((updated) => {
+                if (status === 'under-investigation') {
+                  sendEmail(`${email}`, 'IREPORTER UPDATE', `Hello ${firstname}, the intervention report you made is now ${status}`);
+                }
+                sendEmail(`${email}`, 'IREPORTER UPDATE', `Hello ${firstname}, the intervention report you made has been ${status}`);
+                return res.status(200).json({
+                  status: 200,
+                  success: 'true',
+                  data: [{
+                    message: 'Status updated successfully',
+                    updated,
+                  }],
+                });
+              });
           })
           .catch((err) => {
             return res.status(500).json({

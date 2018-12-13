@@ -8,6 +8,7 @@
 /* eslint no-template-curly-in-string: "off" */
 
 import db from '../db';
+import isInteger from '../helpers/param';
 
 /** incident controller class */
 class RedFlagController {
@@ -17,35 +18,35 @@ class RedFlagController {
   * @static
   */
   static getRedFlag(req, res) {
-    const redFlagId = parseInt(req.params.id, 10);
-    return db.task('specific red flag', data => data.incidents.findById(redFlagId)
-    .then((record) => {
-      if (!record) {
-        return res.status(404).json({
-          status: 404,
-          success: 'false',
-          message: 'This record doesn\'t exist in the database',
-        });
-      }
-      if (record.type !== 'red-flag') {
-        return res.status(400).json({
-          status: 400,
-          success: 'false',
-          message: 'This incident record is not a red-flag',
-        });
-      }
-      return res.status(200).json({
-        status: 200,
-        success: 'true',
-        data: record,
-      });
-    })
-    .catch((err) => {
-      res.status(500).json({
+    const redFlagId = req.params.id;
+    if (isNaN(redFlagId) || !isInteger(redFlagId)) {
+      return res.status(404).json({
+        status: 404,
         success: 'false',
-        err: err.message,
+        message: 'This record doesn\'t exist in the database',
       });
-    }));
+    }
+    return db.task('specific red flag', data => data.incidents.findById(redFlagId)
+      .then((record) => {
+        if (!record) {
+          return res.status(404).json({
+            status: 404,
+            success: 'false',
+            message: 'This record doesn\'t exist in the database',
+          });
+        }
+        return res.status(200).json({
+          status: 200,
+          success: 'true',
+          data: record,
+        });
+      })
+      .catch((err) => {
+        res.status(500).json({
+          success: 'false',
+          err: err.message,
+        });
+      }));
   }
 
   /**
@@ -60,20 +61,22 @@ class RedFlagController {
       case true:
         db.task('all red flags', data => data.incidents.allRedFlags('red-flag')
           .then((redFlags) => {
-            if (redFlags.length === 0) {
-              return res.status(404).json({
-                status: 404,
-                success: 'false',
-                message: 'No red-flag record found',
+            if (redFlags) {
+              return res.status(200).json({
+                status: 200,
+                success: 'true',
+                data: redFlags,
               });
             }
-            return res.status(200).json({
-              status: 200,
-              success: 'true',
-              data: redFlags,
-            });
           })
           .catch((err) => {
+            if (err.message === 'No data returned from the query.') {
+              return res.status(200).json({
+                status: 200,
+                success: 'true',
+                data: [],
+              });
+            }
             res.status(500).json({
               success: 'false',
               err: err.message,
@@ -84,20 +87,22 @@ class RedFlagController {
       case false:
         db.task('all red flags', data => data.incidents.someRedFlags(userId)
           .then((redFlags) => {
-            if (redFlags.length === 0) {
-              return res.status(404).json({
-                status: 404,
-                success: 'false',
-                message: 'No red-flag record found',
+            if (redFlags) {
+              return res.status(200).json({
+                status: 200,
+                success: 'true',
+                data: redFlags,
               });
             }
-            return res.status(200).json({
-              status: 200,
-              success: 'true',
-              data: redFlags,
-            });
           })
           .catch((err) => {
+            if (err.message === 'No data returned from the query.') {
+              return res.status(200).json({
+                status: 200,
+                success: 'true',
+                data: [],
+              });
+            }
             res.status(500).json({
               success: 'false',
               err: err.message,
@@ -108,7 +113,7 @@ class RedFlagController {
       default:
         return res.status(500).json({
           success: 'false',
-          message: 'unable to login, try again!',
+          message: 'Something went wrong, try again later!',
         });
     }
   }
@@ -120,28 +125,21 @@ class RedFlagController {
  */
   static postRedFlag(req, res) {
     const { userId } = req;
-    let { comment, type, latitude, longitude, imageUrl } = req.body;
+    let { comment, latitude, longitude, image } = req.body;
     comment = comment ? comment.toString().trim().replace(/\s+/g, ' ') : comment;
-    type = type ? type.toLowerCase().toString().replace(/\s+/g, '') : type;
-    imageUrl = imageUrl ? imageUrl.toLowerCase().toString().replace(/\s+/g, '') : imageUrl;
+    image = image ? image.toLowerCase().toString().replace(/\s+/g, '') : image;
     latitude = latitude ? latitude.toString().replace(/\s+/g, '') : latitude;
     longitude = longitude ? longitude.toString().replace(/\s+/g, '') : longitude;
     const location = `${latitude},${longitude}`;
     const defaultStatus = 'draft';
-    if (type !== 'red-flag') {
-      return res.status(400).json({
-        status: 400,
-        success: 'false',
-        message: 'This is a red-flag incident, the type should be a \'redflag\'',
-      });
-    }
-    return db.incidents.create({ userId, comment, type, location, imageUrl, defaultStatus })
+    const type = 'red-flag';
+    return db.incidents.create({ userId, comment, type, location, image, defaultStatus })
       .then((record) => {
         return res.status(201).json({
           success: 'true',
           data: [{
-            id: record.id,
             message: 'You have successfully created a new red-flag record',
+            record,
           }],
         });
       })
@@ -161,7 +159,14 @@ class RedFlagController {
  */
   static deleteRedFlag(req, res) {
     const { userId } = req;
-    const redFlagId = parseInt(req.params.id, 10);
+    const redFlagId = req.params.id;
+    if (isNaN(redFlagId)) {
+      return res.status(404).json({
+        status: 404,
+        success: 'false',
+        message: 'This record doesn\'t exist in the database',
+      });
+    }
     return db.task('delete', db => db.incidents.findById(redFlagId)
       .then((record) => {
         if (!record) {
@@ -169,13 +174,6 @@ class RedFlagController {
             status: 404,
             success: 'false',
             message: 'This record doesn\'t exist in the database',
-          });
-        }
-        if (record.type !== 'red-flag') {
-          return res.status(400).json({
-            status: 400,
-            success: 'false',
-            message: 'This incident record is not a red-flag',
           });
         }
         const recordOwner = userId === record.createdby;
@@ -186,16 +184,25 @@ class RedFlagController {
             message: 'You are unauthorized to delete an information that was not posted by you',
           });
         }
-        return db.incidents.remove(redFlagId)
-          .then(() => {
+        return db.incidents.removeRedFlag(redFlagId)
+          .then((removed) => {
             return res.status(200).json({
               status: 200,
               success: 'true',
               data: [{
-                id: redFlagId,
                 message: 'You have successfully deleted this red-flag record',
+                removed,
               }],
             });
+          })
+          .catch((err) => {
+            if (err.message === 'No data returned from the query.') {
+              return res.status(422).json({
+                status: 422,
+                success: 'false',
+                message: 'You are attempting to delete a resource with the wrong route',
+              });
+            }
           });
       })
       .catch((err) => {

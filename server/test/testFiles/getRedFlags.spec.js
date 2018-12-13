@@ -9,7 +9,7 @@ describe('/GET all red-flags', () => {
   it('should get all red-flags', (done) => {
     chai.request(app)
       .get('/api/v1/red-flags/')
-      .set('token', `${jwt.sign({ id: 1 }, 'fejiroofficial', { expiresIn: '24hrs' })}`)
+      .set('Authorization', `${jwt.sign({ id: 1 }, process.env.SECRET_KEY, { expiresIn: '24hrs' })}`)
       .end((err, res) => {
         expect(res.status).to.equal(200);
         expect(res.type).to.equal('application/json');
@@ -28,7 +28,7 @@ describe('/GET specific red-flag', () => {
   it('should throw an error if record does not exist', (done) => {
     chai.request(app)
       .get('/api/v1/red-flags/100')
-      .set('token', `${jwt.sign({ id: 1 }, 'fejiroofficial', { expiresIn: '24hrs' })}`)
+      .set('Authorization', `${jwt.sign({ id: 1 }, process.env.SECRET_KEY, { expiresIn: '24hrs' })}`)
       .end((err, res) => {
         expect(res.status).to.equal(404);
         expect(res.type).to.equal('application/json');
@@ -39,24 +39,11 @@ describe('/GET specific red-flag', () => {
         done();
       });
   });
-  it('should throw an error if record is not a red-flag', (done) => {
-    chai.request(app)
-      .get('/api/v1/red-flags/2')
-      .set('token', `${jwt.sign({ id: 1 }, 'fejiroofficial', { expiresIn: '24hrs' })}`)
-      .end((err, res) => {
-        expect(res.status).to.equal(400);
-        expect(res.type).to.equal('application/json');
-        expect(res.body).to.be.an('object');
-        expect(res.body.success).to.equal('false');
-        expect(res.body.status).to.equal(400);
-        expect(res.body.message).to.equal('This incident record is not a red-flag');
-        done();
-      });
-  });
+
   it('should get red-flag', (done) => {
     chai.request(app)
       .get('/api/v1/red-flags/1')
-      .set('token', `${jwt.sign({ id: 1 }, 'fejiroofficial', { expiresIn: '24hrs' })}`)
+      .set('Authorization', `${jwt.sign({ id: 1 }, 'fejiroofficial', { expiresIn: '24hrs' })}`)
       .end((err, res) => {
         expect(res.status).to.equal(200);
         expect(res.type).to.equal('application/json');
@@ -75,7 +62,7 @@ describe('/GET all interventions', () => {
   it('should get all interventions', (done) => {
     chai.request(app)
       .get('/api/v1/interventions/')
-      .set('token', `${jwt.sign({ id: 1 }, 'fejiroofficial', { expiresIn: '24hrs' })}`)
+      .set('Authorization', `${jwt.sign({ id: 1 }, 'fejiroofficial', { expiresIn: '24hrs' })}`)
       .end((err, res) => {
         expect(res.status).to.equal(200);
         expect(res.type).to.equal('application/json');
@@ -94,7 +81,7 @@ describe('/GET specific intervention', () => {
   it('should throw an error if record does not exist', (done) => {
     chai.request(app)
       .get('/api/v1/interventions/100')
-      .set('token', `${jwt.sign({ id: 1 }, 'fejiroofficial', { expiresIn: '24hrs' })}`)
+      .set('Authorization', `${jwt.sign({ id: 1 }, 'fejiroofficial', { expiresIn: '24hrs' })}`)
       .end((err, res) => {
         expect(res.status).to.equal(404);
         expect(res.type).to.equal('application/json');
@@ -105,24 +92,11 @@ describe('/GET specific intervention', () => {
         done();
       });
   });
-  it('should throw an error if record is not an intervention', (done) => {
-    chai.request(app)
-      .get('/api/v1/interventions/1')
-      .set('token', `${jwt.sign({ id: 1 }, 'fejiroofficial', { expiresIn: '24hrs' })}`)
-      .end((err, res) => {
-        expect(res.status).to.equal(400);
-        expect(res.type).to.equal('application/json');
-        expect(res.body).to.be.an('object');
-        expect(res.body.success).to.equal('false');
-        expect(res.body.status).to.equal(400);
-        expect(res.body.message).to.equal('This incident record is not an intervention');
-        done();
-      });
-  });
+
   it('should get red-flag', (done) => {
     chai.request(app)
       .get('/api/v1/interventions/2')
-      .set('token', `${jwt.sign({ id: 1 }, 'fejiroofficial', { expiresIn: '24hrs' })}`)
+      .set('Authorization', `${jwt.sign({ id: 1 }, 'fejiroofficial', { expiresIn: '24hrs' })}`)
       .end((err, res) => {
         expect(res.status).to.equal(200);
         expect(res.type).to.equal('application/json');
