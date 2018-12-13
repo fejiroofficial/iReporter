@@ -8,6 +8,7 @@
 /* eslint no-template-curly-in-string: "off" */
 
 import db from '../db';
+import isInteger from '../helpers/param';
 
 /** incident controller class */
 class InterventionController {
@@ -17,21 +18,21 @@ class InterventionController {
   * @static
   */
   static getIntervention(req, res) {
-    const interventionId = parseInt(req.params.id, 10);
-    return db.task('specific intervention', data => data.incidents.findById(interventionId)
+    const interventionId = req.params.id;
+    if (isNaN(interventionId) || !isInteger(interventionId)) {
+      return res.status(404).json({
+        status: 404,
+        success: 'false',
+        message: 'This record doesn\'t exist in the database',
+      });
+    }
+    return db.task('specific intervention', data => data.incidents.findInterventionById(interventionId)
       .then((record) => {
         if (!record) {
           return res.status(404).json({
             status: 404,
             success: 'false',
             message: 'This record doesn\'t exist in the database',
-          });
-        }
-        if (record.type !== 'intervention') {
-          return res.status(400).json({
-            status: 400,
-            success: 'false',
-            message: 'This incident record is not an intervention',
           });
         }
         return res.status(200).json({
@@ -60,20 +61,22 @@ class InterventionController {
       case true:
         db.task('all interventions', data => data.incidents.allInterventions('intervention')
           .then((interventions) => {
-            if (interventions.length === 0) {
-              return res.status(404).json({
-                status: 404,
-                success: 'false',
-                message: 'No intervention record found',
+            if (interventions) {
+              return res.status(200).json({
+                status: 200,
+                success: 'true',
+                data: interventions,
               });
             }
-            return res.status(200).json({
-              status: 200,
-              success: 'true',
-              data: interventions,
-            });
           })
           .catch((err) => {
+            if (err.message === 'No data returned from the query.') {
+              return res.status(200).json({
+                status: 200,
+                success: 'true',
+                data: [],
+              });
+            }
             res.status(500).json({
               success: 'false',
               err: err.message,
@@ -84,20 +87,22 @@ class InterventionController {
       case false:
         db.task('all interventions', data => data.incidents.someInterventions(userId)
           .then((interventions) => {
-            if (interventions.length === 0) {
-              return res.status(404).json({
-                status: 404,
-                success: 'false',
-                message: 'No intervention record found',
+            if (interventions) {
+              return res.status(200).json({
+                status: 200,
+                success: 'true',
+                data: interventions,
               });
             }
-            return res.status(200).json({
-              status: 200,
-              success: 'true',
-              data: interventions,
-            });
           })
           .catch((err) => {
+            if (err.message === 'No data returned from the query.') {
+              return res.status(200).json({
+                status: 200,
+                success: 'true',
+                data: [],
+              });
+            }
             res.status(500).json({
               success: 'false',
               err: err.message,
@@ -108,7 +113,7 @@ class InterventionController {
       default:
         return res.status(500).json({
           success: 'false',
-          message: 'unable to login, try again!',
+          message: 'something went wrong, try again!',
         });
     }
   }
@@ -120,28 +125,21 @@ class InterventionController {
 
   static postIntervention(req, res) {
     const { userId } = req;
-    let { comment, type, latitude, longitude, imageUrl } = req.body;
+    let { comment, latitude, longitude, image } = req.body;
     comment = comment ? comment.toString().trim().replace(/\s+/g, ' ') : comment;
-    type = type ? type.toLowerCase().toString().replace(/\s+/g, '') : type;
-    imageUrl = imageUrl ? imageUrl.toLowerCase().toString().replace(/\s+/g, '') : imageUrl;
+    image = image ? image.toLowerCase().toString().replace(/\s+/g, '') : image;
     latitude = latitude ? latitude.toString().replace(/\s+/g, '') : latitude;
     longitude = longitude ? longitude.toString().replace(/\s+/g, '') : longitude;
     const location = `${latitude},${longitude}`;
     const defaultStatus = 'draft';
-    if (type !== 'intervention') {
-      return res.status(400).json({
-        status: 400,
-        success: 'false',
-        message: 'This is an intervention incident, the type should be a \'intervention\'',
-      });
-    }
-    return db.incidents.create({ userId, comment, type, location, imageUrl, defaultStatus })
+    const type = 'intervention';
+    return db.incidents.create({ userId, comment, type, location, image, defaultStatus })
       .then((record) => {
         return res.status(201).json({
           success: 'true',
           data: [{
-            id: record.id,
             message: 'You have successfully created a new intervention record',
+            record,
           }],
         });
       })
@@ -161,21 +159,14 @@ class InterventionController {
   */
   static deleteIntervention(req, res) {
     const { userId } = req;
-    const interventionId = parseInt(req.params.id, 10);
-    return db.task('delete', db => db.incidents.findById(interventionId)
+    const interventionId = req.params.id;
+    return db.task('delete', db => db.incidents.findInterventionById(interventionId)
       .then((record) => {
         if (!record) {
           return res.status(404).json({
             status: 404,
             success: 'false',
             message: 'This record doesn\'t exist in the database',
-          });
-        }
-        if (record.type !== 'intervention') {
-          return res.status(400).json({
-            status: 400,
-            success: 'false',
-            message: 'This incident record is not an intervention',
           });
         }
         const recordOwner = userId === record.createdby;
@@ -186,14 +177,14 @@ class InterventionController {
             message: 'You are unauthorized to delete an information that was not posted by you',
           });
         }
-        return db.incidents.remove(interventionId)
-          .then(() => {
+        return db.incidents.removeIntervention(interventionId)
+          .then((removed) => {
             return res.status(200).json({
               status: 200,
               success: 'true',
               data: [{
-                id: interventionId,
                 message: 'You have successfully deleted this intervention record',
+                removed,
               }],
             });
           });

@@ -27,7 +27,7 @@ static signup(req, res) {
   othernames = othernames ? othernames.toString().replace(/\s+/g, '') : othernames;
   email = email ? email.toString().replace(/\s+/g, '') : email;
   telephone = telephone ? telephone.toString().replace(/\s+/g, '') : telephone;
-  username = username ? username.toString().replace(/\s+/g, '') : username;
+  username = username ? username.toString().toLowerCase().replace(/\s+/g, '') : username;
   const isAdmin = false;
   const profileImage = 'https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-person-512.png';
 

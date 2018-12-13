@@ -7,7 +7,7 @@
 /* eslint no-template-curly-in-string: "off" */
 
 import db from '../db';
-import sendEmail from '../helperfn/sendEmail';
+import sendEmail from '../helpers/sendEmail';
 
 /** update red-flgas controller class */
 class UpdateRedFlagController {
@@ -17,14 +17,15 @@ class UpdateRedFlagController {
   * @static
   */
   static updateComment(req, res) {
-    const redFlagId = parseInt(req.params.id, 10);
+    const redFlagId = req.params.id;
     const { userId } = req;
     let { comment } = req.body;
     comment = comment ? comment.toString().trim().replace(/\s+/g, ' ') : comment;
     if (isNaN(redFlagId)) {
-      return res.status(400).json({
+      return res.status(404).json({
+        status: 404,
         success: 'false',
-        message: 'param should be a number not an alphabet',
+        message: 'This record doesn\'t exist in the database',
       });
     }
     return db.task('find red-flag', data => data.incidents.findById(redFlagId)
@@ -36,14 +37,10 @@ class UpdateRedFlagController {
             message: 'This record doesn\'t exist in the database',
           });
         }
-        if (record.type !== 'red-flag') {
-          return res.status(400).json({
-            status: 400,
-            success: 'false',
-            message: 'This incident record is not a red-flag',
-          });
-        }
         const recordOwner = userId === record.createdby;
+        console.log(userId);
+        console.log(record.createdby);
+        console.log(recordOwner);
         if (!recordOwner) {
           return res.status(401).json({
             status: 401,
@@ -59,13 +56,13 @@ class UpdateRedFlagController {
           });
         }
         return db.task('update comment', data => data.incidents.modifyComment({ comment }, redFlagId)
-          .then(() => {
+          .then((updated) => {
             return res.status(200).json({
               status: 200,
               success: 'true',
               data: [{
-                id: redFlagId,
                 message: 'You have successfully updated the comment of this red-flag record',
+                updated,
               }],
             });
           }));
@@ -92,9 +89,10 @@ class UpdateRedFlagController {
     longitude = longitude ? longitude.toString().replace(/\s+/g, '') : longitude;
     const location = `${latitude},${longitude}`;
     if (isNaN(redFlagId)) {
-      return res.status(400).json({
+      return res.status(404).json({
+        status: 404,
         success: 'false',
-        message: 'param should be a number not an alphabet',
+        message: 'This record doesn\'t exist in the database',
       });
     }
     return db.task('find red-flag', data => data.incidents.findById(redFlagId)
@@ -114,6 +112,7 @@ class UpdateRedFlagController {
           });
         }
         const recordOwner = userId === record.createdby;
+
         if (!recordOwner) {
           return res.status(401).json({
             status: 401,
@@ -129,13 +128,13 @@ class UpdateRedFlagController {
           });
         }
         return db.task('update location', data => data.incidents.modifyLocation({ location }, redFlagId)
-          .then(() => {
+          .then((updated) => {
             return res.status(200).json({
               status: 200,
               success: 'true',
               data: [{
-                id: redFlagId,
                 message: 'You have successfully updated the location of this red-flag record',
+                updated,
               }],
             });
           }));
@@ -161,6 +160,14 @@ class UpdateRedFlagController {
     let { status } = req.body;
     status = status ? status.toString().replace(/\s+/g, '') : status;
 
+    if (isNaN(redFlagId)) {
+      return res.status(404).json({
+        status: 404,
+        success: 'false',
+        message: 'This record doesn\'t exist in the database',
+      });
+    }
+
     return db.task('fetch user', data => data.users.findById(userId)
       .then((user) => {
         const notAdmin = user.isadmin === false;
@@ -175,28 +182,25 @@ class UpdateRedFlagController {
             if (!incident) {
               return res.status(404).json({
                 success: 'false',
-                message: 'This red-flag or intervention does not exist',
+                message: 'This red-flag record does not exist',
               });
             }
-            return db.task('fetch user', data => data.users.findById(incident.createdby)
-              .then((user) => {
-                const { firstname, email } = user;
-                return db.incidents.modifyStatus({ status }, redFlagId)
-                  .then(() => {
-                    if (status === 'under-investigation') {
-                      sendEmail(`${email}`, 'IREPORTER UPDATE', `Hello ${firstname}, the red-flag report you made is now ${status}`);
-                    }
-                    sendEmail(`${email}`, 'IREPORTER UPDATE', `Hello ${firstname}, the red-flag report you made has been ${status}`);
-                    return res.status(200).json({
-                      status: 200,
-                      success: 'true',
-                      data: [{
-                        id: redFlagId,
-                        message: 'Status updated successfully',
-                      }],
-                    });
-                  });
-              }));
+            const { firstname, email } = user;
+            return db.incidents.modifyStatus({ status }, redFlagId)
+              .then((updated) => {
+                if (status === 'under-investigation') {
+                  sendEmail(`${email}`, 'IREPORTER UPDATE', `Hello ${firstname}, the red-flag report you made is now ${status}`);
+                }
+                sendEmail(`${email}`, 'IREPORTER UPDATE', `Hello ${firstname}, the red-flag report you made has been ${status}`);
+                return res.status(200).json({
+                  status: 200,
+                  success: 'true',
+                  data: [{
+                    message: 'Status updated successfully',
+                    updated,
+                  }],
+                });
+              });
           })
           .catch((err) => {
             return res.status(500).json({

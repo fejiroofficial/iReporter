@@ -1,4 +1,5 @@
 import './testFiles/app.spec';
+import './testFiles/helpers.spec';
 import './testFiles/login.spec';
 import './testFiles/signUp.spec';
 import './testFiles/redFlags.spec';

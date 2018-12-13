@@ -9,7 +9,7 @@ describe('/DELETE intervention', () => {
   it('should throw an error if record does not exist', (done) => {
     chai.request(app)
       .delete('/api/v1/interventions/100')
-      .set('token', `${jwt.sign({ id: 1 }, 'fejiroofficial', { expiresIn: '24hrs' })}`)
+      .set('Authorization', `${jwt.sign({ id: 1 }, 'fejiroofficial', { expiresIn: '24hrs' })}`)
       .end((err, res) => {
         expect(res.status).to.equal(404);
         expect(res.body.success).to.equal('false');
@@ -19,16 +19,17 @@ describe('/DELETE intervention', () => {
         done();
       });
   });
-  it('should throw an error if record is not a intervention', (done) => {
+
+  it('Record does not exist', (done) => {
     chai.request(app)
       .delete('/api/v1/interventions/3')
-      .set('token', `${jwt.sign({ id: 1 }, 'fejiroofficial', { expiresIn: '24hrs' })}`)
+      .set('Authorization', `${jwt.sign({ id: 1 }, 'fejiroofficial', { expiresIn: '24hrs' })}`)
       .end((err, res) => {
-        expect(res.status).to.equal(400);
+        expect(res.status).to.equal(404);
         expect(res.body.success).to.equal('false');
         expect(res.type).to.equal('application/json');
         expect(res.body).to.be.an('object');
-        expect(res.body.message).to.equal('This incident record is not an intervention');
+        expect(res.body.message).to.equal(`This record doesn\'t exist in the database`);
         done();
       });
   });
@@ -37,7 +38,7 @@ describe('/DELETE intervention', () => {
     chai
       .request(app)
       .delete('/api/v1/interventions/2')
-      .set('token', `${jwt.sign({ id: 2 }, process.env.SECRET_KEY, { expiresIn: '4hrs' })}`)
+      .set('Authorization', `${jwt.sign({ id: 2 }, 'fejiroofficial', { expiresIn: '24hrs' })}`)
       .end((err, res) => {
         expect(res.status).to.equal(401);
         expect(res.body.success).to.equal('false');
@@ -50,14 +51,14 @@ describe('/DELETE intervention', () => {
     chai
       .request(app)
       .delete('/api/v1/interventions/2')
-      .set('token', `${jwt.sign({ id: 1 }, process.env.SECRET_KEY, { expiresIn: '24hrs' })}`)
+      .set('Authorization', `${jwt.sign({ id: 1 }, 'fejiroofficial', { expiresIn: '24hrs' })}`)
       .end((err, res) => {
         expect(res.status).to.equal(200);
         expect(res.body.success).to.equal('true');
         expect(res.type).to.equal('application/json');
         expect(res.body).to.be.an('object');
-        expect(res.body.data[0].id).to.equal(2);
         expect(res.body.data[0].message).to.equal('You have successfully deleted this intervention record');
+        expect(res.body.data[0].removed.id).to.equal(2);
         done();
       });
   });

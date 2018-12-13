@@ -19,15 +19,14 @@ class ErrorController {
 * @memberof ErrorController
 * @static
 */
-  static routeError(req, res, next) {
+  static routeError(req, res) {
     if (!req.route) {
       return res.status(404).json({
         status: 404,
         success: 'false',
-        message: 'Bad! This route does not exist',
+        message: 'This route does not exist',
       });
     }
-    return next();
   }
 }
 
