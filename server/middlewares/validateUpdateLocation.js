@@ -1,5 +1,5 @@
 /* eslint linebreak-style: "off" */
-import ErrorController from '../helperfn/error';
+import ErrorController from '../helpers/error';
 
 /**
  * This is a validation for updating red-flag location
@@ -15,10 +15,20 @@ import ErrorController from '../helperfn/error';
  */
 
 const validateUpdateLocation = (req, res, next) => {
-  const { location } = req.body;
-  const redFlagId = parseInt(req.params.id, 10);
-  if (isNaN(redFlagId)) return next(ErrorController.validationError('hooops! params should be a number e.g 1'));
-  if (!location) return next(ErrorController.validationError('Please provide the location for this red-flag incident'));
+  const id = req.params.id;
+  const latRegex = /^(\+|-)?(?:90(?:(?:\.0{1,6})?)|(?:[0-9]|[1-8][0-9])(?:(?:\.[0-9]{1,16})?))$/;
+  const longRegex = /^(\+|-)?(?:180(?:(?:\.0{1,6})?)|(?:[0-9]|[1-9][0-9]|1[0-7][0-9])(?:(?:\.[0-9]{1,16})?))$/;
+  let { latitude, longitude } = req.body;
+  latitude = latitude && latitude.toString().trim();
+  longitude = longitude && longitude.toString().trim();
+
+  if (isNaN(id)) return next(ErrorController.validationError('param should be a number not an alphabet'));
+  if (!latitude) return next(ErrorController.validationError('Please provide the location(latitude) for this incident'));
+  if (!longitude) return next(ErrorController.validationError('Please provide the location(longitude) for this incident'));
+  if (isNaN(latitude)) return next(ErrorController.validationError('latitude co-ordinate should be a number'));
+  if (isNaN(longitude)) return next(ErrorController.validationError('longitude co-ordinate should be a number'));
+  if (!latRegex.test(latitude)) return next(ErrorController.validationError('invalid latitude coordinate provided'));
+  if (!longRegex.test(longitude)) return next(ErrorController.validationError('invalid longitude coordinate provided'));
   return next();
 };
 export default validateUpdateLocation;

@@ -27,7 +27,7 @@ static signup(req, res) {
   othernames = othernames ? othernames.toString().replace(/\s+/g, '') : othernames;
   email = email ? email.toString().replace(/\s+/g, '') : email;
   telephone = telephone ? telephone.toString().replace(/\s+/g, '') : telephone;
-  username = username ? username.toString().replace(/\s+/g, '') : username;
+  username = username ? username.toString().toLowerCase().replace(/\s+/g, '') : username;
   const isAdmin = false;
   const profileImage = 'https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-person-512.png';
 
@@ -66,14 +66,12 @@ static signup(req, res) {
                     telephone: user.telephone,
                     username: user.username,
                     profileImage: user.profile_image,
+                    isAdmin: user.isadmin,
                   }, process.env.SECRET_KEY, { expiresIn: '24hrs' });
                   return res.status(201).json({
                     success: 'true',
                     message: 'Account created successfully',
-                    data: [{
-                      token,
-                      user,
-                    }],
+                    token,
                   });
                 });
             });
@@ -130,6 +128,7 @@ static signup(req, res) {
               telephone: user.telephone,
               username: user.username,
               profileImage: user.profile_image,
+              isAdmin: user.isadmin,
             }, process.env.SECRET_KEY, { expiresIn: '24hrs' });
             return res.status(200).json({
               success: 'true',
@@ -164,6 +163,7 @@ static signup(req, res) {
               telephone: user.telephone,
               username: user.username,
               profileImage: user.profile_image,
+              isAdmin: user.isadmin,
             }, process.env.SECRET_KEY, { expiresIn: '24hrs' });
             return res.status(200).json({
               success: 'true',
@@ -180,5 +180,77 @@ static signup(req, res) {
         });
     }
   }
+
+    /**
+* @function updateUser
+* @memberof UserController
+*
+* @param {Object} req - this is a request object that contains whatever is requested for
+* @param {Object} res - this is a response object to be sent after attending to a request
+*
+* @static
+*/
+
+static updateUserImage(req, res) {
+  const { userId } = req;
+  const id = parseInt(req.params.id, 10);
+  let { profileImage } = req.body;
+  profileImage = profileImage ? profileImage.toString().replace(/\s+/g, '') : profileImage;
+
+
+  return db.task('find user', data => data.users.findById(id)
+    .then((userFound) => {
+      if (!userFound) {
+        return res.status(401).json({
+          success: 'false',
+          message: 'User does not exist in the database',
+        });
+      }
+      const owner = userFound.id === userId;
+
+      const updateProfile = {
+        profileImage,
+      };
+      if (!owner) {
+        return res.status(403).json({
+          success: 'false',
+          message: 'sorry, cannot modify an account that is not yours!',
+        });
+      }
+      return db.users.modifyProfileImage(updateProfile, id)
+        .then((user) => {
+          const token = jwt.sign({
+            id: user.id,
+            firstname: user.firstname,
+            lastname: user.lastname,
+            othernames: user.othernames,
+            email: user.email,
+            telephone: user.telephone,
+            username: user.username,
+            profileImage: user.profile_image,
+            isAdmin: user.isadmin,
+          }, process.env.SECRET_KEY, { expiresIn: '24hrs' });
+          return res.status(200).json({
+            success: 'true',
+            message: 'successful! your profile image has been updated',
+            token,
+          });
+        })
+        .catch((err) => {
+          return res.status(500).json({
+            success: 'false',
+            message: 'profile could not be modified',
+            err: err.message,
+          });
+        });
+    }))
+    .catch((err) => {
+      return res.status(500).json({
+        success: 'false',
+        message: 'oops! a problem occured, try again after a while',
+        err: err.message,
+      });
+    });
+}
 }
 export default UserController;

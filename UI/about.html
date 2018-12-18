@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>iReporter</title>
+  <link rel="stylesheet" type="text/css" href="css/about.css">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Orbitron:900|Ultra" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+  <div class="container">
+
+    <div class="nav-bar">
+      <div class="menu-icon" onclick="openNav()">
+        <div class="menu-icon-bar"></div>
+        <div class="menu-icon-bar"></div>
+        <div class="menu-icon-bar"></div>
+      </div>
+      <a class="logo" href="./index.html">
+        <div class="logo-box">iReporter</div>
+      </a>
+
+      <p>Already have an account?</p>
+      <div class="home-top-btn" id="login-btn" onclick="goLogin()">LOGIN</div>
+    </div>
+
+    <div class="large-screen-nav" id="large-screen">
+      <div class="ver-seperator"></div>
+      <a class="nav-link" href="./about.html">ABOUT US</a>
+      <div class="ver-seperator"></div>
+      <a class="nav-link" href="./learn.html">LEARN ABOUT CORRUPTION</a>
+      <div class="ver-seperator"></div>
+    </div>
+    <div id="myNav" class="overlay">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+      <div class="overlay-content" id="small-screen">
+        <div class="seperator seperator-slide"></div>
+        <a href="./about.html">ABOUT US</a>
+        <div class="seperator seperator-slide"></div>
+        <a href="./learn.html">LEARN ABOUT CORRUPTION</a>
+        <div class="seperator seperator-slide"></div>
+        <a href="./login.html">LOGIN</a>
+        <div class="seperator seperator-slide"></div>
+        <a href="./signup.html">SIGN UP</a>
+        <div class="seperator seperator-slide"></div>
+      </div>
+    </div>
+
+    <div class="learn-content">
+      <div class="learn-content-header">WHO ARE WE</div>
+      <div class="learn-content-title">ABOUT iREPORTER</div>
+      <p>Corruption is a huge bane to Africa’s development. African countries must develop novel and localised solutions that
+        will curb this menace, hence the birth of iReporter. iReporter enables any/every citizen to bring any form of corruption
+        to the notice of appropriate authorities and the general public. Users can also report on things that needs government
+        intervention.
+      </p>
+      <h3>Communication</h3>
+      <p>iReporter provides a platform for reporting corruption and intervention cases. Anyone can safely share what they experience
+        and observe and can speak out against corruption. Our communication channels include our website, an SMS line, social
+        media, email or post.</p>
+      <h3>Investigation</h3>
+      <p>We investigate selected reports of alleged acts of corruption, in particular those cases that have the most serious
+        impact on our society. We hand our findings over to the relevant authorities to take further action,
+        and we monitor the progress of each case. We work with mainstream and community media to make sure that corruption
+        is fully exposed through our investigative work.</p>
+    </div>
+
+    <footer>
+      <p>
+        <i class="fa fa-copyright"></i>House of jiro media concepts</p>
+    </footer>
+  </div>
+
+  <script src="./js/scripts.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>iReporter</title>
+  <link rel="stylesheet" type="text/css" href="css/home.css">
+  <link rel="stylesheet" type="text/css" href="css/geolocator.css">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Orbitron:900|Ultra" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+  <div class="container">
+    <div class="nav-bar">
+      <div class="menu-icon" onclick="openNav()">
+        <div class="menu-icon-bar"></div>
+        <div class="menu-icon-bar"></div>
+        <div class="menu-icon-bar"></div>
+      </div>
+      <a class="logo" href="./home.html">
+        <div class="logo-box">iReporter</div>
+      </a>
+      <div class="account-circle">
+        <div class="account-circle-dp" id="user-dp"></div>
+        <div class="account-circle-name">
+          <div class="username"></div>
+          <div class="dropdown-content">
+            <div class="drop-item" onclick="goProfile()">Profile</div>
+            <div class="drop-item" onclick="logOut()">Sign out</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="large-screen-nav" id="large-screen">
+      <div class="ver-seperator"></div>
+      <a class="nav-link" href="./about_us.html">ABOUT US</a>
+      <div class="ver-seperator"></div>
+      <a class="nav-link" href="./redFlag.html">RED-FLAGS</a>
+      <div class="ver-seperator"></div>
+      <a class="nav-link" href="./interventions.html">INTERVENTIONS</a>
+      <div class="ver-seperator"></div>
+      <a class="nav-link" href="./report.html">IREPORT</a>
+      <div class="ver-seperator"></div>
+      <a class="nav-link" href="./learn_us.html">LEARN ABOUT CORRUPTION</a>
+      <div class="ver-seperator"></div>
+    </div>
+
+    <div id="myNav" class="overlay">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+      <div class="overlay-content" id="small-screen">
+        <div class="seperator seperator-slide"></div>
+        <a href="./about_us.html">ABOUT US</a>
+        <div class="seperator seperator-slide"></div>
+        <a href="./redFlag.html">RED-FLAGS</a>
+        <div class="seperator seperator-slide"></div>
+        <a href="./interventions.html">INTERVENTIONS</a>
+        <div class="seperator seperator-slide"></div>
+        <a href="./report.html">IREPORT</a>
+        <div class="seperator seperator-slide"></div>
+        <a href="./learn_us.html">LEARN ABOUT CORRUPTION</a>
+        <div class="seperator seperator-slide"></div>
+        <a href="" onclick="logOut()">SIGN OUT</a>
+        <div class="seperator seperator-slide"></div>
+        <a id="screen-small-name" href="./profile.html"></a>
+        <div class="seperator seperator-slide"></div>
+      </div>
+    </div>
+
+    <div class="pac-card" id="pac-card">
+      <div>
+        <div id="title">
+          iReporter form
+        </div>
+      </div>
+      <textarea id="user-comment" class="user-comment" placeholder="What's happening in your area?" cols="30" rows="5"></textarea>
+      <div id="pac-container">
+        <input id="pac-input" type="text" placeholder="Enter a location">
+      </div>
+      <select id="styledSelect" class="selectDrop">
+        <option value="red-flag">Red-flag</option>
+        <option value="intervention">Intervention</option>
+      </select>
+      <div id="pac-file">
+        <input type="file" id="files" name="files" />
+      </div>
+      <button class="home-top-btn" id="report-btn">iReport</button>
+      <div class="geo-display" id="geo-dis"></div>
+    </div>
+    <div id="map">
+    </div>
+    <div id="infowindow-content">
+      <img src="" width="16" height="16" id="place-icon">
+      <span id="place-name" class="title"></span><br>
+      <span id="place-address"></span>
+    </div>
+    <footer>
+      <p>
+        <i class="fa fa-copyright"></i>House of jiro media concepts</p>
+    </footer>
+  </div>
+  <script src="./js/googleMap.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCwgCxx2efBe3cZftpuHDdYbUk5Hch91oE&libraries=places&callback=initMap"></script>
+  <script src="./js/codeAddress.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="./js/scripts.js"></script>
+  <script src="./js/onload.js"></script>
+  <script src="./js/imageUpload.js"></script>
+  <script src="./js/createRecord.js"></script>
+</body>
+
+</html>

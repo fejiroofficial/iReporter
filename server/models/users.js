@@ -21,7 +21,9 @@ export default class User {
   create(values) {
     const salt = bcrypt.genSaltSync(10);
     values.password = bcrypt.hashSync(values.password, salt);
-    const sql = 'INSERT INTO users(firstname, lastname, othernames, email, telephone, username, profile_image, password, isAdmin) VAlUES( ${firstname}, ${lastname}, ${othernames}, ${email}, ${telephone}, ${username}, ${profileImage}, ${password}, ${isAdmin}) RETURNING id, firstname, lastname, othernames, email, telephone, username, profile_image, registered';
+    const sql = 'INSERT INTO users(firstname, lastname, othernames, email, telephone, username, profile_image, password, isAdmin)'
+    + 'VAlUES( ${firstname}, ${lastname}, ${othernames}, ${email}, ${telephone}, ${username}, ${profileImage}, ${password}, ${isAdmin})'
+    + 'RETURNING id, firstname, lastname, othernames, email, telephone, username, profile_image, isAdmin, registered';
     return this.db.one(sql, values);
   }
   /**
@@ -32,7 +34,9 @@ export default class User {
   createUser(values) {
     const salt = bcrypt.genSaltSync(10);
     values.password = bcrypt.hashSync(values.password, salt);
-    const sql = 'INSERT INTO users(firstname, lastname, email, password, admin_user) VAlUES( ${firstname}, ${lastname}, ${email}, ${password}, ${adminUser}) RETURNING id, firstname, lastname, email, telephone, admin_user';
+    const sql = 'INSERT INTO users(firstname, lastname, email, password, admin_user)'
+    + 'VAlUES( ${firstname}, ${lastname}, ${email}, ${password}, ${adminUser})'
+    + 'RETURNING id, firstname, lastname, email, telephone, admin_user';
     return this.db.one(sql, values);
   }
   /**
@@ -85,9 +89,9 @@ export default class User {
   * @param {number} id - the id of a user.
   */
 
-  modify(values, id) {
+  modifyProfileImage(values, id) {
     values.id = id;
-    const sql = 'UPDATE users SET firstname=${firstname}, lastname=${lastname}, email=${email}, telephone=${telephone} WHERE id=${id} RETURNING *';
+    const sql = 'UPDATE users SET profile_image=${profileImage} WHERE id=${id} RETURNING *';
     return this.db.one(sql, values);
   }
 }

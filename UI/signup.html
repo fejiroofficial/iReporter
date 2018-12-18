@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>iReporter</title>
+  <link rel="stylesheet" type="text/css" href="css/signup.css">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Orbitron:900|Ultra" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+  <div class="container">
+
+    <div class="nav-bar">
+      <div class="menu-icon" onclick="openNav()">
+        <div class="menu-icon-bar"></div>
+        <div class="menu-icon-bar"></div>
+        <div class="menu-icon-bar"></div>
+      </div>
+      <a class="logo" href="./index.html">
+        <div class="logo-box">iReporter</div>
+      </a>
+
+      <p>Already have an account?</p>
+      <div class="home-top-btn" id="login-btn" onclick="goLogin()">LOGIN</div>
+    </div>
+
+    <div class="large-screen-nav" id="large-screen">
+        <div class="ver-seperator"></div>
+        <a class="nav-link" href="./about.html">ABOUT US</a>
+        <div class="ver-seperator"></div>
+        <a class="nav-link" href="./learn.html">LEARN ABOUT CORRUPTION</a>
+        <div class="ver-seperator"></div>
+      </div>
+
+    <div id="myNav" class="overlay">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+      <div class="overlay-content" id="small-screen">
+        <div class="seperator seperator-slide"></div>
+        <a href="./about.html">ABOUT US</a>
+        <div class="seperator seperator-slide"></div>
+        <a href="./learn.html">LEARN ABOUT CORRUPTION</a>
+        <div class="seperator seperator-slide"></div>
+        <a href="./login.html">LOGIN</a>
+        <div class="seperator seperator-slide"></div>
+        <a href="./signup.html">SIGN UP</a>
+        <div class="seperator seperator-slide"></div>
+      </div>
+    </div>
+    <div id="log-info" class="server-info">
+      <div class="modal-log-area">
+        <div id="modal-info"></div>
+        <span class="cancel-log">&times;</span>
+      </div>
+    </div>
+    <div class="spin-box" id="log-loader">
+      <span><img src="./img/spin.gif"></span>
+    </div>
+    <div class="sign-up-content">
+        <div class="sign-in-header">Create an Account</div>
+        <form id="sign-up-form" name="signupForm" method="POST" action="#">
+            <label for="fname"><b>Username</b></label>
+            <input type="text" class="input-field" id="sign-user" placeholder="Enter username" name="uname" required>
+            
+              <label for="fname"><b>First name</b></label>
+              <input type="text" class="input-field" id="sign-first" placeholder="Enter First name" name="fname" required>
+    
+              <label for="lname"><b>Last name</b></label>
+              <input type="text" class="input-field" id="sign-last" placeholder="Enter Last name" name="lname" required>
+
+              <label for="lname"><b>Other names</b></label>
+              <input type="text" class="input-field" id="sign-other" placeholder="Enter Last name" name="lname">
+    
+              <label for="eml"><b>Email</b></label>
+              <input type="email" class="input-field" id="log-email" placeholder="Enter Email" name="eml" required>
+    
+              <label for="tel"><b>Telephone</b></label>
+              <input type="tel" class="input-field" id="sign-tel" placeholder="Enter Telephone number" name="tel" required>
+          
+              <label for="psw"><b>Password</b></label>
+              <input type="password" class="input-field" id="log-password" placeholder="Enter Password" name="psw" required>
+          
+              <button class="home-top-btn" id="sign-btn">Sign up</button>
+
+          </form>
+        <div class="sign-note">
+          <p>Already have an account? sign in
+            <a href="./login.html">here...</a>
+          </p>
+        </div>
+      </div>
+
+    <footer>
+      <p>
+        <i class="fa fa-copyright"></i>House of jiro media concepts</p>
+    </footer>
+  </div>
+
+  <script src="./js/scripts.js"></script>
+  <script src="./js/signup.js"></script>
+</body>
+
+</html>

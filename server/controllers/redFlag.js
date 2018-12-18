@@ -1,5 +1,6 @@
 /* eslint no-shadow: "off" */
 /* eslint max-len: "off" */
+/* eslint indent: "off" */
 /* eslint arrow-body-style: "off" */
 /* eslint linebreak-style: "off" */
 /* eslint object-curly-newline: "off" */
@@ -7,60 +8,114 @@
 /* eslint no-template-curly-in-string: "off" */
 
 import db from '../db';
-
-import incidents from '../datastore/incident';
+import isInteger from '../helpers/param';
 
 /** incident controller class */
 class RedFlagController {
   /**
- * @function getRedFlags
- * @memberof redFlagController
- * @static
- */
-  static getRedFlags(req, res) {
-    const redFlags = incidents.filter((incident) => {
-      if (incident.type === 'red-flag') return incident;
-    });
-
-    if (redFlags.length === 0) {
+  * @function getRedFlag
+  * @memberof RedFlagController
+  * @static
+  */
+  static getRedFlag(req, res) {
+    const redFlagId = req.params.id;
+    if (isNaN(redFlagId) || !isInteger(redFlagId)) {
       return res.status(404).json({
         status: 404,
         success: 'false',
-        message: 'No red-flags record found',
+        message: 'This record doesn\'t exist in the database',
       });
     }
-    return res.status(200).json({
-      status: 200,
-      success: 'true',
-      data: redFlags,
-    });
+    return db.task('specific red flag', data => data.incidents.findById(redFlagId)
+      .then((record) => {
+        if (!record) {
+          return res.status(404).json({
+            status: 404,
+            success: 'false',
+            message: 'This record doesn\'t exist in the database',
+          });
+        }
+        return res.status(200).json({
+          status: 200,
+          success: 'true',
+          data: record,
+        });
+      })
+      .catch((err) => {
+        res.status(500).json({
+          success: 'false',
+          err: err.message,
+        });
+      }));
   }
 
   /**
- * @function getRedFlag
- * @memberof redFlagController
- * @static
- */
-  static getRedFlag(req, res) {
-    const redFlagId = parseInt(req.params.id, 10);
-    const redFlagFound = incidents.find((incident) => {
-      if (incident.type === 'red-flag' && incident.id === redFlagId) {
-        return incident;
-      }
-    });
+  * @function getRedFlags
+  * @memberof RedFlagController
+  * @static
+  */
+  static getRedFlags(req, res) {
+    const { isAdmin, userId } = req;
+    const adminUser = isAdmin === true;
+    switch (adminUser) {
+      case true:
+        db.task('all red flags', data => data.incidents.allRedFlags('red-flag')
+          .then((redFlags) => {
+            if (redFlags) {
+              return res.status(200).json({
+                status: 200,
+                success: 'true',
+                data: redFlags,
+              });
+            }
+          })
+          .catch((err) => {
+            if (err.message === 'No data returned from the query.') {
+              return res.status(200).json({
+                status: 200,
+                success: 'true',
+                data: [],
+              });
+            }
+            res.status(500).json({
+              success: 'false',
+              err: err.message,
+            });
+          }));
+        break;
 
-    if (!redFlagFound) {
-      return res.status(404).json({
-        status: 404,
-        success: 'false',
-        message: 'This red-flag record does not exist',
-      });
+      case false:
+        db.task('all red flags', data => data.incidents.someRedFlags(userId)
+          .then((redFlags) => {
+            if (redFlags) {
+              return res.status(200).json({
+                status: 200,
+                success: 'true',
+                data: redFlags,
+              });
+            }
+          })
+          .catch((err) => {
+            if (err.message === 'No data returned from the query.') {
+              return res.status(200).json({
+                status: 200,
+                success: 'true',
+                data: [],
+              });
+            }
+            res.status(500).json({
+              success: 'false',
+              err: err.message,
+            });
+          }));
+        break;
+
+      default:
+        return res.status(500).json({
+          success: 'false',
+          message: 'Something went wrong, try again later!',
+        });
     }
-    return res.status(200).json({
-      status: 200,
-      success: 'true',
-      data: redFlagFound,
-    });
   }
 
   /**
@@ -70,28 +125,21 @@ class RedFlagController {
  */
   static postRedFlag(req, res) {
     const { userId } = req;
-    let { comment, type, latitude, longitude, imageUrl } = req.body;
+    let { comment, latitude, longitude, image } = req.body;
     comment = comment ? comment.toString().trim().replace(/\s+/g, ' ') : comment;
-    type = type ? type.toLowerCase().toString().replace(/\s+/g, '') : type;
-    imageUrl = imageUrl ? imageUrl.toLowerCase().toString().replace(/\s+/g, '') : imageUrl;
+    image = image ? image.toLowerCase().toString().replace(/\s+/g, '') : image;
     latitude = latitude ? latitude.toString().replace(/\s+/g, '') : latitude;
     longitude = longitude ? longitude.toString().replace(/\s+/g, '') : longitude;
     const location = `${latitude},${longitude}`;
     const defaultStatus = 'draft';
-    if (type !== 'red-flag') {
-      return res.status(400).json({
-        status: 400,
-        success: 'false',
-        message: 'This is a red-flag incident, the type should be a \'redflag\'',
-      });
-    }
-    return db.incidents.create({ userId, comment, type, location, imageUrl, defaultStatus })
+    const type = 'red-flag';
+    return db.incidents.create({ userId, comment, type, location, image, defaultStatus })
       .then((record) => {
         return res.status(201).json({
           success: 'true',
           data: [{
-            id: record.id,
             message: 'You have successfully created a new red-flag record',
+            record,
           }],
         });
       })
@@ -110,29 +158,51 @@ class RedFlagController {
  * @static
  */
   static deleteRedFlag(req, res) {
-    const redFlagId = parseInt(req.params.id, 10);
-    const redFlagFound = incidents.find((incident) => {
-      if (incident.type === 'red-flag' && incident.id === redFlagId) {
-        return incident;
-      }
-    });
-    if (!redFlagFound) {
+    const { userId } = req;
+    const redFlagId = req.params.id;
+    if (isNaN(redFlagId)) {
       return res.status(404).json({
         status: 404,
         success: 'false',
-        message: 'This red-flag record does not exist',
+        message: 'This record doesn\'t exist in the database',
       });
     }
-    const redFlagindex = incidents.indexOf(redFlagFound);
-    incidents.splice(redFlagindex, 1);
-    return res.status(200).json({
-      status: 200,
-      success: 'true',
-      data: [{
-        id: redFlagFound.id,
-        message: 'red-flag record has been deleted',
-      }],
-    });
+    return db.task('delete', db => db.incidents.findById(redFlagId)
+      .then((record) => {
+        if (!record) {
+          return res.status(404).json({
+            status: 404,
+            success: 'false',
+            message: 'This record doesn\'t exist in the database',
+          });
+        }
+        const recordOwner = userId === record.createdby;
+        if (!recordOwner) {
+          return res.status(401).json({
+            status: 401,
+            success: 'false',
+            message: 'You are unauthorized to delete an information that was not posted by you',
+          });
+        }
+        return db.incidents.removeRedFlag(redFlagId)
+          .then((removed) => {
+            return res.status(200).json({
+              status: 200,
+              success: 'true',
+              data: [{
+                message: 'You have successfully deleted this red-flag record',
+                removed,
+              }],
+            });
+          });
+      })
+      .catch((err) => {
+        return res.status(500).json({
+          success: 'false',
+          message: 'so sorry, something went wrong, try again',
+          err: err.message,
+        });
+      }));
   }
 }
 

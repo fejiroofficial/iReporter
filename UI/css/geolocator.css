@@ -1,0 +1,153 @@
+@import "main.css";
+
+.geo-hero {
+    height: 442px;
+    width: inherit;
+    background-image: url('../img/atlas.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.geo-content {
+    height: 441px;
+    padding-top: 28px;
+}
+
+#getCords {
+    background-color: lightseagreen;
+    outline: none;
+    border: none;
+    color: white;
+    font-weight: bold;
+    height: 50px;
+    border-radius: 6px;
+    margin-top: 13px;
+    margin-left: 101px;
+}
+
+.geo-display {
+    display: none;
+    min-height: 100px;
+    width: 398px;
+    line-height: 25px;
+    margin-left: 13px;
+    font-size: 16px;
+    color: orangered;
+}
+
+#my-address {
+    height: 40px;
+    margin-left: 25px;
+    width: 245px;
+    padding-left: 6px;
+    margin-top: 75px;
+    outline: none;
+    border-style: solid;
+    border-color: lightgrey;
+    border-width: thin;
+}
+
+.geo-form {
+    height: 400px;
+    width: 300px;
+    border-style: solid;
+    border-width: thin;
+    border-color: lightgrey;
+    margin-left: 10px;
+    border-radius: 13px;
+    background-color: rgba(255, 255, 255, 0.88);
+}
+
+@media (min-width: 360px) {
+    .geo-form {
+        margin-left: 30px;
+    }
+    .geo-content {
+        height: 505px;
+        padding-top: 68px;
+    }
+    .geo-hero {
+        height: 516px;
+    }
+}    
+
+@media (min-width: 375px) {
+    .geo-hero {
+        height: 684px;
+    }
+    .geo-form {
+        margin-left: 35px;
+    }
+    .geo-content {
+        height: 586px;
+        padding-top: 18px;
+    }
+} 
+
+@media (min-width: 414px) {
+    .geo-form {
+        margin-left: 58px;
+    }
+}    
+
+@media (min-width: 768px) {
+    .geo-content {
+        height: 586px;
+        padding-top: 187px;
+    }
+    .geo-hero {
+        height: 896px;
+    }
+    .geo-display {
+        line-height: 36px;
+    }
+    #my-address {
+        height: 40px;
+        margin-left: 60px;
+        width: 438px;
+    }
+    #getCords {
+        margin-top: 39px;
+        margin-left: 227px;
+    }
+    .geo-form {
+        margin-left: 99px;
+        width: 566px;
+    }
+}  
+
+@media (min-width: 1024px) {
+    .geo-hero {
+        height: 1187px;
+    }
+    .geo-form {
+        margin-left: 220px;
+        width: 566px;
+    }
+}
+
+@media (min-width: 1359px) {
+    .geo-form {
+        margin-left: 456px;
+        width: 566px;
+    }
+    .geo-content {
+        height: 586px;
+    }
+    .geo-hero {
+        background-size: 178%;
+    }
+}
+
+@media (min-width: 1583px) {
+    .geo-content {
+        height: 586px;
+        padding-top: 197px;
+    }
+    .geo-form {
+        margin-left: 513px;
+        width: 566px;
+    }
+}
+

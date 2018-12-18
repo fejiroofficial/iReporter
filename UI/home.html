@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>iReporter</title>
+  <link rel="stylesheet" type="text/css" href="css/index.css">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Orbitron:900|Ultra" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+  <div class="container">
+    <div class="nav-bar">
+      <div class="menu-icon" onclick="openNav()">
+        <div class="menu-icon-bar"></div>
+        <div class="menu-icon-bar"></div>
+        <div class="menu-icon-bar"></div>
+      </div>
+      <a class="logo" href="./home.html">
+        <div class="logo-box">iReporter</div>
+      </a>
+      <div class="account-circle">
+        <div class="account-circle-dp" id="user-dp"></div>
+        <div class="account-circle-name">
+          <div class="username"></div>
+          <div class="dropdown-content">
+            <div class="drop-item" onclick="goProfile()">Profile</div>
+            <div class="drop-item" onclick="logOut()">Sign out</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="large-screen-nav" id="large-screen">
+      <div class="ver-seperator"></div>
+      <a class="nav-link" href="./about_us.html">ABOUT US</a>
+      <div class="ver-seperator"></div>
+      <a class="nav-link" href="./redFlag.html">RED-FLAGS</a>
+      <div class="ver-seperator"></div>
+      <a class="nav-link" href="./interventions.html">INTERVENTIONS</a>
+      <div class="ver-seperator"></div>
+      <a class="nav-link" href="./report.html">IREPORT</a>
+      <div class="ver-seperator"></div>
+      <a class="nav-link" href="./learn_us.html">LEARN ABOUT CORRUPTION</a>
+      <div class="ver-seperator"></div>
+    </div>
+
+    <div id="myNav" class="overlay">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+      <div class="overlay-content" id="small-screen">
+        <div class="seperator seperator-slide"></div>
+        <a href="./about_us.html">ABOUT US</a>
+        <div class="seperator seperator-slide"></div>
+        <a href="./redFlag.html">RED-FLAGS</a>
+        <div class="seperator seperator-slide"></div>
+        <a href="./interventions.html">INTERVENTIONS</a>
+        <div class="seperator seperator-slide"></div>
+        <a href="./report.html">IREPORT</a>
+        <div class="seperator seperator-slide"></div>
+        <a href="./learn_us.html">LEARN ABOUT CORRUPTION</a>
+        <div class="seperator seperator-slide"></div>
+        <a href="" onclick="logOut()">SIGN OUT</a>
+        <div class="seperator seperator-slide"></div>
+        <a id="screen-small-name" href="./profile.html"></a>
+        <div class="seperator seperator-slide"></div>
+      </div>
+    </div>
+
+    <div class="hero-banner">
+      <h1>Are you Ready To Fight Corruption?</h1>
+      <div class="home-top-btn" id="hero-btn" onclick="goReport()">iReport</div>
+    </div>
+    <h1 class="small-screen-h1">Are you Ready To Fight Corruption?</h1>
+    <div class="top-btn-box">
+      <div class="home-top-btn" onclick="goReport()">iReport</div>
+    </div>
+
+    <div class="seperator"></div>
+
+    <div class="work-banner">
+      <div class="work-banner-header">OUR WORK IS IMPORTANT</div>
+
+      <div class="work-banner-container">
+        <div class="work-banner-single">
+          <div class="work-banner-single-img"></div>
+          <div class="work-banner-single-title">REPORT</div>
+          <div class="work-banner-single-text">
+            <p>We provide a platform for reporting corruption and intervention cases to us.</p>
+          </div>
+        </div>
+
+        <div class="work-banner-single">
+          <div class="work-banner-single-img-two"></div>
+          <div class="work-banner-single-title">INVESTIGATE</div>
+          <div class="work-banner-single-text">
+            <p>We investigate selected reports of alleged red-flag and intervention cases that have an impact on
+              society.</p>
+          </div>
+        </div>
+
+        <div class="work-banner-single work-banner-single-three">
+          <div class="work-banner-single-img-three"></div>
+          <div class="work-banner-single-title">EXPOSE</div>
+          <div class="work-banner-single-text">
+            <p>We work with mainstream media and security agencies to ensure corruption is fully exposed.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="work-banner">
+      <div class="work-banner-header">WE COVER AFRICA</div>
+
+      <div class="africa-map-div"></div>
+    </div>
+
+    <div class="work-banner">
+      <div class="work-banner-header">RED-FLAGS</div>
+      <div class="flag-container">
+        <div class="flags flag-one"></div>
+        <div class="flags flag-two"></div>
+        <div class="flags flag-three"></div>
+        <div class="flags flag-four"></div>
+      </div>
+    </div>
+
+    <div class="work-banner">
+      <div class="work-banner-header">INTERVENTION</div>
+
+      <div class="flag-container">
+        <div class="flags flag-five"></div>
+        <div class="flags flag-six"></div>
+        <div class="flags flag-seven"></div>
+        <div class="flags flag-eight"></div>
+      </div>
+    </div>
+
+
+
+
+    <div class="work-banner work-banner-partners">
+      <div class="work-banner-header">OUR PARTNERS</div>
+      <div class="partners-container">
+        <div class="partners partners-single-one"></div>
+        <div class="partners partners-single-two"></div>
+        <div class="partners partners-single-three"></div>
+        <div class="partners partners-single-four"></div>
+      </div>
+    </div>
+
+    <footer>
+      <p>
+        <i class="fa fa-copyright"></i>House of jiro media concepts</p>
+    </footer>
+  </div>
+
+  <script src="./js/scripts.js"></script>
+  <script src="./js/onload.js"></script>
+</body>
+
+</html>

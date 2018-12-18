@@ -1,7 +1,7 @@
 # iReporter
 
 [![Build Status](https://travis-ci.com/fejiroofficial/Fast-Food-Fast.svg?branch=build-version-one)](https://travis-ci.com/fejiroofficial/iReporter)
-[![Coverage Status](https://coveralls.io/repos/github/fejiroofficial/iReporter/badge.svg?branch=build-version-one)](https://coveralls.io/github/fejiroofficial/iReporter?branch=build-version-one)
+[![Coverage Status](https://coveralls.io/repos/github/fejiroofficial/iReporter/badge.svg?branch=build-version-two)](https://coveralls.io/github/fejiroofficial/iReporter?branch=build-version-two)
 [![Maintainability](https://api.codeclimate.com/v1/badges/3f81c01ebd0c36cbb3a7/maintainability)](https://codeclimate.com/github/fejiroofficial/iReporter/maintainability)
 
 Corruption is a huge bane to Africa’s development. African countries must develop novel and localised solutions that will curb this menace, hence the birth of iReporter. iReporter enables any/every citizen to bring any form of corruption to the notice of appropriate authorities and the general public. Users can also report on things that needs government intervention.
@@ -42,64 +42,73 @@ Start server:
 npm start
 ```
 
+### Testing tools
 
-## Routes
-* GET `api/v1/red-flags` Use this route to get a list of red-flag records.  
-    Response spec:
-    ```
-    {
-      "status" : Integer ,
-      "data" : [ { ... }, {...}, {...} ]
-    }
-    ```
-* GET `api/v1/red-flags/<red-flag-id>` Use this route to fetch a specific red-flag record.  
-    Response spec:
-    ```
-    {
-      "status" : Integer ,
-      "data" : [ { ... } ]
-    }
-    ```
-* POST `api/v1/red-flags` Create a red-flag record. The following fields are required:  
-    Request body:
-    ```
-    {
-      "createdBy": 1,
-      "type": "red-flag",
-      "location": "6.4828617, 3.1896830",
-      "Images": ["www.image.com", "www.image.com"],
-      "Videos": ["www.video.com", "www.video.com"],
-      "comment": "Thugs are vandalizing crude oil pipes"
-    }
-    ```
-* PATCH `/red-flags/<red-flag-id>/location` Edit the location of a specific red-flag record.  
-    Request body:
-    ```
-    {
-      "userId": 1,
-      "location": "6.4828617, 3.1896830"
-    }
-    ```
-* PATCH `/red-flags/<red-flag-id>/comment` Edit the comment of a specific red-flag record.  
-    Request body:
-    ```
-    {
-      "userId": 1,
-      "comment": "Thugs are vandalizing crude oil pipes"
-    }
-    ```    
-* DELETE `/red-flags/<red-flag-id>` Edit the comment of a specific red-flag record.  
-    Request body:
-    ```
-    {
-      "userId": 1,
-    }
-    ```    
+- [Mocha](https://mochajs.org/) - A Javascript test framework.
+- [Chai](http://chaijs.com) - A BDD / TDD Assertion library.
+- [Istanbul](https://istanbul.js.org) - Javascript code coverage tool.
+- [nyc](https://github.com/istanbuljs/nyc) - The Istanbul command line interface.
 
+## :star: Documentation :star:
 
-Api is hosted [`here`](https://ireporter-app.herokuapp.com/)
+List of endpoints exposed by the service.
+For full api documentation, visit [`docs`](https://ireporter-app.herokuapp.com/api-docs) 
 
+## Endpoints
+**Routes**
+- POST `/api/v1/auth/signup` Use this route to create a new user account. The following fields are required:
+    - `firstname` The firstname of the user
+    - `lastname` The lastname of the user
+    - `othernames` Any other name. _not compulsory_
+    - `username` The username of the user
+    - `email` The email of the user
+    - `telephone` The telephone number of the user
+    - `password` The user's password
+  
+- POST `/api/v1/auth/login` Use this route to create a new user account. The following fields are required:
+    - `email` The email or username of the user
+    - `password` The user's password 
+
+- POST `/api/v1/red-flags` Use this route to create a new red-flag record. The following fields are required:
+    - `type` The type of incident record
+    - `latitude` The latitude coordinate
+    - `longitude` The longitude coordinate.
+    - `imageUrl` The image uploaded as evidence 
+    - `comment` The comment to describe an incident
+
+- POST `/api/v1/interventions` Use this route to create a new intervention record. The following fields are required:
+    - `type` The type of incident record
+    - `latitude` The latitude coordinate
+    - `longitude` The longitude coordinate.
+    - `imageUrl` The image uploaded as evidence 
+    - `comment` The comment to describe an incident
+
+- GET `api/v1/red-flags` Use this route to get a list of red-flag records.
+
+- GET `api/v1/interventions` Use this route to get a list of intervention records.
+
+- GET `api/v1/red-flags/<red-flag-id>` Use this route to fetch a specific red-flag record.
+
+- GET `api/v1/interventions/<intervention-id>` Use this route to fetch a specific red-flag record.
+
+- PATCH `/red-flags/<red-flag-id>/location` Edit the location of a specific red-flag record.
+    - `location` The location of the red-flag incident
+    
+- PATCH `/interventions/<intervention-id>/location` Edit the location of a specific intervention record.
+    - `location` The location of the intervention incident  
+    
+- PATCH `/red-flags/<red-flag-id>/comment` Edit the comment of a specific red-flag record.  
+    - `comment` The comment of the red-flag incident  
+    
+- PATCH `/interventions/<intervention-id>/comment` Edit the comment of a specific intervention record.  
+    - `comment` The comment of an intervention incident 
+    
+- DELETE `/red-flags/<red-flag-id>` Delete a specific red-flag record.
+
+- DELETE `/interventions/<intervention-id>` Delete a specific red-flag record.
+
+## API 
+ApI for this app is available at [`iReporter`](https://ireporter-app.herokuapp.com/)
 
 ## UI Templates
-
-UI is hosted [`here`](https://fejiroofficial.github.io/iReporter/UI/index.html)
+The User interface template is available at [`iReporter`](https://fejiroofficial.github.io/iReporter/UI/index.html)

@@ -1,0 +1,366 @@
+@import "main.css";
+
+.profile-container {
+    height: 188%;
+    width: inherit;
+    text-align: -webkit-center;
+    text-align: -moz-center;
+}
+
+.profile-card {
+    height: 662px;
+    width: 289px;
+    padding-top: 11px;
+    padding-left: 9px;
+    background-color: white;
+    border-radius: 3px;
+    display: block;
+}
+.profile-img {
+    height: 300px;
+    width: 250px;
+}
+.profile-detail-box {
+    height: inherit;
+    width: 288px;
+    margin-top: 27px;
+    text-align: initial;
+}
+.profile-name, .profile-records {
+    height: 38px;
+    width: 276px;
+    font-weight: bold;
+    font-size: 18px;
+    color: #423e3e;
+    text-align: -webkit-center;
+    /* height: 38px;
+    width: 200px;
+    font-weight: bold;
+    font-size: 18px;
+    color: #423e3e;
+    text-align: initial; */
+}
+.profile-records {
+    margin-top: 10px;
+}
+.profile-email {
+    height: 23px;
+    width: 268px;
+    font-size: 15px;
+    color: #423e3e;
+    text-align: -webkit-center;
+    text-align: -moz-center;
+    padding-left: 10px;
+}
+.profile-telephone {
+    height: 23px;
+    width: 251px;
+    font-size: 15px;
+    color: #423e3e;
+    text-align: -webkit-center;
+    text-align: -moz-center;
+    padding-left: 10px;
+}
+.profile-seperator {
+    height: 1px;
+    width: 279px;
+    font-size: 15px;
+    background-color: lightgray;
+    text-align: initial;
+    padding-left: 1px;
+}
+.inci-rec, .inci-title {
+    padding-left: 10px;
+    text-align: initial;
+    display: flex;
+}
+.inci-title {
+    font-weight: bold;
+    margin-top: 15px;
+}
+.inci-number-total {
+    margin-left: 120px;
+}
+.inci-number-draft {
+    margin-left: 119px;
+    color: gray;
+}
+.inci-number-investigate {
+    color: goldenrod;
+    margin-left: 10px;
+}
+.inci-number-resolve {
+    color: green;
+    margin-left: 90px;
+}
+.inci-number-reject {
+    color: red;
+    margin-left: 93px;
+}
+.upload-btn-wrapper {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    margin-top: 45px;
+    cursor: pointer;
+  }
+.btn {
+    border: 2px solid gray;
+    color: gray;
+    background-color: white;
+    padding: 8px 20px;
+    border-radius: 8px;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+.upload-btn-wrapper input[type=file] {
+    font-size: 100px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+
+@media (min-width: 768px) {
+    .profile-container {
+        height: 100%;
+        width: inherit;
+        text-align: -webkit-center;
+        text-align: -moz-center;
+    }
+    .profile-card {
+        height: 494px;
+        margin-top: 125px;
+        width: 721px;
+        padding-top: 11px;
+        padding-left: 9px;
+        background-color: white;
+        border-radius: 3px;
+        box-shadow: 0px 0px 21px 1px lightgrey;
+        display: flex;
+    }
+    .profile-img {
+        height: 300px;
+        width: 250px;
+    }
+    .profile-detail-box {
+        height: inherit;
+        width: fit-content;
+        padding-left: 30px;
+        margin-top: 0px;
+    }
+    .profile-name, .profile-records {
+        height: 38px;
+        width: 280px;
+        font-weight: bold;
+        font-size: 25px;
+        color: #423e3e;
+        text-align: initial;
+        padding-left: 10px;
+    }
+    .profile-records {
+        margin-top: 10px;
+    }
+    .profile-email {
+        height: 23px;
+        width: 280px;
+        font-size: 15px;
+        color: #423e3e;
+        text-align: initial;
+        padding-left: 10px;
+    }
+    .profile-telephone {
+        height: 23px;
+        width: 280px;
+        font-size: 15px;
+        color: #423e3e;
+        text-align: initial;
+        padding-left: 10px;
+    }
+    .profile-seperator {
+        height: 1px;
+        width: 280px;
+        font-size: 15px;
+        background-color: lightgray;
+        text-align: initial;
+        padding-left: 1px;
+    }
+    .inci-rec, .inci-title {
+        padding-left: 10px;
+        text-align: initial;
+        display: flex;
+    }
+    .inci-title {
+        font-weight: bold;
+        margin-top: 15px;
+    }
+    .inci-number-total {
+        margin-left: 120px;
+    }
+    .inci-number-draft {
+        margin-left: 119px;
+        color: gray;
+    }
+    .inci-number-investigate {
+        color: goldenrod;
+        margin-left: 10px;
+    }
+    .inci-number-resolve {
+        color: green;
+        margin-left: 90px;
+    }
+    .inci-number-reject {
+        color: red;
+        margin-left: 93px;
+    }
+    .upload-btn-wrapper {
+        position: relative;
+        overflow: hidden;
+        display: inline-block;
+        margin-top: 45px;
+        cursor: pointer;
+      }
+    .btn {
+        border: 2px solid gray;
+        color: gray;
+        background-color: white;
+        padding: 8px 20px;
+        border-radius: 8px;
+        font-size: 20px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+      
+    .upload-btn-wrapper input[type=file] {
+        font-size: 100px;
+        position: absolute;
+        left: 0;
+        top: 0;
+        opacity: 0;
+        cursor: pointer;
+      }
+}
+
+@media (min-width: 1440px) {
+    .profile-container {
+        height: 100%;
+        width: inherit;
+        text-align: -webkit-center;
+        text-align: -moz-center;
+    }
+    .profile-card {
+        height: 494px;
+        margin-top: 125px;
+        width: 872px;
+        padding-top: 11px;
+        padding-left: 9px;
+        background-color: white;
+        border-radius: 3px;
+        box-shadow: 0px 0px 21px 1px lightgrey;
+        display: flex;
+    }
+    .profile-img {
+        height: 300px;
+        width: 250px;
+    }
+    .profile-detail-box {
+        height: inherit;
+        width: fit-content;
+        padding-left: 30px;
+        margin-top: 0px;
+    }
+    .profile-name, .profile-records {
+        height: 38px;
+        width: 586px;
+        font-weight: bold;
+        font-size: 25px;
+        color: #423e3e;
+        text-align: initial;
+        padding-left: 10px;
+    }
+    .profile-records {
+        margin-top: 10px;
+    }
+    .profile-email {
+        height: 23px;
+        width: 586px;
+        font-size: 15px;
+        color: #423e3e;
+        text-align: initial;
+        padding-left: 10px;
+    }
+    .profile-telephone {
+        height: 23px;
+        width: 586px;
+        font-size: 15px;
+        color: #423e3e;
+        text-align: initial;
+        padding-left: 10px;
+    }
+    .profile-seperator {
+        height: 1px;
+        width: 565px;
+        font-size: 15px;
+        background-color: lightgray;
+        text-align: initial;
+        padding-left: 1px;
+    }
+    .inci-rec, .inci-title {
+        padding-left: 10px;
+        text-align: initial;
+        display: flex;
+    }
+    .inci-title {
+        font-weight: bold;
+        margin-top: 15px;
+    }
+    .inci-number-total {
+        margin-left: 120px;
+    }
+    .inci-number-draft {
+        margin-left: 119px;
+        color: gray;
+    }
+    .inci-number-investigate {
+        color: goldenrod;
+        margin-left: 10px;
+    }
+    .inci-number-resolve {
+        color: green;
+        margin-left: 90px;
+    }
+    .inci-number-reject {
+        color: red;
+        margin-left: 93px;
+    }
+    .upload-btn-wrapper {
+        position: relative;
+        overflow: hidden;
+        display: inline-block;
+        margin-top: 45px;
+        cursor: pointer;
+      }
+    .btn {
+        border: 2px solid gray;
+        color: gray;
+        background-color: white;
+        padding: 8px 20px;
+        border-radius: 8px;
+        font-size: 20px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+      
+    .upload-btn-wrapper input[type=file] {
+        font-size: 100px;
+        position: absolute;
+        left: 0;
+        top: 0;
+        opacity: 0;
+        cursor: pointer;
+      }
+}

@@ -1,0 +1,241 @@
+.in-container {
+    min-height: 100%;
+    width: inherit;
+}
+
+.dis-loader {
+    text-align: -webkit-center;
+    text-align: -moz-center;
+    margin-top: 15%;
+}
+
+.update-loc-input {
+    height: 51px;
+    width: 227px;
+    margin-left: 46px;
+    padding-left: 9px;
+    margin-top: 46px;
+    font-size: 19px;
+    outline-color: lightseagreen;
+}
+
+.record-table {
+    min-height: 778px;
+    margin-bottom: 24px;
+    margin-top: 20px;
+    width: 302px;
+    margin-left: 9px;
+    border-style: solid;
+    border-width: thin;
+    border-color: gray;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.record-type, .record-comment, .record-delete {
+    min-height: 31px;
+    width: inherit;
+    padding-left: 9px;
+    display: flex;
+    padding-top: 6px;
+}
+
+.record-comment {
+    display: block;
+}
+
+.record-delete {
+    display: block;
+    height: 86px;
+}
+
+#record-type-input, #record-status-input {
+    margin-left: 5px;
+    width: 181px;
+    font-weight: lighter;
+}
+
+#record-comment-input {
+    min-height: 30px;
+    font-weight: lighter;
+    overflow-wrap: break-word;
+    padding-right: 9px;
+}
+
+#record-photo-input {
+    height: 163px;
+    width: 295px;
+    background-image: url(../img/Corruption2.jpg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-bottom: 10px;
+    margin-top: 5px;
+}
+
+#record-map-input {
+    height: 200px;
+    width: 283px;
+    margin-bottom: 10px;
+    margin-top: 5px;
+}
+
+.update-btn, .update-comment-btn {
+    margin-left: 60px;
+    height: 21px;
+    outline: none;
+    background-color: lightseagreen;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+}
+
+.delete-btn {
+    height: 41px;
+    width: 282px;
+    outline: none;
+    background-color: red;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+    margin-top: 6px;
+}
+
+.update-comment-btn {
+    margin: 10px 0px 10px 226px;
+}
+
+#update-status-btn {
+    display: none;
+}
+
+.table-seperator {
+    height: 1px;
+    width: inherit;
+    background-color: gray;
+    margin-left: -1px;
+}
+
+.update-comment {
+    height: 144px;
+    margin-left: 51px;
+    margin-top: 10px;
+    width: 200px;
+    background-color: white;
+}
+
+.messageDisplay {
+    height: 200px;
+    display: none;
+    width: 292px;
+    margin-left: 18px;
+    padding-left: 10px;
+    padding-top: 59px;
+}
+
+@media (min-width: 360px) {
+    .record-table {
+        margin-left: 29px;
+        width: 312px;
+    }
+}
+
+@media (min-width: 375px) {
+    .record-table {
+        margin-left: 32px;
+    }
+}
+
+@media (min-width: 414px) {
+    .record-table {
+        margin-left: 52px;
+    }
+}
+
+@media (min-width: 768px) {
+    .update-loc-input {
+        height: 51px;
+        width: 421px;
+        margin-left: 46px;
+        padding-left: 9px;
+        margin-top: 46px;
+        font-size: 19px;
+        outline-color: lightseagreen;
+    }
+    .update-btn {
+        margin-left: 335px;
+    }
+    .update-comment-btn {
+        margin-left: 562px;
+    }
+    .delete-btn {
+        width: 618px;
+    }
+    .record-table {
+        margin-left: 69px;
+        width: 637px;
+    }
+    #record-map-input {
+        height: 383px;
+        width: 615px;
+        margin-bottom: 10px;
+        margin-top: 5px;
+    }
+    #record-photo-input {
+        height: 446px;
+        width: 617px;
+        background-image: url(../img/Corruption2.jpg);
+        background-size: contain;
+        background-repeat: no-repeat;
+        margin-bottom: 10px;
+        margin-top: 5px;
+    }
+    .update-comment {
+        height: 144px;
+        margin-left: 51px;
+        margin-top: 10px;
+        width: 435px;
+        background-color: white;
+    }
+    .messageDisplay {
+        height: 200px;
+        display: none;
+        width: 405px;
+        margin-left: 55px;
+        padding-left: 10px;
+        padding-top: 59px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .record-table {
+        margin-left: 170px;
+    }
+    #record-map-input {
+        height: 383px;
+        width: 615px;
+        /* background-image: url(../img/africamap.jpg);
+        background-size: cover;
+        background-repeat: no-repeat; */
+        margin-bottom: 10px;
+        margin-top: 5px;
+    }
+}
+
+@media (min-width: 1440px) {
+    .record-table {
+        margin-left: 414px;
+    }
+    #record-map-input {
+        height: 383px;
+        width: 615px;
+        /* background-image: url(../img/africamap.jpg);
+        background-size: cover;
+        background-repeat: no-repeat; */
+        margin-bottom: 10px;
+        margin-top: 5px;
+    }
+}

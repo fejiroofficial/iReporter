@@ -17,7 +17,7 @@ import db from '../db';
  */
 
 const verifyToken = (req, res, next) => {
-  const token = req.header('token');
+  const token = req.header('Authorization');
   if (!token) {
     const err = Error('User authorization token is required');
     err.statusCode = 401;
@@ -54,6 +54,7 @@ const verifyToken = (req, res, next) => {
         });
       }
       req.userId = decoded.id;
+      req.isAdmin = decoded.isAdmin;
       return next();
     });
 };
