@@ -14,7 +14,7 @@
 }
 
 .sign-up-content {
-    height: 583px;
+    height: 738px;
 }
 
 .sign-in-header {
@@ -55,7 +55,48 @@
 }
 
 #sign-up-form {
-    height: 448px;
+    height: 615px;
+}
+
+.server-info {
+    background-color: dimgrey;
+    height: 53px;
+    display: none;
+    width: -webkit-fill-available;
+    color: white;
+    text-align: -webkit-center;
+    position: absolute;
+}
+
+.modal-log-area {
+    display: flex;
+    width: 523px;
+    padding-top: 11px;
+    font-size: 20px;
+}
+
+.cancel-log {
+    margin-left: 6px;
+    height: 42px;
+    width: 42px;
+    margin-top: -9px;
+    font-size: 31px;
+    border-radius: 50%;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.spin-box {
+    height: fit-content;
+    width: inherit;
+    text-align: -webkit-center;
+    /** Mozilla browser window */
+    text-align: -moz-center;
+    padding-top: 16px;
+}
+
+#log-loader {
+    display: none;
 }
 
 @media (min-width: 360px) {
@@ -118,8 +159,7 @@
         margin-bottom: 307px;
     }
     .sign-up-content {
-        margin-top: 127px;
-        height: 600px;
+        height: 773px;
     }
     #sign-in-form, #sign-up-form {
         width: 394px;

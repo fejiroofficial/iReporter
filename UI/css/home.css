@@ -1,8 +1,14 @@
 @import "main.css";
+@import "about.css";
 
 #myForm {
     margin-left: 5px;
     margin-top: 3px;
+}
+
+.for-home {
+    background-color: white;
+    color: lightseagreen;
 }
 
 .comment-div-flag {
@@ -79,6 +85,7 @@
     margin-top: 2px;
     margin-bottom: 15px;
     padding-top: 2px;
+    font-size: 20px;
     font-weight: bold;
 }
 
@@ -267,10 +274,16 @@ footer {
         margin-left: 75px;
     }
     .flags {
-        margin-left: 76px;
+        margin-left: 27px;
     }
-    .partners {
-        margin-left: 34px;
+
+    .learn-content {
+        min-height: 685px;
+        width: inherit;
+        padding-top: 39px;
+        padding-left: 51px;
+        padding-right: 62px;
+        margin-bottom: 49px;
     }
     footer {
         padding-left: 265px;
@@ -372,7 +385,7 @@ footer {
         margin-left: 89px;
     }
     .flag-one, .flag-three, .flag-five, .flag-seven {
-        margin-left: 197px;
+        margin-left: 125px;
     }
     .partners {
         margin-left: 86px;
@@ -546,12 +559,6 @@ footer {
         height: inherit;
         width: 1px;
         background-color: ghostwhite;
-    }
-    #login-btn {
-        margin-left: 10px;
-        margin-top: 15px;
-        width: 100px;
-        display: block;
     }  
     .nav-bar p {
         font-size: 20px;
@@ -624,7 +631,8 @@ footer {
         margin-left: 52px;
     }
     .flags {
-        margin-left: 26px;
+        margin-left: 6px;
+        margin-right: 46px;
     }
     .partners {
         margin-left: 86px;
@@ -646,7 +654,7 @@ footer {
         padding-left: 204px;
     }
     .flag-container {
-        padding-left: 118px;
+        padding-left: 0px;
     }
     .work-banner-header {
         margin-bottom: 26px;
@@ -728,6 +736,14 @@ footer {
     .display-images {
         height: 519px;
     }
+    .learn-content {
+        min-height: 685px;
+        width: inherit;
+        padding-top: 39px;
+        padding-left: 189px;
+        padding-right: 105px;
+        margin-bottom: 49px;
+    }
 }
 
 @media (min-width: 1583px) {
@@ -766,9 +782,6 @@ footer {
     .work-banner-single {
         margin-left: 52px;
     }
-    .flags {
-        margin-left: 26px;
-    }
     .partners {
         margin-left: 86px;
     }
@@ -783,13 +796,10 @@ footer {
         background-position-y: top;
         background-size: 103%;
     }
-    .partners-container, .flag-container, .work-banner-container {
+    .partners-container, .work-banner-container {
         display: flex;
         flex-wrap: wrap;
         padding-left: 280px;
-    }
-    .flag-container {
-        padding-left: 185px;
     }
     .work-banner-header {
         margin-bottom: 26px;

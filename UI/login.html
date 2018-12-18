@@ -25,17 +25,17 @@
         <div class="logo-box">iReporter</div>
       </a>
 
-      <p>Already have an account?</p>
-      <div class="home-top-btn" id="login-btn" onclick="goLogin()">LOGIN</div>
+      <p>Do not have an account?</p>
+      <div class="home-top-btn" id="login-btn" onclick="goSignup()">SIGN UP</div>
     </div>
 
     <div class="large-screen-nav" id="large-screen">
-        <div class="ver-seperator"></div>
-        <a class="nav-link" href="./about.html">ABOUT US</a>
-        <div class="ver-seperator"></div>
-        <a class="nav-link" href="./learn.html">LEARN ABOUT CORRUPTION</a>
-        <div class="ver-seperator"></div>
-      </div>
+      <div class="ver-seperator"></div>
+      <a class="nav-link" href="./about.html">ABOUT US</a>
+      <div class="ver-seperator"></div>
+      <a class="nav-link" href="./learn.html">LEARN ABOUT CORRUPTION</a>
+      <div class="ver-seperator"></div>
+    </div>
 
     <div id="myNav" class="overlay">
       <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
@@ -51,25 +51,36 @@
         <div class="seperator seperator-slide"></div>
       </div>
     </div>
+    <div id="log-info" class="server-info">
+      <div class="modal-log-area">
+        <div id="modal-info"></div>
+        <span class="cancel-log">&times;</span>
+      </div>
+    </div>
+    <div class="spin-box" id="log-loader">
+      <span>
+        <img src="./img/spin.gif">
+      </span>
+    </div>
 
     <div class="sign-in-content">
-        <div class="sign-in-header">Log into iReporter</div>
-        <form id="sign-in-form">
-          <label for='Username'>Email</label>
-          <input type='email' class="input-field" id='log-email' placeholder="Enter Email" required>
-    
-          <label for='Username'>Password</label>
-          <input type='password' class="input-field" id='log-password' placeholder="Enter Password" required>
+      <div class="sign-in-header">Log into iReporter</div>
+      <form id="sign-in-form">
+        <label for='Username'>Email</label>
+        <input type='text' class="input-field" id='log-email' placeholder="Enter Email" required>
 
-            <button class="home-top-btn" id="sign-btn" onclick="goHome()">Sign in</button>
-        </form>
+        <label for='Username'>Password</label>
+        <input type='password' class="input-field" id='log-password' placeholder="Enter Password" required>
 
-        <div class="sign-note">
-          <p>Do not have an account? Create an account
-            <a href="./signup.html">here...</a>
-          </p>
-        </div>
+        <button class="home-top-btn" id="sign-btn">Sign in</button>
+      </form>
+
+      <div class="sign-note">
+        <p>Do not have an account? Create an account
+          <a href="./signup.html">here...</a>
+        </p>
       </div>
+    </div>
 
     <footer>
       <p>
@@ -78,6 +89,7 @@
   </div>
 
   <script src="./js/scripts.js"></script>
+  <script src="./js/login.js"></script>
 </body>
 
 </html>

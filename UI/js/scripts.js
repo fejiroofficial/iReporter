@@ -43,3 +43,13 @@ function goHome() {
 function goProfile() {
   window.location.assign('profile.html');
 }
+
+/* navigate to profile page */
+function goReport() {
+  window.location.assign('report.html');
+}
+
+function logOut() {
+  localStorage.removeItem('jwtoken');
+  location.assign('../UI/index.html');
+}

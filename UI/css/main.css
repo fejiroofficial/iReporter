@@ -38,6 +38,7 @@ html, body, .container {
 
 #login-btn {
     display: none;
+    font-weight: bold;
 }
 
 .menu-icon {
@@ -402,7 +403,6 @@ input[class="input-field"] {
     width: 80px;
     border-radius: 50%;
     margin-left: 5px;
-    background-image: url('../img/profileSample.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -615,6 +615,8 @@ input[class="input-field"] {
     font-size: 24px;
     font-weight: bold;
     color: #766b6b;
+    margin-top: 25px;
+    margin-bottom: 25px;
 }
 
 .admin-container {
@@ -735,6 +737,36 @@ input[class="input-field"] {
     color: #000;
     text-decoration: none;
     cursor: pointer;
+}
+
+.dropdown-content {
+    display: none;
+    margin-top: 28px;
+    margin-left: 0px;
+    position: absolute;
+    background-color: #f9f9f9;
+    width: 129px;
+    text-align: -webkit-center;
+    color: #4c4646;
+    cursor: pointer;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.account-circle-name:hover .dropdown-content {
+    display: block;
+}
+
+.drop-item {
+    width: inherit;
+    height: 32px;
+    padding-top: 4px;
+    font-weight: bold;
+}
+
+.drop-item:hover {
+    color: white;
+    background-color: lightseagreen;
 }
 
 @media (min-width: 360px) {
@@ -1031,6 +1063,7 @@ input[class="input-field"] {
         padding-left: 3px;
         font-size: 19px;
         padding-top: 21px;
+        cursor: pointer;
     }
     .longLat {
         margin-bottom: -5px;

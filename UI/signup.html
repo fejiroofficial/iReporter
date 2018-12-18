@@ -51,16 +51,29 @@
         <div class="seperator seperator-slide"></div>
       </div>
     </div>
-
+    <div id="log-info" class="server-info">
+      <div class="modal-log-area">
+        <div id="modal-info"></div>
+        <span class="cancel-log">&times;</span>
+      </div>
+    </div>
+    <div class="spin-box" id="log-loader">
+      <span><img src="./img/spin.gif"></span>
+    </div>
     <div class="sign-up-content">
         <div class="sign-in-header">Create an Account</div>
         <form id="sign-up-form" name="signupForm" method="POST" action="#">
+            <label for="fname"><b>Username</b></label>
+            <input type="text" class="input-field" id="sign-user" placeholder="Enter username" name="uname" required>
             
               <label for="fname"><b>First name</b></label>
               <input type="text" class="input-field" id="sign-first" placeholder="Enter First name" name="fname" required>
     
               <label for="lname"><b>Last name</b></label>
               <input type="text" class="input-field" id="sign-last" placeholder="Enter Last name" name="lname" required>
+
+              <label for="lname"><b>Other names</b></label>
+              <input type="text" class="input-field" id="sign-other" placeholder="Enter Last name" name="lname">
     
               <label for="eml"><b>Email</b></label>
               <input type="email" class="input-field" id="log-email" placeholder="Enter Email" name="eml" required>
@@ -71,7 +84,7 @@
               <label for="psw"><b>Password</b></label>
               <input type="password" class="input-field" id="log-password" placeholder="Enter Password" name="psw" required>
           
-              <button class="home-top-btn" id="sign-btn" onclick="goSignup()">Sign up</button>
+              <button class="home-top-btn" id="sign-btn">Sign up</button>
 
           </form>
         <div class="sign-note">
@@ -88,6 +101,7 @@
   </div>
 
   <script src="./js/scripts.js"></script>
+  <script src="./js/signup.js"></script>
 </body>
 
 </html>
