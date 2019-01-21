@@ -1,13 +1,3 @@
-const btn = (record) => {
-  const title = record.title;
-  const info = title.split(',', 3);
-  localStorage.removeItem('location');
-  localStorage.setItem('id', record.id);
-  localStorage.setItem('type', info[0]);
-  localStorage.setItem('location', `${info[1]},${info[2]}`);
-  window.location.assign('incident_record.html');
-};
-
 function initMap() {
   const map = new google.maps.Map(document.getElementById('record-map-input'), {
     zoom: 13,
