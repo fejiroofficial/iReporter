@@ -6,6 +6,17 @@ const defaultRecords = () => {
   localStorage.setItem('red-rejected', 0);
 }
 
+const btn = (record) => {
+  const title = record.title;
+  const info = title.split(',', 3);
+  localStorage.removeItem('location');
+  localStorage.setItem('id', record.id);
+  localStorage.setItem('type', info[0]);
+  localStorage.setItem('location', `${info[1]},${info[2]}`);
+  window.location.assign('incident_record.html');
+};
+
+
 /**
  * This method adds an event listener to the window object
  *
